@@ -1,0 +1,43 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFrameworks>net5.0-windows;netcoreapp3;netcoreapp3.1</TargetFrameworks>
+        <OutputType>Library</OutputType>
+        <UseWindowsForms>true</UseWindowsForms>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Compile Include="..\..\..\src\Extensions\ContainerControlExtensions.cs">
+        <Link>Extensions\ContainerControlExtensions.cs</Link>
+      </Compile>
+      <Compile Include="..\..\..\src\Extensions\ControlExtensions.cs">
+        <Link>Extensions\ControlExtensions.cs</Link>
+      </Compile>
+      <Compile Include="..\..\..\src\Extensions\FlowLayoutPanelExtensions.cs">
+        <Link>Extensions\FlowLayoutPanelExtensions.cs</Link>
+      </Compile>
+      <Compile Include="..\..\..\src\Extensions\FormExtensions.cs">
+        <Link>Extensions\FormExtensions.cs</Link>
+      </Compile>
+      <Compile Include="..\..\..\src\Extensions\LabelExtensions.cs">
+        <Link>Extensions\LabelExtensions.cs</Link>
+      </Compile>
+      <Compile Include="..\..\..\src\Extensions\ScrollableControleExtensions.cs">
+        <Link>Extensions\ScrollableControleExtensions.cs</Link>
+      </Compile>
+      <Compile Include="..\..\..\src\Extensions\ToolStripDropDownItemExtensions.cs">
+        <Link>Extensions\ToolStripDropDownItemExtensions.cs</Link>
+      </Compile>
+      <Compile Include="..\..\..\src\Extensions\ToolStripExtensions.cs">
+        <Link>Extensions\ToolStripExtensions.cs</Link>
+      </Compile>
+      <Compile Include="..\..\..\src\Extensions\ToolStripItemExtensions.cs">
+        <Link>Extensions\ToolStripItemExtensions.cs</Link>
+      </Compile>
+      <Compile Include="..\..\..\src\Extensions\ToolStripMenuItemExtensions.cs">
+        <Link>Extensions\ToolStripMenuItemExtensions.cs</Link>
+      </Compile>
+    </ItemGroup>
+
+</Project>
