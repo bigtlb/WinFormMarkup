@@ -12,5 +12,21 @@ namespace WinFormMarkup.Extensions
             form.StartPosition = startPosition;
             return form;
         }
+
+        public static TForm AutoSize<TForm>(
+            this TForm form,
+            bool autoSize,
+            AutoSizeMode mode
+        )
+            where TForm : Form
+        {
+            form.AutoSize = autoSize;
+            if (autoSize)
+            {
+                form.AutoSizeMode = mode;
+            }
+
+            return form;
+        }
     }
 }

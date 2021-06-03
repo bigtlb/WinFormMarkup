@@ -1,6 +1,6 @@
 # WinFormMarkup
 
-A more concise syntax for working with .Net Core Windows Forms.
+A more concise, flexible, and extensible syntax for working with .Net Core Windows Forms.
 
 Inspired by [TornadoFX][1] and [Xamarin Community Toolkit C# Markup][2].  WinFormMarkup is a set of extension methods that make it easier to create Windows Forms in a cleaner, more declarative manner.
 

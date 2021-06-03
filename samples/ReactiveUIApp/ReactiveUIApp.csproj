@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net5.0-windows</TargetFramework>
+        <UseWindowsForms>true</UseWindowsForms>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="ReactiveUI.WinForms" Version="13.3.2" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="Views\MainView.markdown.cs">
+        <DependentUpon>MainView.cs</DependentUpon>
+      </Compile>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\projects\netcore\WinFormMarkup\WinFormMarkup.csproj" />
+    </ItemGroup>
+
+</Project>

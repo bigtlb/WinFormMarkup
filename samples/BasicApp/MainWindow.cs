@@ -35,7 +35,7 @@ namespace BasicApp
                         .Controls(
                             new Label()
                                 .AutoSize(true)
-                                .Bind(_dataModel, source => source.ClickMessage),
+                                .Binding(_dataModel, source => source.ClickMessage),
                             new Button()
                                 .Text("Click Me")
                                 .Clicked(c => { _dataModel.ClickCount++; }))

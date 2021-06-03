@@ -94,6 +94,75 @@ namespace WinFormMarkup.Extensions
             return control;
         }
 
+        public static TControl Bounds<TControl>(
+            this TControl control,
+            params int[] bounds)
+            where TControl : Control
+        {
+            if (bounds == null) throw new ArgumentNullException(nameof(bounds));
+
+            switch (bounds.Length)
+            {
+                case 2:
+                    control.Bounds = new Rectangle(control.Left, control.Top, bounds[0], bounds[1]);
+                    break;
+                case 4:
+                    control.Bounds = new Rectangle(bounds[0], bounds[1], bounds[2], bounds[3]);
+                    break;
+                default:
+                    throw new ArgumentException(
+                        "Margin must be either 2 (width, height), or 4 (left, top, width, height)");
+            }
+
+            return control;
+        }
+        
+        public static TControl Position<TControl>(
+            this TControl control,
+            int left,
+            int top)
+            where TControl : Control
+        {
+            control.Left = left;
+            control.Top = top;
+
+            return control;
+        }
+        
+        public static TControl ToFront<TControl>(
+            this TControl control)
+            where TControl : Control
+        {
+            EventHandler doToFront = (s,e) => control.BringToFront();
+            if (control.Parent == null)
+            {
+                control.ParentChanged += doToFront;
+            }
+            else
+            {
+                control.BeginInvoke(doToFront);
+            }
+            return control;
+        }
+        
+        public static TControl Anchor<TControl>(
+            this TControl control,
+            AnchorStyles anchors)
+            where TControl : Control
+        {
+            control.Anchor = anchors;
+            return control;
+        }
+
+        public static TControl AutoSize<TControl>(
+            this TControl control,
+            bool autoSize)
+            where TControl : Control
+        {
+            control.AutoSize = autoSize;
+            return control;
+        }
+
         public static TControl BackColor<TControl>(
             this TControl control,
             Color color)
@@ -103,7 +172,7 @@ namespace WinFormMarkup.Extensions
             return control;
         }
 
-        public static TControl Bind<TSource, TSourceProp, TControl, TTargetProp>(
+        public static TControl Binding<TSource, TSourceProp, TControl, TTargetProp>(
             this TControl control,
             TSource source,
             Expression<Func<TSource, TSourceProp>> sourceProp,
@@ -118,6 +187,18 @@ namespace WinFormMarkup.Extensions
             //TODO Deal with converters
             //control.DataBindings.Add(propertyName, source, sourceChain, false, DataSourceUpdateMode.OnPropertyChanged);
             control.DataBindings.Add(new Binding(propertyName, source, sourceChain));
+            return control;
+        }
+        
+        public static TControl Binding<TSource, TSourceProp, TControl>(
+            this TControl control,
+            TSource source,
+            Expression<Func<TSource, TSourceProp>> sourceProp)
+            where TControl : Control
+        {
+            var sourceChain = sourceProp.Body.ToString();
+            sourceChain = sourceChain.Substring(sourceChain.IndexOf(".") + 1);
+            control.DataBindings.Add(new Binding("Text", source, sourceChain));
             return control;
         }
 

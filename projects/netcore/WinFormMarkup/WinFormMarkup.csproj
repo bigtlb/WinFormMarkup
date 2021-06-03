@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFrameworks>net5.0-windows;netcoreapp3;netcoreapp3.1</TargetFrameworks>
+        <TargetFrameworks>net5.0-windows</TargetFrameworks>
         <OutputType>Library</OutputType>
         <UseWindowsForms>true</UseWindowsForms>
         <Nullable>enable</Nullable>
@@ -25,6 +25,9 @@
       </Compile>
       <Compile Include="..\..\..\src\Extensions\ScrollableControleExtensions.cs">
         <Link>Extensions\ScrollableControleExtensions.cs</Link>
+      </Compile>
+      <Compile Include="..\..\..\src\Extensions\TableLayoutPanelExtensions.cs">
+        <Link>Extensions\TableLayoutPanelExtensions.cs</Link>
       </Compile>
       <Compile Include="..\..\..\src\Extensions\ToolStripDropDownItemExtensions.cs">
         <Link>Extensions\ToolStripDropDownItemExtensions.cs</Link>
