@@ -14,6 +14,9 @@
       <Compile Include="..\..\..\src\Extensions\ControlExtensions.cs">
         <Link>Extensions\ControlExtensions.cs</Link>
       </Compile>
+      <Compile Include="..\..\..\src\Extensions\DateTimePickerExtensions.cs">
+        <Link>Extensions\DateTimePickerExtensions.cs</Link>
+      </Compile>
       <Compile Include="..\..\..\src\Extensions\FlowLayoutPanelExtensions.cs">
         <Link>Extensions\FlowLayoutPanelExtensions.cs</Link>
       </Compile>

@@ -1,6 +1,7 @@
 ﻿using System.Reactive;
 using System.Reactive.Linq;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using ReactiveUI;
 
 namespace ReactiveUIApp.ViewModels
@@ -32,18 +33,19 @@ namespace ReactiveUIApp.ViewModels
                 x => x.State,
                 x => x.Zip,
                 (firstName, lastName, dob, street, city, state, zip) =>
-                    !string.IsNullOrWhiteSpace(firstName) &&
-                    !string.IsNullOrWhiteSpace(lastName) &&
-                    !string.IsNullOrWhiteSpace(dob) &&
-                    !string.IsNullOrWhiteSpace(street) &&
-                    !string.IsNullOrWhiteSpace(city) &&
-                    !string.IsNullOrWhiteSpace(state) &&
+                    !string.IsNullOrWhiteSpace(firstName) ||
+                    !string.IsNullOrWhiteSpace(lastName) ||
+                    !string.IsNullOrWhiteSpace(dob) ||
+                    !string.IsNullOrWhiteSpace(street) ||
+                    !string.IsNullOrWhiteSpace(city) ||
+                    !string.IsNullOrWhiteSpace(state) ||
                     !string.IsNullOrWhiteSpace(zip));
 
             SaveCommand = ReactiveCommand.CreateFromTask(DoSave, canExecute);
             CancelCommand = ReactiveCommand.CreateFromTask(DoCanccel);
             ExitCommand = ReactiveCommand.CreateFromTask(DoExit);
             showMessage = new Interaction<string, bool>();
+            showConfirmation = new Interaction<string, bool>();
             closeApp = new Interaction<Unit, Unit>();
         }
 
@@ -52,6 +54,7 @@ namespace ReactiveUIApp.ViewModels
         public ReactiveCommand<Unit, Unit> ExitCommand { get; set; }
 
         public Interaction<string, bool> showMessage { get; }
+        public Interaction<string, bool> showConfirmation { get; }
         public Interaction<Unit, Unit> closeApp { get; }
 
         public string Message
@@ -106,15 +109,15 @@ namespace ReactiveUIApp.ViewModels
 
         private async Task DoExit()
         {
-            if (await SaveCommand.CanExecute.LastAsync())
-                if (await showMessage.Handle(DoYouWantToSave))
+            if ((SaveCommand as ICommand).CanExecute(null))
+                if (await showConfirmation.Handle(DoYouWantToSave))
                     await DoSave();
             await closeApp.Handle(Unit.Default);
         }
 
         private async Task DoCanccel()
         {
-            if (await showMessage.Handle(CancelAreYouSure))
+            if (await showConfirmation.Handle(CancelAreYouSure))
             {
                 clearFields();
                 Message = Cancelled;

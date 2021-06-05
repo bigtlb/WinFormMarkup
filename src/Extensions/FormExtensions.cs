@@ -13,6 +13,24 @@ namespace WinFormMarkup.Extensions
             return form;
         }
 
+        public static TForm AcceptButton<TForm>(
+            this TForm form,
+            Button acceptButton)
+            where TForm : Form
+        {
+            form.AcceptButton = acceptButton;
+            return form;
+        }
+
+        public static TForm CancelButton<TForm>(
+            this TForm form,
+            Button cancelButton)
+            where TForm : Form
+        {
+            form.CancelButton = cancelButton;
+            return form;
+        }
+
         public static TForm AutoSize<TForm>(
             this TForm form,
             bool autoSize,
