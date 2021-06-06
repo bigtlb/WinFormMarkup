@@ -1,0 +1,22 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/Environment/Highlighting/HighlightingSourceSnapshotLocation/@EntryValue">C:\Users\thoma\AppData\Local\JetBrains\Rider2021.1\resharper-host\temp\Rider\vAny\CoverageData\_WinFormMarkup.988042034\Snapshot\snapshot.utdcvr</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=0371551e_002Dfbe5_002D4b76_002D8521_002D7255dbb4a0b8/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="CanSet_Text" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::B81C4010-1A07-46E9-88D4-9BAA0B582716::net5.0-windows7.0::UnitTests.ControlExtensionTests&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=278b43db_002D9c76_002D45e3_002Dbf0e_002Dfb72fb83119d/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="CanSet_GeneralBinding #3" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::B81C4010-1A07-46E9-88D4-9BAA0B582716::net5.0-windows7.0::UnitTests.ControlExtensionTests&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=582d7eb9_002D9220_002D4e4f_002Dbed9_002D148a8e99a49b/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="CanSet_GeneralBinding" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::B81C4010-1A07-46E9-88D4-9BAA0B582716::net5.0-windows7.0::UnitTests.ControlExtensionTests.CanSet_GeneralBinding&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=ed03b7fb_002Da75b_002D4faf_002Daa26_002Db442a3ed8729/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="CanSet_GeneralBinding #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::B81C4010-1A07-46E9-88D4-9BAA0B582716::net5.0-windows7.0::UnitTests.ControlExtensionTests.CanSet_GeneralBinding&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

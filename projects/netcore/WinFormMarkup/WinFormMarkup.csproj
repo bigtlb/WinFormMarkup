@@ -8,9 +8,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Compile Include="..\..\..\src\Extensions\ContainerControlExtensions.cs">
-        <Link>Extensions\ContainerControlExtensions.cs</Link>
-      </Compile>
       <Compile Include="..\..\..\src\Extensions\ControlExtensions.cs">
         <Link>Extensions\ControlExtensions.cs</Link>
       </Compile>

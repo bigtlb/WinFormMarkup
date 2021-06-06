@@ -8,17 +8,49 @@ namespace ReactiveUIApp.Views
 {
     public partial class MainView
     {
+        private TextBox _city;
+        private Button _clearButton;
+        private DateTimePicker _dob;
         private ToolStripMenuItem _exitMenu;
         private TextBox _firstName;
         private TextBox _lastName;
-        private TextBox _street;
         private Button _saveButton;
-        private Button _clearButton;
-        private DateTimePicker _dob;
-        private TextBox _city;
         private TextBox _state;
-        private TextBox _zip;
         private ToolStripStatusLabel _statusLabel;
+        private TextBox _street;
+        private TextBox _zip;
+
+        private void Bind()
+        {
+            this.WhenActivated(d =>
+            {
+                d(this.BindCommand(ViewModel, vm => vm.ExitCommand, v => v._exitMenu));
+                d(this.BindCommand(ViewModel, vm => vm.SaveCommand, v => v._saveButton));
+                d(this.BindCommand(ViewModel, vm => vm.CancelCommand, v => v._clearButton));
+                d(this.Bind(ViewModel, vm => vm.FirstName, v => v._firstName.Text));
+                d(this.Bind(ViewModel, vm => vm.LastName, v => v._lastName.Text));
+                d(this.Bind(ViewModel, vm => vm.Dob, v => v._dob.Value,
+                    s => s == null ? DateTime.Today : DateTime.Parse(s),
+                    d => d == DateTime.Today ? null : d.ToShortDateString()));
+                d(this.Bind(ViewModel, vm => vm.Street, v => v._street.Text));
+                d(this.Bind(ViewModel, vm => vm.City, v => v._city.Text));
+                d(this.Bind(ViewModel, vm => vm.State, v => v._state.Text));
+                d(this.Bind(ViewModel, vm => vm.Zip, v => v._zip.Text));
+                d(this.Bind(ViewModel, vm => vm.Message, v => v._statusLabel.Text));
+                d(ViewModel.closeApp.RegisterHandler(async _ => Application.Exit()));
+                d(ViewModel.showMessage.RegisterHandler(async msg =>
+                {
+                    var result = MessageBox.Show(msg.Input, "Message", MessageBoxButtons.OK);
+                    msg.SetOutput(true);
+                }));
+                d(ViewModel.showConfirmation.RegisterHandler(async msg =>
+                {
+                    var result = MessageBox.Show(msg.Input, "Confirm", MessageBoxButtons.OKCancel,
+                        MessageBoxIcon.Question);
+                    msg.SetOutput(result == DialogResult.OK);
+                }));
+            });
+        }
 
         private void Build()
         {
@@ -42,35 +74,35 @@ namespace ReactiveUIApp.Views
                         .Padding(30)
                         .Dock(DockStyle.Fill)
                         .TableControls(
-                            new(0, 0, new Label().Text("First &Name:")
+                            new TableLocation(0, 0, new Label().Text("First &Name:")
                                 .Dock(DockStyle.Fill).TextAlign(ContentAlignment.MiddleRight)),
-                            new(1, 0, _firstName = new TextBox()
+                            new TableLocation(1, 0, _firstName = new TextBox()
                                 .Dock(DockStyle.Fill)),
-                            new(0, 1, new Label().Text("&Last Name:")
+                            new TableLocation(0, 1, new Label().Text("&Last Name:")
                                 .Dock(DockStyle.Fill).TextAlign(ContentAlignment.MiddleRight)),
-                            new(1, 1, _lastName = new TextBox()
+                            new TableLocation(1, 1, _lastName = new TextBox()
                                 .Dock(DockStyle.Fill)),
-                            new(0, 2, new Label().Text("&Birthday:")
+                            new TableLocation(0, 2, new Label().Text("&Birthday:")
                                 .Dock(DockStyle.Fill).TextAlign(ContentAlignment.MiddleRight)),
-                            new(1, 2, _dob = new DateTimePicker()
+                            new TableLocation(1, 2, _dob = new DateTimePicker()
                                 .CustomFormat("dd/MM/yyyy")),
-                            new(0, 3, new Label().Text("S&treet:")
+                            new TableLocation(0, 3, new Label().Text("S&treet:")
                                 .Dock(DockStyle.Fill).TextAlign(ContentAlignment.MiddleRight)),
-                            new(1, 3, _street = new TextBox()
+                            new TableLocation(1, 3, _street = new TextBox()
                                 .Dock(DockStyle.Fill)),
-                            new(0, 4, new Label().Text("Cit&y:")
+                            new TableLocation(0, 4, new Label().Text("Cit&y:")
                                 .Dock(DockStyle.Fill).TextAlign(ContentAlignment.MiddleRight)),
-                            new(1, 4, _city = new TextBox()
+                            new TableLocation(1, 4, _city = new TextBox()
                                 .Dock(DockStyle.Fill)),
-                            new(0, 5, new Label().Text("State:")
+                            new TableLocation(0, 5, new Label().Text("State:")
                                 .Dock(DockStyle.Fill).TextAlign(ContentAlignment.MiddleRight)),
-                            new(1, 5, _state = new TextBox()
+                            new TableLocation(1, 5, _state = new TextBox()
                                 .Dock(DockStyle.Fill)),
-                            new(0, 6, new Label().Text("&Zip:")
+                            new TableLocation(0, 6, new Label().Text("&Zip:")
                                 .Dock(DockStyle.Fill).TextAlign(ContentAlignment.MiddleRight)),
-                            new(1, 6, _zip = new TextBox()
+                            new TableLocation(1, 6, _zip = new TextBox()
                                 .Dock(DockStyle.Fill)),
-                            new (0,7, 2,1,
+                            new TableLocation(0, 7, 2, 1,
                                 new FlowLayoutPanel()
                                     .FlowDirection(FlowDirection.RightToLeft)
                                     .WrapContents(false)
@@ -85,36 +117,6 @@ namespace ReactiveUIApp.Views
                 .AcceptButton(_saveButton)
                 .StartPosition(FormStartPosition.CenterScreen)
                 .Text("Basic Test App");
-        }
-
-        private void Bind()
-        {
-            this.WhenActivated(d =>
-            {
-                d(this.BindCommand(ViewModel, vm => vm.ExitCommand, v => v._exitMenu));
-                d(this.BindCommand(ViewModel, vm => vm.SaveCommand, v => v._saveButton));
-                d(this.BindCommand(ViewModel, vm => vm.CancelCommand, v => v._clearButton));
-                d(this.Bind(ViewModel, vm => vm.FirstName, v => v._firstName.Text));
-                d(this.Bind(ViewModel, vm => vm.LastName, v => v._lastName.Text));
-                d(this.Bind(ViewModel, vm => vm.Dob, v => v._dob.Value, 
-                    s=>s==null?DateTime.Today:DateTime.Parse(s), d=>d==DateTime.Today?null:d.ToShortDateString()));
-                d(this.Bind(ViewModel, vm => vm.Street, v => v._street.Text));
-                d(this.Bind(ViewModel, vm => vm.City, v => v._city.Text));
-                d(this.Bind(ViewModel, vm => vm.State, v => v._state.Text));
-                d(this.Bind(ViewModel, vm => vm.Zip, v => v._zip.Text));
-                d(this.Bind(ViewModel, vm => vm.Message, v => v._statusLabel.Text));
-                d(ViewModel.closeApp.RegisterHandler(async _ => Application.Exit()));
-                d(ViewModel.showMessage.RegisterHandler(async msg =>
-                {
-                    var result = MessageBox.Show(msg.Input, "Message", MessageBoxButtons.OK);
-                    msg.SetOutput(true);
-                }));
-                d(ViewModel.showConfirmation.RegisterHandler(async msg =>
-                {
-                    var result = MessageBox.Show(msg.Input, "Confirm", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-                    msg.SetOutput(result == DialogResult.OK);
-                }));
-            });
         }
     }
 }
