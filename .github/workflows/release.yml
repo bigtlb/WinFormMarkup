@@ -20,9 +20,9 @@ jobs:
     - name: Test
       run: dotnet test --configuration Release /p:Version=${VERSION} --no-build
     - name: Pack
-      run: dotnet pack --configuration Release /p:Version=${VERSION} --no-build --output .
+      run: dotnet pack projects\netcore\WinFormMarkup\WinFormMarkup.csproj --configuration release /p:Version=${VERSION} --no-build --output .
     - name: Push
-      run: dotnet nuget push WinFormMarkup.${VERSION}.nupkg --source https://nuget.pkg.github.com/bigtlb/index.json --api-key ${{github.token}}
+      run: dotnet nuget push projects\netcore\WinFormMarkup\bin\release\WinFormMarkup.${VERSION}.nupkg --source https://nuget.pkg.github.com/bigtlb/index.json --api-key ${{github.token}}
       #run: dotnet nuget push WinFormMarkup.${VERSION}.nupkg --api-key ${NUGET_APIKEY}
       env:
         #GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
