@@ -24,6 +24,6 @@ jobs:
     - name: Push
       run: dotnet nuget push projects\netcore\WinFormMarkup\bin\release\WinFormMarkup.${VERSION}.nupkg --source https://nuget.pkg.github.com/bigtlb/index.json --api-key ${{github.token}}
       #run: dotnet nuget push WinFormMarkup.${VERSION}.nupkg --api-key ${NUGET_APIKEY}
-      env:
+      #env:
         #GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         #NUGET_APIKEY: ${{ secrets.NUGET_APIKEY }}
