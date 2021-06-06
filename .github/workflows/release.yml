@@ -17,7 +17,7 @@ jobs:
         git branch --remote --contains | grep origin/main
     - name: Set VERSION variable from tag
       run: |
-        echo "VERSION=" >> $GITHUB_ENV
+        echo|set /p=VERSION= >> $GITHUB_ENV
         git describe --tags --abbrev=0 >> $GITHUB_ENV
     - name: Build
       run: dotnet build --configuration Release /p:Version=${VERSION}
