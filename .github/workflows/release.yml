@@ -3,7 +3,7 @@ name: Publish Package
 on:
   push:
     tags:
-    - "v[0-9]+.[0-9]+.[0-9]+(-beta|-alpha|-rc)?"
+    - "v[0-9]+.[0-9]+.[0-9]+*"
 jobs:
   build:
     runs-on: windows-latest
