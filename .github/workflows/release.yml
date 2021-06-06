@@ -26,7 +26,7 @@ jobs:
       run: dotnet pack projects\netcore\WinFormMarkup\WinFormMarkup.csproj --configuration release /p:Version=${env:VERSION} --no-build --output .
     - name: Push
       run: |
-        dir /s
+        gci . -Recurse
         dotnet nuget push .\WinFormMarkup.${env:VERSION}.nupkg --source https://nuget.pkg.github.com/bigtlb/index.json --api-key ${env:GITHUB_TOKEN}
       #run: dotnet nuget push WinFormMarkup.${VERSION}.nupkg --api-key ${NUGET_APIKEY}
       env:
