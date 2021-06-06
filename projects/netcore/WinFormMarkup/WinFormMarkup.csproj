@@ -5,6 +5,11 @@
         <OutputType>Library</OutputType>
         <UseWindowsForms>true</UseWindowsForms>
         <Nullable>enable</Nullable>
+      <PackageId>WinFormMarkup</PackageId>
+      <Authors>bigtlb</Authors>
+<!--      <Company>GitHub</Company>-->
+      <PackageDescription>Fluent markup syntax for Windows Forms creation. Inspired by TornadoFX and Xamarin Community Toolkit C# Markup</PackageDescription>
+      <RepositoryUrl>https://github.com/bigtlb/WinFormMarkup</RepositoryUrl>
     </PropertyGroup>
 
     <ItemGroup>
