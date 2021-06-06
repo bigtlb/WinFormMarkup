@@ -1,3 +1,4 @@
+![main branch status](https://github.com/bigtlb/WinFormMarkup/actions/workflows/dotnet.yml/badge.svg)
 # WinFormMarkup
 
 A more concise, flexible, and extensible syntax for working with .Net Core Windows Forms.

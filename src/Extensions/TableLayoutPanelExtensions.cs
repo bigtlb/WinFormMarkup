@@ -1,22 +1,41 @@
 ﻿using System;
-using System.Drawing;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace WinFormMarkup.Extensions
 {
     public static class TableLayoutPanelExtensions
     {
-        public static TTableLayoutPanel TableLayout<TTableLayoutPanel>(
+        public static TTableLayoutPanel ColumnStyles<TTableLayoutPanel>(
             this TTableLayoutPanel tableLayoutPanel,
-            int columnCount,
-            int rowCount,
-            bool autoSize = true)
+            string columnStyles)
             where TTableLayoutPanel : TableLayoutPanel
         {
-            tableLayoutPanel.ColumnCount = columnCount;
-            tableLayoutPanel.RowCount = rowCount;
-            tableLayoutPanel.AutoSize = autoSize;
+            if (columnStyles == null) throw new ArgumentNullException(nameof(columnStyles));
+            foreach (var style in columnStyles.Split('|'))
+                tableLayoutPanel.ColumnStyles.Add(
+                    style[^1] == '*'
+                        ? new ColumnStyle {SizeType = SizeType.AutoSize, Width = 1}
+                        : style[^1] == '%'
+                            ? new ColumnStyle {SizeType = SizeType.Percent, Width = float.Parse(style[..^1])}
+                            : new ColumnStyle {SizeType = SizeType.Absolute, Width = float.Parse(style)});
+
+            return tableLayoutPanel;
+        }
+
+        public static TTableLayoutPanel RowStyles<TTableLayoutPanel>(
+            this TTableLayoutPanel tableLayoutPanel,
+            string rowStyles)
+            where TTableLayoutPanel : TableLayoutPanel
+        {
+            if (rowStyles == null) throw new ArgumentNullException(nameof(rowStyles));
+            foreach (var style in rowStyles.Split('|'))
+                tableLayoutPanel.RowStyles.Add(
+                    style[^1] == '*'
+                        ? new RowStyle {SizeType = SizeType.AutoSize, Height = 1}
+                        : style[^1] == '%'
+                            ? new RowStyle {SizeType = SizeType.Percent, Height = float.Parse(style[..^1])}
+                            : new RowStyle {SizeType = SizeType.Absolute, Height = float.Parse(style)});
+
             return tableLayoutPanel;
         }
 
@@ -41,54 +60,22 @@ namespace WinFormMarkup.Extensions
             return tableLayoutPanel;
         }
 
-        public static TTableLayoutPanel ColumnStyles<TTableLayoutPanel>(
+        public static TTableLayoutPanel TableLayout<TTableLayoutPanel>(
             this TTableLayoutPanel tableLayoutPanel,
-            string columnStyles)
+            int columnCount,
+            int rowCount,
+            bool autoSize = true)
             where TTableLayoutPanel : TableLayoutPanel
         {
-            if (columnStyles == null) throw new ArgumentNullException(nameof(columnStyles));
-            foreach (var style in columnStyles.Split('|'))
-            {
-                tableLayoutPanel.ColumnStyles.Add(
-                    (style[^1] == '*')
-                        ? new ColumnStyle {SizeType = SizeType.AutoSize, Width=1}
-                        : (style[^1] == '%'
-                            ? new ColumnStyle {SizeType = SizeType.Percent, Width = float.Parse(style[0..^1])}
-                            : new ColumnStyle {SizeType = SizeType.Absolute, Width = float.Parse(style)}));
-            }
-
-            return tableLayoutPanel;
-        }
-
-        public static TTableLayoutPanel RowStyles<TTableLayoutPanel>(
-            this TTableLayoutPanel tableLayoutPanel,
-            string rowStyles)
-            where TTableLayoutPanel : TableLayoutPanel
-        {
-            if (rowStyles == null) throw new ArgumentNullException(nameof(rowStyles));
-            foreach (var style in rowStyles.Split('|'))
-            {
-                tableLayoutPanel.RowStyles.Add(
-                    (style[^1] == '*')
-                        ? new RowStyle {SizeType = SizeType.AutoSize, Height=1}
-                        : (style[^1] == '%'
-                            ? new RowStyle {SizeType = SizeType.Percent, Height = float.Parse(style[0..^1])}
-                            : new RowStyle {SizeType = SizeType.Absolute, Height = float.Parse(style)}));
-            }
-
+            tableLayoutPanel.ColumnCount = columnCount;
+            tableLayoutPanel.RowCount = rowCount;
+            tableLayoutPanel.AutoSize = autoSize;
             return tableLayoutPanel;
         }
     }
 
     public class TableLocation
     {
-        public int Column { get; }
-        public int Row { get; }
-        public int Columnspan { get; }
-        public int RowSpan { get; }
-        public Control Control { get; }
-        public bool HasSpans { get; }
-
         public TableLocation(int column, int row, Control control) : this(column, row, 1, 1, control)
         {
             HasSpans = false;
@@ -103,7 +90,14 @@ namespace WinFormMarkup.Extensions
             Control = control;
             HasSpans = RowSpan > 1 || Columnspan > 1;
         }
-    };
+
+        public int Column { get; }
+        public int Row { get; }
+        public int Columnspan { get; }
+        public int RowSpan { get; }
+        public Control Control { get; }
+        public bool HasSpans { get; }
+    }
 
     public record TableSpan;
 }

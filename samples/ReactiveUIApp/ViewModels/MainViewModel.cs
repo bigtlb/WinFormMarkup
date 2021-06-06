@@ -107,12 +107,15 @@ namespace ReactiveUIApp.ViewModels
 
         public ViewModelActivator Activator { get; } = new();
 
-        private async Task DoExit()
+        private void clearFields()
         {
-            if ((SaveCommand as ICommand).CanExecute(null))
-                if (await showConfirmation.Handle(DoYouWantToSave))
-                    await DoSave();
-            await closeApp.Handle(Unit.Default);
+            FirstName = null;
+            LastName = null;
+            Dob = null;
+            Street = null;
+            City = null;
+            State = null;
+            Zip = null;
         }
 
         private async Task DoCanccel()
@@ -124,15 +127,12 @@ namespace ReactiveUIApp.ViewModels
             }
         }
 
-        private void clearFields()
+        private async Task DoExit()
         {
-            FirstName = null;
-            LastName = null;
-            Dob = null;
-            Street = null;
-            City = null;
-            State = null;
-            Zip = null;
+            if ((SaveCommand as ICommand).CanExecute(null))
+                if (await showConfirmation.Handle(DoYouWantToSave))
+                    await DoSave();
+            await closeApp.Handle(Unit.Default);
         }
 
         private async Task DoSave()
