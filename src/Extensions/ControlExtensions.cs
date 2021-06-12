@@ -46,16 +46,16 @@ namespace WinFormMarkup.Extensions
         {
             var propertyName = ((MemberExpression) targetProp.Body).Member.Name;
             var sourceChain = sourceProp.Body.ToString();
-            sourceChain = sourceChain.Substring(sourceChain.IndexOf(".") + 1);
+            sourceChain = sourceChain.Substring(sourceChain.IndexOf(".", StringComparison.Ordinal) + 1);
             var b = new Binding(propertyName, source, sourceChain, false, DataSourceUpdateMode.OnPropertyChanged);
             if (convert != null)
             {
-                ConvertEventHandler doConvert = (sender, args) => args.Value = convert((TSourceProp) args.Value);
+                ConvertEventHandler doConvert = (_, args) => args.Value = convert((TSourceProp) args.Value);
                 b.Format += doConvert;
             }
             if (convertBack != null)
             {
-                ConvertEventHandler doConvert = (sender, args) => args.Value = convertBack((TTargetProp) args.Value);
+                ConvertEventHandler doConvert = (_, args) => args.Value = convertBack((TTargetProp) args.Value);
                 b.Parse += doConvert;
             }
             control.DataBindings.Add(b);
@@ -69,7 +69,7 @@ namespace WinFormMarkup.Extensions
             where TControl : Control
         {
             var sourceChain = sourceProp.Body.ToString();
-            sourceChain = sourceChain.Substring(sourceChain.IndexOf(".") + 1);
+            sourceChain = sourceChain.Substring(sourceChain.IndexOf(".", StringComparison.Ordinal) + 1);
             control.DataBindings.Add(new Binding("Text", source, sourceChain, false, DataSourceUpdateMode.OnPropertyChanged));
             return control;
         }
@@ -103,7 +103,7 @@ namespace WinFormMarkup.Extensions
             Action<TControl?> action)
             where TControl : Control
         {
-            control.Click += (sender, args) => action?.Invoke(sender as TControl);
+            control.Click += (sender, _) => action.Invoke(sender as TControl);
             return control;
         }
 
@@ -222,7 +222,7 @@ namespace WinFormMarkup.Extensions
             this TControl control)
             where TControl : Control
         {
-            EventHandler doToFront = (s, e) => control.BringToFront();
+            EventHandler doToFront = (_, _) => control.BringToFront();
             if (control.Parent == null)
                 control.ParentChanged += doToFront;
             else

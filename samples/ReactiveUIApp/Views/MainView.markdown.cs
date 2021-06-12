@@ -20,38 +20,6 @@ namespace ReactiveUIApp.Views
         private TextBox _street;
         private TextBox _zip;
 
-        private void Bind()
-        {
-            this.WhenActivated(d =>
-            {
-                d(this.BindCommand(ViewModel, vm => vm.ExitCommand, v => v._exitMenu));
-                d(this.BindCommand(ViewModel, vm => vm.SaveCommand, v => v._saveButton));
-                d(this.BindCommand(ViewModel, vm => vm.CancelCommand, v => v._clearButton));
-                d(this.Bind(ViewModel, vm => vm.FirstName, v => v._firstName.Text));
-                d(this.Bind(ViewModel, vm => vm.LastName, v => v._lastName.Text));
-                d(this.Bind(ViewModel, vm => vm.Dob, v => v._dob.Value,
-                    s => s == null ? DateTime.Today : DateTime.Parse(s),
-                    d => d == DateTime.Today ? null : d.ToShortDateString()));
-                d(this.Bind(ViewModel, vm => vm.Street, v => v._street.Text));
-                d(this.Bind(ViewModel, vm => vm.City, v => v._city.Text));
-                d(this.Bind(ViewModel, vm => vm.State, v => v._state.Text));
-                d(this.Bind(ViewModel, vm => vm.Zip, v => v._zip.Text));
-                d(this.Bind(ViewModel, vm => vm.Message, v => v._statusLabel.Text));
-                d(ViewModel.closeApp.RegisterHandler(async _ => Application.Exit()));
-                d(ViewModel.showMessage.RegisterHandler(async msg =>
-                {
-                    var result = MessageBox.Show(msg.Input, "Message", MessageBoxButtons.OK);
-                    msg.SetOutput(true);
-                }));
-                d(ViewModel.showConfirmation.RegisterHandler(async msg =>
-                {
-                    var result = MessageBox.Show(msg.Input, "Confirm", MessageBoxButtons.OKCancel,
-                        MessageBoxIcon.Question);
-                    msg.SetOutput(result == DialogResult.OK);
-                }));
-            });
-        }
-
         private void Build()
         {
             // Control instantiation
@@ -118,5 +86,38 @@ namespace ReactiveUIApp.Views
                 .StartPosition(FormStartPosition.CenterScreen)
                 .Text("Basic Test App");
         }
+        private void Bind()
+        {
+            this.WhenActivated(d =>
+            {
+                d(this.BindCommand(ViewModel, vm => vm.ExitCommand, v => v._exitMenu));
+                d(this.BindCommand(ViewModel, vm => vm.SaveCommand, v => v._saveButton));
+                d(this.BindCommand(ViewModel, vm => vm.CancelCommand, v => v._clearButton));
+                d(this.Bind(ViewModel, vm => vm.FirstName, v => v._firstName.Text));
+                d(this.Bind(ViewModel, vm => vm.LastName, v => v._lastName.Text));
+                d(this.Bind(ViewModel, vm => vm.Dob, v => v._dob.Value,
+                    s => s == null ? DateTime.Today : DateTime.Parse(s),
+                    d => d == DateTime.Today ? null : d.ToShortDateString()));
+                d(this.Bind(ViewModel, vm => vm.Street, v => v._street.Text));
+                d(this.Bind(ViewModel, vm => vm.City, v => v._city.Text));
+                d(this.Bind(ViewModel, vm => vm.State, v => v._state.Text));
+                d(this.Bind(ViewModel, vm => vm.Zip, v => v._zip.Text));
+                d(this.Bind(ViewModel, vm => vm.Message, v => v._statusLabel.Text));
+                d(ViewModel.closeApp.RegisterHandler(_ => Application.Exit()));
+                d(ViewModel.showMessage.RegisterHandler(msg =>
+                {
+                    var result = MessageBox.Show(msg.Input, "Message", MessageBoxButtons.OK);
+                    msg.SetOutput(true);
+                }));
+                d(ViewModel.showConfirmation.RegisterHandler(msg =>
+                {
+                    var result = MessageBox.Show(msg.Input, "Confirm", MessageBoxButtons.OKCancel,
+                        MessageBoxIcon.Question);
+                    msg.SetOutput(result == DialogResult.OK);
+                }));
+            });
+        }
+
+        
     }
 }

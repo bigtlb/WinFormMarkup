@@ -2,7 +2,7 @@
 
 namespace WinFormMarkup.Extensions
 {
-    public static class ScrollableControleExtensions
+    public static class ScrollableControlExtensions
     {
         public static TControl AutoScroll<TControl>(
             this TControl control,

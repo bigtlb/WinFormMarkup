@@ -5,6 +5,7 @@
         <OutputType>Library</OutputType>
         <UseWindowsForms>true</UseWindowsForms>
         <IsPackable>false</IsPackable>
+        <Nullable>enable</Nullable>
     </PropertyGroup>
 
     <ItemGroup>

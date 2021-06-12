@@ -13,12 +13,12 @@ namespace ReactiveUIApp.Views
             ViewModel = new MainViewModel();
         }
 
-        object? IViewFor.ViewModel
+        object IViewFor.ViewModel
         {
             get => ViewModel;
-            set => ViewModel = (MainViewModel?) value;
+            set => ViewModel = (MainViewModel) value;
         }
 
-        public MainViewModel? ViewModel { get; set; }
+        public MainViewModel ViewModel { get; set; }
     }
 }

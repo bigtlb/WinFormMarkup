@@ -50,7 +50,7 @@ namespace WinFormMarkup.Extensions
                 tableLayoutPanel.Controls.Add(c.Control, c.Column, c.Row);
                 if (c.HasSpans)
                 {
-                    if (c.Columnspan > 1) tableLayoutPanel.SetColumnSpan(c.Control, c.Columnspan);
+                    if (c.ColumnSpan > 1) tableLayoutPanel.SetColumnSpan(c.Control, c.ColumnSpan);
                     if (c.RowSpan > 1) tableLayoutPanel.SetRowSpan(c.Control, c.RowSpan);
                 }
             }
@@ -81,19 +81,19 @@ namespace WinFormMarkup.Extensions
             HasSpans = false;
         }
 
-        public TableLocation(int column, int row, int columnspan, int rowSpan, Control control)
+        public TableLocation(int column, int row, int columnSpan, int rowSpan, Control control)
         {
             Column = column;
             Row = row;
-            Columnspan = columnspan;
+            ColumnSpan = columnSpan;
             RowSpan = rowSpan;
             Control = control;
-            HasSpans = RowSpan > 1 || Columnspan > 1;
+            HasSpans = RowSpan > 1 || ColumnSpan > 1;
         }
 
         public int Column { get; }
         public int Row { get; }
-        public int Columnspan { get; }
+        public int ColumnSpan { get; }
         public int RowSpan { get; }
         public Control Control { get; }
         public bool HasSpans { get; }

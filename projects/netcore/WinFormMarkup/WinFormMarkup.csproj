@@ -1,51 +1,51 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFrameworks>net5.0-windows</TargetFrameworks>
+        <TargetFramework>net5.0-windows</TargetFramework>
         <OutputType>Library</OutputType>
         <UseWindowsForms>true</UseWindowsForms>
-        <Nullable>enable</Nullable>
         <PackageId>WinFormMarkup</PackageId>
         <Authors>bigtlb</Authors>
         <!--      <Company>GitHub</Company>-->
         <PackageDescription>Fluent markup syntax for Windows Forms creation. Inspired by TornadoFX and Xamarin Community Toolkit C# Markup</PackageDescription>
         <RepositoryUrl>https://github.com/bigtlb/WinFormMarkup</RepositoryUrl>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <Nullable>enable</Nullable>
     </PropertyGroup>
 
     <ItemGroup>
         <Compile Include="..\..\..\src\Extensions\ControlExtensions.cs">
-            <Link>Extensions\ControlExtensions.cs</Link>
+            <Link>ControlExtensions.cs</Link>
         </Compile>
         <Compile Include="..\..\..\src\Extensions\DateTimePickerExtensions.cs">
-            <Link>Extensions\DateTimePickerExtensions.cs</Link>
+            <Link>DateTimePickerExtensions.cs</Link>
         </Compile>
         <Compile Include="..\..\..\src\Extensions\FlowLayoutPanelExtensions.cs">
-            <Link>Extensions\FlowLayoutPanelExtensions.cs</Link>
+            <Link>FlowLayoutPanelExtensions.cs</Link>
         </Compile>
         <Compile Include="..\..\..\src\Extensions\FormExtensions.cs">
-            <Link>Extensions\FormExtensions.cs</Link>
+            <Link>FormExtensions.cs</Link>
         </Compile>
         <Compile Include="..\..\..\src\Extensions\LabelExtensions.cs">
-            <Link>Extensions\LabelExtensions.cs</Link>
+            <Link>LabelExtensions.cs</Link>
         </Compile>
         <Compile Include="..\..\..\src\Extensions\ScrollableControleExtensions.cs">
-            <Link>Extensions\ScrollableControleExtensions.cs</Link>
+            <Link>ScrollableControleExtensions.cs</Link>
         </Compile>
         <Compile Include="..\..\..\src\Extensions\TableLayoutPanelExtensions.cs">
-            <Link>Extensions\TableLayoutPanelExtensions.cs</Link>
+            <Link>TableLayoutPanelExtensions.cs</Link>
         </Compile>
         <Compile Include="..\..\..\src\Extensions\ToolStripDropDownItemExtensions.cs">
-            <Link>Extensions\ToolStripDropDownItemExtensions.cs</Link>
+            <Link>ToolStripDropDownItemExtensions.cs</Link>
         </Compile>
         <Compile Include="..\..\..\src\Extensions\ToolStripExtensions.cs">
-            <Link>Extensions\ToolStripExtensions.cs</Link>
+            <Link>ToolStripExtensions.cs</Link>
         </Compile>
         <Compile Include="..\..\..\src\Extensions\ToolStripItemExtensions.cs">
-            <Link>Extensions\ToolStripItemExtensions.cs</Link>
+            <Link>ToolStripItemExtensions.cs</Link>
         </Compile>
         <Compile Include="..\..\..\src\Extensions\ToolStripMenuItemExtensions.cs">
-            <Link>Extensions\ToolStripMenuItemExtensions.cs</Link>
+            <Link>ToolStripMenuItemExtensions.cs</Link>
         </Compile>
     </ItemGroup>
 
