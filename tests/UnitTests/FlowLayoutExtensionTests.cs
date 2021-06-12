@@ -7,22 +7,22 @@ namespace UnitTests
     public class FlowLayoutExtensionTests
     {
         [Fact]
-        void CanSet_FlowDirection()
+        private void CanSet_FlowDirection()
         {
             var panel = new FlowLayoutPanel();
-            
+
             Assert.Equal(panel, panel.FlowDirection(FlowDirection.TopDown));
-            
+
             Assert.Equal(FlowDirection.TopDown, panel.FlowDirection);
         }
-        
+
         [Fact]
-        void CanSet_WrapContents()
+        private void CanSet_WrapContents()
         {
             var panel = new FlowLayoutPanel();
-            
+
             Assert.Equal(panel, panel.WrapContents(false));
-            
+
             Assert.False(panel.WrapContents);
         }
     }

@@ -53,11 +53,13 @@ namespace WinFormMarkup.Extensions
                 ConvertEventHandler doConvert = (_, args) => args.Value = convert((TSourceProp) args.Value);
                 b.Format += doConvert;
             }
+
             if (convertBack != null)
             {
                 ConvertEventHandler doConvert = (_, args) => args.Value = convertBack((TTargetProp) args.Value);
                 b.Parse += doConvert;
             }
+
             control.DataBindings.Add(b);
             return control;
         }
@@ -70,7 +72,8 @@ namespace WinFormMarkup.Extensions
         {
             var sourceChain = sourceProp.Body.ToString();
             sourceChain = sourceChain.Substring(sourceChain.IndexOf(".", StringComparison.Ordinal) + 1);
-            control.DataBindings.Add(new Binding("Text", source, sourceChain, false, DataSourceUpdateMode.OnPropertyChanged));
+            control.DataBindings.Add(new Binding("Text", source, sourceChain, false,
+                DataSourceUpdateMode.OnPropertyChanged));
             return control;
         }
 
@@ -218,15 +221,39 @@ namespace WinFormMarkup.Extensions
             return control;
         }
 
+
+        public static TControl ToBack<TControl>(
+            this TControl control)
+            where TControl : Control
+        {
+            void DoToBack(object? o, EventArgs eventArgs)
+            {
+                control.SendToBack();
+                control.ParentChanged -= DoToBack;
+            }
+
+            if (control.Parent == null)
+                control.ParentChanged += DoToBack;
+            else
+                control.BeginInvoke((EventHandler) DoToBack);
+
+            return control;
+        }
+
         public static TControl ToFront<TControl>(
             this TControl control)
             where TControl : Control
         {
-            EventHandler doToFront = (_, _) => control.BringToFront();
+            void DoToFront(object? o, EventArgs eventArgs)
+            {
+                control.BringToFront();
+                control.ParentChanged -= DoToFront;
+            }
+
             if (control.Parent == null)
-                control.ParentChanged += doToFront;
+                control.ParentChanged += DoToFront;
             else
-                control.BeginInvoke(doToFront);
+                control.BeginInvoke((EventHandler) DoToFront);
 
             return control;
         }

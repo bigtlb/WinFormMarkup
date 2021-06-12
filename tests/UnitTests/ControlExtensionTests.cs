@@ -13,6 +13,70 @@ namespace UnitTests
     public class ControlExtensionTests
     {
         [Fact]
+        private void CanBringToFront_AfterParented()
+        {
+            using var form = new Form();
+            Panel yellow;
+            form.Controls(
+                new Panel().BackColor(Color.Blue),
+                yellow = new Panel().BackColor(Color.Yellow),
+                new Panel().BackColor(Color.Red));
+            form.Show();
+            Assert.NotEqual(yellow, form.Controls[0]);
+            Assert.Equal(yellow, yellow.ToFront());
+            EventHandler doAssert = (_, _) => Assert.Equal(yellow, form.Controls[0]);
+            yellow.BeginInvoke(doAssert);
+        }
+
+
+        [Fact]
+        private void CanBringToFront_BeforeParented()
+        {
+            using var form = new Form();
+            Panel yellow = new Panel().BackColor(Color.Yellow);
+            Assert.Equal(yellow, yellow.ToFront());
+            form.Controls(
+                new Panel().BackColor(Color.Blue),
+                yellow,
+                new Panel().BackColor(Color.Red));
+            form.Show();
+            EventHandler doAssert = (_, _) => Assert.Equal(yellow, form.Controls[0]);
+            yellow.BeginInvoke(doAssert);
+        }
+
+        [Fact]
+        private void CanSendToBack_AfterParented()
+        {
+            using var form = new Form();
+            Panel yellow;
+            form.Controls(
+                new Panel().BackColor(Color.Blue),
+                yellow = new Panel().BackColor(Color.Yellow),
+                new Panel().BackColor(Color.Red));
+            form.Show();
+            Assert.NotEqual(yellow, form.Controls[0]);
+            Assert.Equal(yellow, yellow.ToBack());
+            EventHandler doAssert = (_, _) => Assert.Equal(yellow, form.Controls[^1]);
+            yellow.BeginInvoke(doAssert);
+        }
+
+
+        [Fact]
+        private void CanSendToBack_BeforeParented()
+        {
+            using var form = new Form();
+            Panel yellow = new Panel().BackColor(Color.Yellow);
+            Assert.Equal(yellow, yellow.ToBack());
+            form.Controls(
+                new Panel().BackColor(Color.Blue),
+                yellow,
+                new Panel().BackColor(Color.Red));
+            form.Show();
+            EventHandler doAssert = (_, _) => Assert.Equal(yellow, form.Controls[^1]);
+            yellow.BeginInvoke(doAssert);
+        }
+
+        [Fact]
         private void CanSet_Anchor()
         {
             var ctl = new Control();
@@ -87,10 +151,10 @@ namespace UnitTests
         private void CanSet_Controls()
         {
             var ctl = new Control();
-            Assert.Equal(ctl, 
+            Assert.Equal(ctl,
                 ctl.Controls(
-                new MenuStrip(),
-                new Panel()));
+                    new MenuStrip(),
+                    new Panel()));
 
             Assert.Equal(2, ctl.Controls.Count);
             Assert.Contains(ctl.Controls
@@ -101,10 +165,10 @@ namespace UnitTests
         private void CanSet_ControlsAndBringToFrontDocked()
         {
             var ctl = new Control();
-            Assert.Equal(ctl, 
+            Assert.Equal(ctl,
                 ctl.Controls(
-                new MenuStrip(),
-                new Panel().Dock(DockStyle.Fill)));
+                    new MenuStrip(),
+                    new Panel().Dock(DockStyle.Fill)));
 
             using (new ControlTester(ctl))
             {
@@ -120,7 +184,7 @@ namespace UnitTests
         {
             var source = new InpcSource();
             var target = new Control();
-            
+
             Assert.Equal(target, target.Binding(source, s => s.SourceString));
             target.Text = "Initial Value";
             source.SourceString = "It Works!";
@@ -129,6 +193,19 @@ namespace UnitTests
             {
                 Assert.Equal("It Works!", target.Text);
             }
+        }
+
+        [Fact]
+        private void CanSet_Dock()
+        {
+            var ctl = new Control();
+            ctl.Dock = DockStyle.None;
+
+            // ReSharper disable once BitwiseOperatorOnEnumWithoutFlags
+            Assert.Equal(ctl, ctl.Dock(DockStyle.Top | DockStyle.Left));
+
+            // ReSharper disable once BitwiseOperatorOnEnumWithoutFlags
+            Assert.Equal(DockStyle.Top | DockStyle.Left, ctl.Dock);
         }
 
         [Fact]
@@ -145,13 +222,13 @@ namespace UnitTests
                 Assert.Equal("It Works!", target.Text);
             }
         }
-        
+
         [Fact]
         private void CanSet_GeneralBinding_WithConvert()
         {
             var source = new InpcSource();
             var target = new Control();
-            target.Binding(source, s => s.SourceNumber, t => t.Text, 
+            target.Binding(source, s => s.SourceNumber, t => t.Text,
                 n => $"This is {n}");
             target.Text = "Initial Value";
             source.SourceNumber = 5;
@@ -161,16 +238,16 @@ namespace UnitTests
                 Assert.Equal("This is 5", target.Text);
             }
         }
-        
-        
+
+
         [Fact]
         private void CanSet_GeneralBinding_WithConvertBack()
         {
             var source = new InpcSource();
             var target = new Control();
-            target.Binding(source, 
-                s => s.SourceNumber, t => t.Text, 
-                n => $"This is {n}", s=>int.Parse(s[^1].ToString()));
+            target.Binding(source,
+                s => s.SourceNumber, t => t.Text,
+                n => $"This is {n}", s => int.Parse(s[^1].ToString()));
             target.Text = "Initial Value";
             source.SourceNumber = 5;
 
@@ -180,22 +257,9 @@ namespace UnitTests
                 target.Text = "Setting to 6";
                 Assert.Equal(6, source.SourceNumber);
             }
-        }        
-        
-        [Fact]
-        private void CanSet_Dock()
-        {
-            var ctl = new Control();
-            ctl.Dock = DockStyle.None;
-
-            // ReSharper disable once BitwiseOperatorOnEnumWithoutFlags
-            Assert.Equal(ctl, ctl.Dock(DockStyle.Top | DockStyle.Left));
-
-            // ReSharper disable once BitwiseOperatorOnEnumWithoutFlags
-            Assert.Equal(DockStyle.Top | DockStyle.Left, ctl.Dock);
         }
 
-        
+
         [Fact]
         private void CanSet_MarginAll()
         {
@@ -206,30 +270,30 @@ namespace UnitTests
 
             Assert.StrictEqual(new Padding(5, 5, 5, 5), ctl.Margin);
         }
-        
+
         [Fact]
         private void CanSet_MarginHorizontalVertical()
         {
             var ctl = new Control();
             ctl.Margin = new Padding(10, 20, 30, 40);
 
-            Assert.Equal(ctl, ctl.Margin(5,6));
+            Assert.Equal(ctl, ctl.Margin(5, 6));
 
             Assert.StrictEqual(new Padding(5, 6, 5, 6), ctl.Margin);
         }
-        
+
         [Fact]
         private void CanSet_MarginLeftTopRightBottom()
         {
             var ctl = new Control();
             ctl.Margin = new Padding(10, 20, 30, 40);
 
-            ctl.Margin(1,2,3,4);
+            ctl.Margin(1, 2, 3, 4);
 
-            Assert.StrictEqual(new Padding(1,2,3,4), ctl.Margin);
+            Assert.StrictEqual(new Padding(1, 2, 3, 4), ctl.Margin);
         }
-        
-        
+
+
         [Fact]
         private void CanSet_PaddingAll()
         {
@@ -240,29 +304,29 @@ namespace UnitTests
 
             Assert.StrictEqual(new Padding(5, 5, 5, 5), ctl.Padding);
         }
-        
+
         [Fact]
         private void CanSet_PaddingHorizontalVertical()
         {
             var ctl = new Control();
             ctl.Padding = new Padding(10, 20, 30, 40);
 
-            Assert.Equal(ctl, ctl.Padding(5,6));
+            Assert.Equal(ctl, ctl.Padding(5, 6));
 
             Assert.StrictEqual(new Padding(5, 6, 5, 6), ctl.Padding);
         }
-        
+
         [Fact]
         private void CanSet_PaddingLeftTopRightBottom()
         {
             var ctl = new Control();
             ctl.Padding = new Padding(10, 20, 30, 40);
 
-            Assert.Equal(ctl, ctl.Padding(1,2,3,4));
+            Assert.Equal(ctl, ctl.Padding(1, 2, 3, 4));
 
-            Assert.StrictEqual(new Padding(1,2,3,4), ctl.Padding);
+            Assert.StrictEqual(new Padding(1, 2, 3, 4), ctl.Padding);
         }
-        
+
         [Fact]
         private void CanSet_Position()
         {
@@ -275,7 +339,7 @@ namespace UnitTests
             Assert.Equal(10, ctl.Left);
             Assert.Equal(20, ctl.Top);
         }
-        
+
         [Fact]
         private void CanSet_Text()
         {
@@ -284,38 +348,6 @@ namespace UnitTests
             Assert.Equal(ctl, ctl.Text("Hello"));
 
             Assert.Equal("Hello", ctl.Text);
-        }
-        
-        [Fact]
-        private void CanBringToFront_AfterParented()
-        {
-            using var form = new Form();
-            Panel yellow;
-            form.Controls(
-                new Panel().BackColor(Color.Blue),
-                yellow = new Panel().BackColor(Color.Yellow),
-                new Panel().BackColor(Color.Red));
-            form.Show();
-            Assert.NotEqual(yellow, form.Controls[0]);
-            Assert.Equal(yellow, yellow.ToFront());
-            EventHandler doAssert = (_,_) => Assert.Equal(yellow, form.Controls[0]);
-            yellow.BeginInvoke(doAssert);
-        }
-        
-        
-        [Fact]
-        private void CanBringToFront_BeforeParented()
-        {
-            using var form = new Form();
-            Panel yellow = new Panel().BackColor(Color.Yellow);
-            Assert.Equal(yellow, yellow.ToFront());
-            form.Controls(
-                new Panel().BackColor(Color.Blue),
-                yellow,
-                new Panel().BackColor(Color.Red));
-            form.Show();
-            EventHandler doAssert = (_,_) => Assert.Equal(yellow, form.Controls[0]);
-            yellow.BeginInvoke(doAssert);
         }
 
         private class ClickControl : Control
@@ -328,8 +360,8 @@ namespace UnitTests
 
         private sealed class InpcSource : INotifyPropertyChanged
         {
-            private string? _sourceString;
             private int _sourceNumber;
+            private string? _sourceString;
 
             public string? SourceString
             {

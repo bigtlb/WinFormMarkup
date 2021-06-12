@@ -16,12 +16,15 @@
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=ed03b7fb_002Da75b_002D4faf_002Daa26_002Db442a3ed8729/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="CanSet_GeneralBinding #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;TestAncestor&gt;&#xD;
-    &lt;TestId&gt;xUnit::B81C4010-1A07-46E9-88D4-9BAA0B582716::net5.0-windows7.0::UnitTests.ControlExtensionTests.CanSet_GeneralBinding&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::B81C4010-1A07-46E9-88D4-9BAA0B582716::net5.0-windows7.0::UnitTests.ControlExtensionTests.CanBringToFront_AfterParented&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::B81C4010-1A07-46E9-88D4-9BAA0B582716::net5.0-windows7.0::UnitTests.DateTimePickerExtensionTests&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::B81C4010-1A07-46E9-88D4-9BAA0B582716::net5.0-windows7.0::UnitTests.FlowLayoutExtensionTests&lt;/TestId&gt;&#xD;
-  &lt;/TestAncestor&gt;&#xD;
+  &lt;Or&gt;&#xD;
+    &lt;TestAncestor&gt;&#xD;
+      &lt;TestId&gt;xUnit::B81C4010-1A07-46E9-88D4-9BAA0B582716::net5.0-windows7.0::UnitTests.ControlExtensionTests.CanSet_GeneralBinding&lt;/TestId&gt;&#xD;
+      &lt;TestId&gt;xUnit::B81C4010-1A07-46E9-88D4-9BAA0B582716::net5.0-windows7.0::UnitTests.ControlExtensionTests.CanBringToFront_AfterParented&lt;/TestId&gt;&#xD;
+      &lt;TestId&gt;xUnit::B81C4010-1A07-46E9-88D4-9BAA0B582716::net5.0-windows7.0::UnitTests.DateTimePickerExtensionTests&lt;/TestId&gt;&#xD;
+      &lt;TestId&gt;xUnit::B81C4010-1A07-46E9-88D4-9BAA0B582716::net5.0-windows7.0::UnitTests.FlowLayoutExtensionTests&lt;/TestId&gt;&#xD;
+    &lt;/TestAncestor&gt;&#xD;
+    &lt;ProjectFile&gt;B81C4010-1A07-46E9-88D4-9BAA0B582716/f:ControlExtensionTests.cs&lt;/ProjectFile&gt;&#xD;
+  &lt;/Or&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=Inpc/@EntryIndexedValue">True</s:Boolean>
 	
