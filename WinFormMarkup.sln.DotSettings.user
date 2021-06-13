@@ -22,6 +22,13 @@
       &lt;TestId&gt;xUnit::B81C4010-1A07-46E9-88D4-9BAA0B582716::net5.0-windows7.0::UnitTests.ControlExtensionTests.CanBringToFront_AfterParented&lt;/TestId&gt;&#xD;
       &lt;TestId&gt;xUnit::B81C4010-1A07-46E9-88D4-9BAA0B582716::net5.0-windows7.0::UnitTests.DateTimePickerExtensionTests&lt;/TestId&gt;&#xD;
       &lt;TestId&gt;xUnit::B81C4010-1A07-46E9-88D4-9BAA0B582716::net5.0-windows7.0::UnitTests.FlowLayoutExtensionTests&lt;/TestId&gt;&#xD;
+      &lt;TestId&gt;xUnit::B81C4010-1A07-46E9-88D4-9BAA0B582716::net5.0-windows7.0::UnitTests.FormExtensionTests.CanSet_AcceptButton&lt;/TestId&gt;&#xD;
+      &lt;TestId&gt;xUnit::B81C4010-1A07-46E9-88D4-9BAA0B582716::net5.0-windows7.0::UnitTests.FormExtensionTests.CanSet_AutoSize_WithAutoGrow&lt;/TestId&gt;&#xD;
+      &lt;TestId&gt;xUnit::B81C4010-1A07-46E9-88D4-9BAA0B582716::net5.0-windows7.0::UnitTests.FormExtensionTests&lt;/TestId&gt;&#xD;
+      &lt;TestId&gt;xUnit::B81C4010-1A07-46E9-88D4-9BAA0B582716::net5.0-windows7.0::UnitTests.TableLayoutPanelExtensionTests&lt;/TestId&gt;&#xD;
+      &lt;TestId&gt;xUnit::B81C4010-1A07-46E9-88D4-9BAA0B582716::net5.0-windows7.0::UnitTests.ToolStripDropDownExtensionTests&lt;/TestId&gt;&#xD;
+      &lt;TestId&gt;xUnit::B81C4010-1A07-46E9-88D4-9BAA0B582716::net5.0-windows7.0::UnitTests.ToolStripExtensionTests&lt;/TestId&gt;&#xD;
+      &lt;TestId&gt;xUnit::B81C4010-1A07-46E9-88D4-9BAA0B582716::net5.0-windows7.0::UnitTests.ToolStripMenuItemExtensionTests&lt;/TestId&gt;&#xD;
     &lt;/TestAncestor&gt;&#xD;
     &lt;ProjectFile&gt;B81C4010-1A07-46E9-88D4-9BAA0B582716/f:ControlExtensionTests.cs&lt;/ProjectFile&gt;&#xD;
   &lt;/Or&gt;&#xD;
