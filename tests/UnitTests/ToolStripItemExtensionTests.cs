@@ -7,10 +7,10 @@ namespace UnitTests
     public class ToolStripItemExtensionTests
     {
         [Fact]
-        void CanSet_Text()
+        private void CanSet_Text()
         {
             var menuItem = new ToolStripMenuItem();
-            
+
             Assert.Equal(menuItem, menuItem.Text("One"));
             Assert.Equal("One", menuItem.Text);
         }

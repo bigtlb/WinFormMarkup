@@ -44,18 +44,18 @@ namespace ReactiveUIApp.ViewModels
             SaveCommand = ReactiveCommand.CreateFromTask(DoSave, canExecute);
             CancelCommand = ReactiveCommand.CreateFromTask(DoCanccel);
             ExitCommand = ReactiveCommand.CreateFromTask(DoExit);
-            showMessage = new Interaction<string, bool>();
-            showConfirmation = new Interaction<string, bool>();
-            closeApp = new Interaction<Unit, Unit>();
+            ShowMessage = new Interaction<string, bool>();
+            ShowConfirmation = new Interaction<string, bool>();
+            CloseApp = new Interaction<Unit, Unit>();
         }
 
         public ReactiveCommand<Unit, Unit> SaveCommand { get; set; }
         public ReactiveCommand<Unit, Unit> CancelCommand { get; set; }
         public ReactiveCommand<Unit, Unit> ExitCommand { get; set; }
 
-        public Interaction<string, bool> showMessage { get; }
-        public Interaction<string, bool> showConfirmation { get; }
-        public Interaction<Unit, Unit> closeApp { get; }
+        public Interaction<string, bool> ShowMessage { get; }
+        public Interaction<string, bool> ShowConfirmation { get; }
+        public Interaction<Unit, Unit> CloseApp { get; }
 
         public string Message
         {
@@ -107,7 +107,7 @@ namespace ReactiveUIApp.ViewModels
 
         public ViewModelActivator Activator { get; } = new();
 
-        private void clearFields()
+        private void ClearFields()
         {
             FirstName = null;
             LastName = null;
@@ -120,9 +120,9 @@ namespace ReactiveUIApp.ViewModels
 
         private async Task DoCanccel()
         {
-            if (await showConfirmation.Handle(CancelAreYouSure))
+            if (await ShowConfirmation.Handle(CancelAreYouSure))
             {
-                clearFields();
+                ClearFields();
                 Message = Cancelled;
             }
         }
@@ -130,15 +130,15 @@ namespace ReactiveUIApp.ViewModels
         private async Task DoExit()
         {
             if ((SaveCommand as ICommand).CanExecute(null))
-                if (await showConfirmation.Handle(DoYouWantToSave))
+                if (await ShowConfirmation.Handle(DoYouWantToSave))
                     await DoSave();
-            await closeApp.Handle(Unit.Default);
+            await CloseApp.Handle(Unit.Default);
         }
 
         private async Task DoSave()
         {
-            clearFields();
-            await showMessage.Handle(Saved);
+            ClearFields();
+            await ShowMessage.Handle(Saved);
             Message = Saved;
         }
     }

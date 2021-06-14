@@ -38,7 +38,7 @@ namespace BasicApp
                                 .Binding(_dataModel, source => source.ClickMessage),
                             new Button()
                                 .Text("Click Me")
-                                .Clicked(c => { _dataModel.ClickCount++; }))
+                                .Clicked(_ => { _dataModel.ClickCount++; }))
                 )
                 .StartPosition(FormStartPosition.CenterScreen)
                 .Text("Basic Test App");

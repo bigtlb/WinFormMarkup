@@ -12,11 +12,11 @@ namespace UnitTests
             var strip = new ToolStrip();
 
             Assert.Equal(strip, strip.Items(
-                    new ToolStripMenuItem("One"),
-                    new ToolStripMenuItem("Two")));
-            
-            Assert.True(strip.Items.Count == 2 && 
-                        strip.Items[0].Text == "One" && 
+                new ToolStripMenuItem("One"),
+                new ToolStripMenuItem("Two")));
+
+            Assert.True(strip.Items.Count == 2 &&
+                        strip.Items[0].Text == "One" &&
                         strip.Items[1].Text == "Two");
         }
     }

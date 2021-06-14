@@ -259,6 +259,32 @@ namespace UnitTests
             }
         }
 
+        [Fact]
+        private void CanSet_Location_LeftRight()
+        {
+            var ctl = new Control();
+            ctl.Left = 2;
+            ctl.Top = 3;
+
+            Assert.Equal(ctl, ctl.Location(10, 20));
+
+            Assert.Equal(10, ctl.Left);
+            Assert.Equal(20, ctl.Top);
+        }
+
+        [Fact]
+        private void CanSet_Location_Point()
+        {
+            var ctl = new Control();
+            ctl.Left = 2;
+            ctl.Top = 3;
+
+            Assert.Equal(ctl, ctl.Location(new Point(10, 20)));
+
+            Assert.Equal(10, ctl.Left);
+            Assert.Equal(20, ctl.Top);
+        }
+
 
         [Fact]
         private void CanSet_MarginAll()
@@ -325,19 +351,6 @@ namespace UnitTests
             Assert.Equal(ctl, ctl.Padding(1, 2, 3, 4));
 
             Assert.StrictEqual(new Padding(1, 2, 3, 4), ctl.Padding);
-        }
-
-        [Fact]
-        private void CanSet_Position()
-        {
-            var ctl = new Control();
-            ctl.Left = 2;
-            ctl.Top = 3;
-
-            Assert.Equal(ctl, ctl.Position(10, 20));
-
-            Assert.Equal(10, ctl.Left);
-            Assert.Equal(20, ctl.Top);
         }
 
         [Fact]

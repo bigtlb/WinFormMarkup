@@ -31,19 +31,19 @@ namespace ReactiveUIApp.Views
                 d(this.Bind(ViewModel, vm => vm.LastName, v => v._lastName.Text));
                 d(this.Bind(ViewModel, vm => vm.Dob, v => v._dob.Value,
                     s => s == null ? DateTime.Today : DateTime.Parse(s),
-                    d => d == DateTime.Today ? null : d.ToShortDateString()));
+                    dateTime => dateTime == DateTime.Today ? null : dateTime.ToShortDateString()));
                 d(this.Bind(ViewModel, vm => vm.Street, v => v._street.Text));
                 d(this.Bind(ViewModel, vm => vm.City, v => v._city.Text));
                 d(this.Bind(ViewModel, vm => vm.State, v => v._state.Text));
                 d(this.Bind(ViewModel, vm => vm.Zip, v => v._zip.Text));
                 d(this.Bind(ViewModel, vm => vm.Message, v => v._statusLabel.Text));
-                d(ViewModel.closeApp.RegisterHandler(_ => Application.Exit()));
-                d(ViewModel.showMessage.RegisterHandler(msg =>
+                d(ViewModel.CloseApp.RegisterHandler(_ => Application.Exit()));
+                d(ViewModel.ShowMessage.RegisterHandler(msg =>
                 {
-                    var result = MessageBox.Show(msg.Input, "Message", MessageBoxButtons.OK);
+                    MessageBox.Show(msg.Input, "Message", MessageBoxButtons.OK);
                     msg.SetOutput(true);
                 }));
-                d(ViewModel.showConfirmation.RegisterHandler(msg =>
+                d(ViewModel.ShowConfirmation.RegisterHandler(msg =>
                 {
                     var result = MessageBox.Show(msg.Input, "Confirm", MessageBoxButtons.OKCancel,
                         MessageBoxIcon.Question);

@@ -6,6 +6,7 @@ namespace BasicApp
     internal class Program
     {
         [STAThread]
+        // ReSharper disable once UnusedParameter.Local
         private static void Main(string[] args)
         {
             Application.SetHighDpiMode(HighDpiMode.SystemAware);

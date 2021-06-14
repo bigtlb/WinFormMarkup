@@ -14,20 +14,35 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <Compile Include="..\..\..\src\Extensions\CommonDialogExtensions.cs">
+          <Link>CommonDialogExtensions.cs</Link>
+        </Compile>
         <Compile Include="..\..\..\src\Extensions\ControlExtensions.cs">
             <Link>ControlExtensions.cs</Link>
         </Compile>
         <Compile Include="..\..\..\src\Extensions\DateTimePickerExtensions.cs">
             <Link>DateTimePickerExtensions.cs</Link>
         </Compile>
+        <Compile Include="..\..\..\src\Extensions\FileDialogExtensions.cs">
+          <Link>FileDialogExtensions.cs</Link>
+        </Compile>
         <Compile Include="..\..\..\src\Extensions\FlowLayoutPanelExtensions.cs">
             <Link>FlowLayoutPanelExtensions.cs</Link>
+        </Compile>
+        <Compile Include="..\..\..\src\Extensions\FolderBrowserDialogExtension.cs">
+          <Link>FolderBrowserDialogExtension.cs</Link>
         </Compile>
         <Compile Include="..\..\..\src\Extensions\FormExtensions.cs">
             <Link>FormExtensions.cs</Link>
         </Compile>
         <Compile Include="..\..\..\src\Extensions\LabelExtensions.cs">
             <Link>LabelExtensions.cs</Link>
+        </Compile>
+        <Compile Include="..\..\..\src\Extensions\OpenFileDialogExtensions.cs">
+          <Link>OpenFileDialogExtensions.cs</Link>
+        </Compile>
+        <Compile Include="..\..\..\src\Extensions\SaveFileDialogExtensions.cs">
+          <Link>SaveFileDialogExtensions.cs</Link>
         </Compile>
         <Compile Include="..\..\..\src\Extensions\ScrollableControleExtensions.cs">
             <Link>ScrollableControleExtensions.cs</Link>
