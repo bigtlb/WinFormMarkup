@@ -1,0 +1,73 @@
+# @Model.Name
+```csharp
+@Model.FullSignature
+```
+
+## Summary
+@Model.Summary
+
+@if (Model.HasSeeAlso){
+<text>### See Also
+</text>
+    foreach (var seeClass in Model.SeeAlsoMembers){
+        <text>* @seeClass.FullSignature
+        </text>        
+    }
+}
+
+## Members
+
+@foreach(var member in @Model.Members){
+<text>* [@member.Name](#@member.Name)
+</text>
+}
+
+@foreach(var member in @Model.Members){
+<text>### @member.Name
+
+```csharp
+@member.FullSignature
+```
+
+@member.Summary
+</text>
+    if (member.HasRemarks){
+<text>
+@member.Remarks
+
+</text>
+    }
+
+    if (member.HasExample){
+<text>
+#### Examples
+```csharp
+@member.Example
+```
+
+</text>
+    }
+    
+    if (member.HasParams){
+<text>#### Parameters
+
+| Name | Summary |
+:-- | :--
+</text>
+        foreach (var parm in member.Params){
+<text>| @parm.Name | @parm.Summary.Replace("\r", "").Replace("\n", "<br>") |
+</text>
+        }
+<text>
+</text>
+    }
+    
+    if (member.HasSeeAlso){
+<text>#### See Also
+</text>
+        foreach (var see in member.SeeAlsoMembers){
+<text>* @see.FullSignature
+</text>        
+        }
+    }
+}

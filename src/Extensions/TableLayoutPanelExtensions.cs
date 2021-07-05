@@ -5,6 +5,21 @@ namespace WinFormMarkup.Extensions
 {
     public static class TableLayoutPanelExtensions
     {
+        /// <summary>
+        /// Sets the ColumnStyles collection, and returns a reference to the panel.
+        /// </summary>
+        /// <remarks>
+        /// **NOTE:** columnStyles is a string delimited by '|' with values for each ColumnStyle. Values are '*' or autosize, 'nn.n%' for percent width, and 'nn.n' for absolute. width
+        /// </remarks>
+        /// <example>
+        /// var panel = new TableLayoutPanel();
+        /// panel.ColumnStyles("25|40%|40%|*");
+        /// </example>
+        /// <param name="tableLayoutPanel"></param>
+        /// <param name="columnStyles"></param>
+        /// <typeparam name="TTableLayoutPanel"></typeparam>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException"></exception>
         public static TTableLayoutPanel ColumnStyles<TTableLayoutPanel>(
             this TTableLayoutPanel tableLayoutPanel,
             string columnStyles)
@@ -98,6 +113,4 @@ namespace WinFormMarkup.Extensions
         public Control Control { get; }
         public bool HasSpans { get; }
     }
-
-    public record TableSpan;
 }

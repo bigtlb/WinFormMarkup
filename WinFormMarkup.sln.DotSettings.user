@@ -1,5 +1,8 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
-	<s:String x:Key="/Default/Environment/Highlighting/HighlightingSourceSnapshotLocation/@EntryValue">C:\Users\thoma\AppData\Local\JetBrains\Rider2021.1\resharper-host\temp\Rider\vAny\CoverageData\_WinFormMarkup.988042034\Snapshot\snapshot.utdcvr</s:String>
+	<s:String x:Key="/Default/Environment/AssemblyExplorer/XmlDocument/@EntryValue">&lt;AssemblyExplorer&gt;&#xD;
+  &lt;Assembly Path="C:\Users\thoma\.nuget\packages\microsoft.extensions.logging\5.0.0\lib\netstandard2.1\Microsoft.Extensions.Logging.dll" /&gt;&#xD;
+&lt;/AssemblyExplorer&gt;</s:String>
+	
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=0371551e_002Dfbe5_002D4b76_002D8521_002D7255dbb4a0b8/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="CanSet_Text" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;TestAncestor&gt;&#xD;
     &lt;TestId&gt;xUnit::B81C4010-1A07-46E9-88D4-9BAA0B582716::net5.0-windows7.0::UnitTests.ControlExtensionTests&lt;/TestId&gt;&#xD;
@@ -10,29 +13,15 @@
     &lt;TestId&gt;xUnit::B81C4010-1A07-46E9-88D4-9BAA0B582716::net5.0-windows7.0::UnitTests.ControlExtensionTests&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=582d7eb9_002D9220_002D4e4f_002Dbed9_002D148a8e99a49b/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="CanSet_GeneralBinding" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=582d7eb9_002D9220_002D4e4f_002Dbed9_002D148a8e99a49b/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="CanSet_GeneralBinding" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;TestAncestor&gt;&#xD;
     &lt;TestId&gt;xUnit::B81C4010-1A07-46E9-88D4-9BAA0B582716::net5.0-windows7.0::UnitTests.ControlExtensionTests.CanSet_GeneralBinding&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=ed03b7fb_002Da75b_002D4faf_002Daa26_002Db442a3ed8729/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="CanSet_GeneralBinding #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;Or&gt;&#xD;
-    &lt;TestAncestor&gt;&#xD;
-      &lt;TestId&gt;xUnit::B81C4010-1A07-46E9-88D4-9BAA0B582716::net5.0-windows7.0::UnitTests.ControlExtensionTests.CanSet_GeneralBinding&lt;/TestId&gt;&#xD;
-      &lt;TestId&gt;xUnit::B81C4010-1A07-46E9-88D4-9BAA0B582716::net5.0-windows7.0::UnitTests.ControlExtensionTests.CanBringToFront_AfterParented&lt;/TestId&gt;&#xD;
-      &lt;TestId&gt;xUnit::B81C4010-1A07-46E9-88D4-9BAA0B582716::net5.0-windows7.0::UnitTests.DateTimePickerExtensionTests&lt;/TestId&gt;&#xD;
-      &lt;TestId&gt;xUnit::B81C4010-1A07-46E9-88D4-9BAA0B582716::net5.0-windows7.0::UnitTests.FlowLayoutExtensionTests&lt;/TestId&gt;&#xD;
-      &lt;TestId&gt;xUnit::B81C4010-1A07-46E9-88D4-9BAA0B582716::net5.0-windows7.0::UnitTests.FormExtensionTests.CanSet_AcceptButton&lt;/TestId&gt;&#xD;
-      &lt;TestId&gt;xUnit::B81C4010-1A07-46E9-88D4-9BAA0B582716::net5.0-windows7.0::UnitTests.FormExtensionTests.CanSet_AutoSize_WithAutoGrow&lt;/TestId&gt;&#xD;
-      &lt;TestId&gt;xUnit::B81C4010-1A07-46E9-88D4-9BAA0B582716::net5.0-windows7.0::UnitTests.FormExtensionTests&lt;/TestId&gt;&#xD;
-      &lt;TestId&gt;xUnit::B81C4010-1A07-46E9-88D4-9BAA0B582716::net5.0-windows7.0::UnitTests.TableLayoutPanelExtensionTests&lt;/TestId&gt;&#xD;
-      &lt;TestId&gt;xUnit::B81C4010-1A07-46E9-88D4-9BAA0B582716::net5.0-windows7.0::UnitTests.ToolStripDropDownExtensionTests&lt;/TestId&gt;&#xD;
-      &lt;TestId&gt;xUnit::B81C4010-1A07-46E9-88D4-9BAA0B582716::net5.0-windows7.0::UnitTests.ToolStripExtensionTests&lt;/TestId&gt;&#xD;
-      &lt;TestId&gt;xUnit::B81C4010-1A07-46E9-88D4-9BAA0B582716::net5.0-windows7.0::UnitTests.ToolStripMenuItemExtensionTests&lt;/TestId&gt;&#xD;
-    &lt;/TestAncestor&gt;&#xD;
-    &lt;ProjectFile&gt;B81C4010-1A07-46E9-88D4-9BAA0B582716/f:ControlExtensionTests.cs&lt;/ProjectFile&gt;&#xD;
-  &lt;/Or&gt;&#xD;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=ed03b7fb_002Da75b_002D4faf_002Daa26_002Db442a3ed8729/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="CanSet_GeneralBinding #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;Project Location="C:\Users\thoma\source\repos\WinFormMarkup\tests\UnitTests" Presentation="&amp;lt;Tests&amp;gt;\&amp;lt;UnitTests&amp;gt;" /&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
+	
 	
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=Inpc/@EntryIndexedValue">True</s:Boolean>
 	

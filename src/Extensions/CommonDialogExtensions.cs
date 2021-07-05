@@ -3,8 +3,18 @@ using System.Windows.Forms;
 
 namespace WinFormMarkup.Extensions
 {
+    /// <summary>
+    /// Fluent extensions for CommonDialogs
+    /// </summary>
     public static class CommonDialogExtensions
     {
+        /// <summary>
+        /// Assign property in a fluent manner
+        /// </summary>
+        /// <param name="dialog"></param>
+        /// <param name="action"></param>
+        /// <typeparam name="TCommonDialog"></typeparam>
+        /// <returns></returns>
         public static TCommonDialog HelpRequested<TCommonDialog>(
             this TCommonDialog dialog,
             Action<TCommonDialog> action)

@@ -7,8 +7,18 @@ using System.Windows.Forms;
 
 namespace WinFormMarkup.Extensions
 {
+    /// <summary>
+    /// Fluent Extensions for Controls
+    /// </summary>
     public static class ControlExtensions
     {
+        /// <summary>
+        /// Sets the `Control.AccessibleDefaultActionDescription` property, and returns a reference to the control.
+        /// </summary>
+        /// <param name="control"></param>
+        /// <param name="defaultActionDescription"></param>
+        /// <typeparam name="TControl"></typeparam>
+        /// <returns></returns>
         public static TControl AccessibleDefaultActionDescription<TControl>(
             this TControl control,
             string defaultActionDescription)
@@ -18,6 +28,13 @@ namespace WinFormMarkup.Extensions
             return control;
         }
 
+        /// <summary>
+        /// Sets the `Control.AccessibleDescription` property, and returns a reference to the control.
+        /// </summary>
+        /// <param name="control"></param>
+        /// <param name="accessibleDescription"></param>
+        /// <typeparam name="TControl"></typeparam>
+        /// <returns></returns>
         public static TControl AccessibleDescription<TControl>(
             this TControl control,
             string accessibleDescription)
@@ -27,6 +44,13 @@ namespace WinFormMarkup.Extensions
             return control;
         }
 
+        /// <summary>
+        /// Sets the `Control.AccessibleName` property, and returns a reference to the control.
+        /// </summary>
+        /// <param name="control"></param>
+        /// <param name="accessibleName"></param>
+        /// <typeparam name="TControl"></typeparam>
+        /// <returns></returns>
         public static TControl AccessibleName<TControl>(
             this TControl control,
             string accessibleName)
@@ -36,6 +60,13 @@ namespace WinFormMarkup.Extensions
             return control;
         }
 
+        /// <summary>
+        /// Sets the `Control.AccessibleRole` property, and returns a reference to the control.
+        /// </summary>
+        /// <param name="control"></param>
+        /// <param name="accessibleRole"></param>
+        /// <typeparam name="TControl"></typeparam>
+        /// <returns></returns>
         public static TControl AccessibleRole<TControl>(
             this TControl control,
             AccessibleRole accessibleRole)
@@ -45,6 +76,13 @@ namespace WinFormMarkup.Extensions
             return control;
         }
 
+        /// <summary>
+        /// Sets the `Control.AllowDrop` property, and returns a reference to the control.
+        /// </summary>
+        /// <param name="control"></param>
+        /// <param name="allowDrop"></param>
+        /// <typeparam name="TControl"></typeparam>
+        /// <returns></returns>
         public static TControl AllowDrop<TControl>(
             this TControl control,
             bool allowDrop)
@@ -54,6 +92,13 @@ namespace WinFormMarkup.Extensions
             return control;
         }
 
+        /// <summary>
+        /// Sets the `Control.Anchor` property, and returns a reference to the control.
+        /// </summary>
+        /// <param name="control"></param>
+        /// <param name="anchors"></param>
+        /// <typeparam name="TControl"></typeparam>
+        /// <returns></returns>
         public static TControl Anchor<TControl>(
             this TControl control,
             AnchorStyles anchors)
@@ -63,6 +108,13 @@ namespace WinFormMarkup.Extensions
             return control;
         }
 
+        /// <summary>
+        /// Sets the `Control.AutoScrollOffset` property, and returns a reference to the control.
+        /// </summary>
+        /// <param name="control"></param>
+        /// <param name="offset"></param>
+        /// <typeparam name="TControl"></typeparam>
+        /// <returns></returns>
         public static TControl AutoScrollOffset<TControl>(
             this TControl control,
             Point offset)
@@ -72,6 +124,13 @@ namespace WinFormMarkup.Extensions
             return control;
         }
 
+        /// <summary>
+        /// Sets the `Control.AutoSize` property, and returns a reference to the control.
+        /// </summary>
+        /// <param name="control"></param>
+        /// <param name="autoSize"></param>
+        /// <typeparam name="TControl"></typeparam>
+        /// <returns></returns>
         public static TControl AutoSize<TControl>(
             this TControl control,
             bool autoSize)
@@ -81,6 +140,13 @@ namespace WinFormMarkup.Extensions
             return control;
         }
 
+        /// <summary>
+        /// Hooks the `Control.AutoSizeChanged` event to call the provided `action`, and returns a reference to the control.
+        /// </summary>
+        /// <param name="control"></param>
+        /// <param name="action"></param>
+        /// <typeparam name="TControl"></typeparam>
+        /// <returns></returns>
         public static TControl AutoSizeChanged<TControl>(
             this TControl control,
             Action<TControl> action)
@@ -90,6 +156,13 @@ namespace WinFormMarkup.Extensions
             return control;
         }
 
+        /// <summary>
+        /// Sets the `Control.BackColor` property, and returns a reference to the control.
+        /// </summary>
+        /// <param name="control"></param>
+        /// <param name="color"></param>
+        /// <typeparam name="TControl"></typeparam>
+        /// <returns></returns>
         public static TControl BackColor<TControl>(
             this TControl control,
             Color color)
@@ -100,6 +173,13 @@ namespace WinFormMarkup.Extensions
         }
 
 
+        /// <summary>
+        /// Hooks the `Control.BackColorChanged` event to call the provided `action`, and returns a reference to the control.
+        /// </summary>
+        /// <param name="control"></param>
+        /// <param name="action"></param>
+        /// <typeparam name="TControl"></typeparam>
+        /// <returns></returns>
         public static TControl BackColorChanged<TControl>(
             this TControl control,
             Action<TControl> action)
@@ -109,6 +189,13 @@ namespace WinFormMarkup.Extensions
             return control;
         }
 
+        /// <summary>
+        /// Sets the `Control.BackgroundImage` property, and returns a reference to the control.
+        /// </summary>
+        /// <param name="control"></param>
+        /// <param name="image"></param>
+        /// <typeparam name="TControl"></typeparam>
+        /// <returns></returns>
         public static TControl BackgroundImage<TControl>(
             this TControl control,
             Image image)
@@ -118,6 +205,13 @@ namespace WinFormMarkup.Extensions
             return control;
         }
 
+        /// <summary>
+        /// Hooks the `Control.BackgroundImageChanged` event to call the provided `action`, and returns a reference to the control.
+        /// </summary>
+        /// <param name="control"></param>
+        /// <param name="action"></param>
+        /// <typeparam name="TControl"></typeparam>
+        /// <returns></returns>
         public static TControl BackgroundImageChanged<TControl>(
             this TControl control,
             Action<TControl> action)
@@ -127,6 +221,13 @@ namespace WinFormMarkup.Extensions
             return control;
         }
 
+        /// <summary>
+        /// Sets the `Control.BackgroundImageLayout` property, and returns a reference to the control.
+        /// </summary>
+        /// <param name="control"></param>
+        /// <param name="layout"></param>
+        /// <typeparam name="TControl"></typeparam>
+        /// <returns></returns>
         public static TControl BackgroundImageLayout<TControl>(
             this TControl control,
             ImageLayout layout)
@@ -136,7 +237,13 @@ namespace WinFormMarkup.Extensions
             return control;
         }
 
-
+        /// <summary>
+        /// Hooks the `Control.BackgroundImageLayoutChanged` event to call the provided `action`, and returns a reference to the control.
+        /// </summary>
+        /// <param name="control"></param>
+        /// <param name="action"></param>
+        /// <typeparam name="TControl"></typeparam>
+        /// <returns></returns>
         public static TControl BackgroundImageLayoutChanged<TControl>(
             this TControl control,
             Action<TControl> action)
@@ -146,6 +253,23 @@ namespace WinFormMarkup.Extensions
             return control;
         }
 
+        /// <summary>
+        /// Sets up a `Binding` for a `Control.DataBindings` collection, and returns a reference to the control.
+        /// </summary>
+        /// <remarks>
+        /// UpdateMode is OnPropertyChanged, formattingEnabled=false
+        /// </remarks>
+        /// <param name="control">Target of the data binding</param>
+        /// <param name="source">Source of the data binding</param>
+        /// <param name="sourceProp">A lambda expression accessing the source property (path derived through reflection and can be several levels deep)</param>
+        /// <param name="targetProp">A lambda expression accessing the direct target property (must be a member accessor).</param>
+        /// <param name="convert">If present, hooks the `Binding.Format` event.</param>
+        /// <param name="convertBack">If present, hooks the `Binding.Parse` event.</param>
+        /// <typeparam name="TSource"></typeparam>
+        /// <typeparam name="TSourceProp"></typeparam>
+        /// <typeparam name="TControl"></typeparam>
+        /// <typeparam name="TTargetProp"></typeparam>
+        /// <returns></returns>
         public static TControl Binding<TSource, TSourceProp, TControl, TTargetProp>(
             this TControl control,
             TSource source,
@@ -177,6 +301,19 @@ namespace WinFormMarkup.Extensions
             return control;
         }
 
+        /// <summary>
+        /// Sets up a `Binding` to the `Control.Text` property, and returns a reference to the control.
+        /// </summary>
+        /// <remarks>
+        /// UpdateMode is OnPropertyChanged, formattingEnabled=false
+        /// </remarks>
+        /// <param name="control"></param>
+        /// <param name="source">Source of the data binding</param>
+        /// <param name="sourceProp">A lambda expression accessing the source property (path derived through reflection and can be several levels deep)</param>
+        /// <typeparam name="TSource"></typeparam>
+        /// <typeparam name="TSourceProp"></typeparam>
+        /// <typeparam name="TControl"></typeparam>
+        /// <returns></returns>
         public static TControl Binding<TSource, TSourceProp, TControl>(
             this TControl control,
             TSource source,
@@ -190,6 +327,13 @@ namespace WinFormMarkup.Extensions
             return control;
         }
 
+        /// <summary>
+        /// Hooks the `Control.BindingContextChanged` event to call the provided `action`, and returns a reference to the control.
+        /// </summary>
+        /// <param name="control"></param>
+        /// <param name="action"></param>
+        /// <typeparam name="TControl"></typeparam>
+        /// <returns></returns>
         public static TControl BindingContextChanged<TControl>(
             this TControl control,
             Action<TControl> action)
@@ -199,6 +343,15 @@ namespace WinFormMarkup.Extensions
             return control;
         }
 
+        /// <summary>
+        /// Sets the `Control.Bounds` property, and returns a reference to the control.
+        /// </summary>
+        /// <param name="control"></param>
+        /// <param name="bounds">Either 2 values (`width`, `height`), ot 2 values (`let`, top`, `width`, `height`).</param>
+        /// <typeparam name="TControl"></typeparam>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException"></exception>
+        /// <exception cref="ArgumentException"></exception>
         public static TControl Bounds<TControl>(
             this TControl control,
             params int[] bounds)
@@ -216,12 +369,19 @@ namespace WinFormMarkup.Extensions
                     break;
                 default:
                     throw new ArgumentException(
-                        "Margin must be either 2 (width, height), or 4 (left, top, width, height)");
+                        "Bounds must be either 2 (width, height), or 4 (left, top, width, height)");
             }
 
             return control;
         }
 
+        /// <summary>
+        /// Sets the `Control.Capture` property, and returns a reference to the control.
+        /// </summary>
+        /// <param name="control"></param>
+        /// <param name="capture"></param>
+        /// <typeparam name="TControl"></typeparam>
+        /// <returns></returns>
         public static TControl Capture<TControl>(
             this TControl control,
             bool capture)
@@ -231,6 +391,13 @@ namespace WinFormMarkup.Extensions
             return control;
         }
 
+        /// <summary>
+        /// Sets the `Control.CausesValidation` property, and returns a reference to the control.
+        /// </summary>
+        /// <param name="control"></param>
+        /// <param name="causesValidation"></param>
+        /// <typeparam name="TControl"></typeparam>
+        /// <returns></returns>
         public static TControl CausesValidation<TControl>(
             this TControl control,
             bool causesValidation)
@@ -240,6 +407,13 @@ namespace WinFormMarkup.Extensions
             return control;
         }
 
+        /// <summary>
+        /// Hooks the `Control.CausesValidationChanged` event to call the provided `action`, and returns a reference to the control.
+        /// </summary>
+        /// <param name="control"></param>
+        /// <param name="action"></param>
+        /// <typeparam name="TControl"></typeparam>
+        /// <returns></returns>
         public static TControl CausesValidationChanged<TControl>(
             this TControl control,
             Action<TControl> action)
@@ -250,6 +424,13 @@ namespace WinFormMarkup.Extensions
         }
 
 
+        /// <summary>
+        /// Hooks the `Control.ChangeUICues` event to call the provided `action`, and returns a reference to the control.
+        /// </summary>
+        /// <param name="control"></param>
+        /// <param name="action"></param>
+        /// <typeparam name="TControl"></typeparam>
+        /// <returns></returns>
         // ReSharper disable once InconsistentNaming
         public static TControl ChangeUICues<TControl>(
             this TControl control,
@@ -260,6 +441,13 @@ namespace WinFormMarkup.Extensions
             return control;
         }
 
+        /// <summary>
+        /// Hooks the `Control.Click` event to call the provided `action`, and returns a reference to the control.
+        /// </summary>
+        /// <param name="control"></param>
+        /// <param name="action"></param>
+        /// <typeparam name="TControl"></typeparam>
+        /// <returns></returns>
         public static TControl Clicked<TControl>(
             this TControl control,
             Action<TControl> action)
@@ -270,6 +458,13 @@ namespace WinFormMarkup.Extensions
         }
 
 
+        /// <summary>
+        /// Sets the `Control.ClientSize` property, and returns a reference to the control.
+        /// </summary>
+        /// <param name="control"></param>
+        /// <param name="clientSize"></param>
+        /// <typeparam name="TControl"></typeparam>
+        /// <returns></returns>
         public static TControl ClientSize<TControl>(
             this TControl control,
             Size clientSize)
@@ -279,6 +474,13 @@ namespace WinFormMarkup.Extensions
             return control;
         }
 
+        /// <summary>
+        /// Hooks the `Control.ClientSizeChanged` event to call the provided `action`, and returns a reference to the control.
+        /// </summary>
+        /// <param name="control"></param>
+        /// <param name="action"></param>
+        /// <typeparam name="TControl"></typeparam>
+        /// <returns></returns>
         public static TControl ClientSizeChanged<TControl>(
             this TControl control,
             Action<TControl> action)
@@ -288,6 +490,13 @@ namespace WinFormMarkup.Extensions
             return control;
         }
 
+        /// <summary>
+        /// Sets the `Control.ContextMenuStrip` property, and returns a reference to the control.
+        /// </summary>
+        /// <param name="control"></param>
+        /// <param name="contextMenu"></param>
+        /// <typeparam name="TControl"></typeparam>
+        /// <returns></returns>
         public static TControl ContextMenuStrip<TControl>(
             this TControl control,
             ContextMenuStrip contextMenu)
@@ -297,6 +506,13 @@ namespace WinFormMarkup.Extensions
             return control;
         }
 
+        /// <summary>
+        /// Hooks the `Control.ContextMenuStripChanged` event to call the provided `action`, and returns a reference to the control.
+        /// </summary>
+        /// <param name="control"></param>
+        /// <param name="action"></param>
+        /// <typeparam name="TControl"></typeparam>
+        /// <returns></returns>
         public static TControl ContextMenuStripChanged<TControl>(
             this TControl control,
             Action<TControl> action)
@@ -306,6 +522,13 @@ namespace WinFormMarkup.Extensions
             return control;
         }
 
+        /// <summary>
+        /// Hooks the `Control.ControlAdded` event to call the provided `action`, and returns a reference to the control.
+        /// </summary>
+        /// <param name="control"></param>
+        /// <param name="action"></param>
+        /// <typeparam name="TControl"></typeparam>
+        /// <returns></returns>
         public static TControl ControlAdded<TControl>(
             this TControl control,
             Action<TControl, ControlEventArgs> action)
@@ -315,6 +538,13 @@ namespace WinFormMarkup.Extensions
             return control;
         }
 
+        /// <summary>
+        /// Hooks the `Control.ControlRemoved` event to call the provided `action`, and returns a reference to the control.
+        /// </summary>
+        /// <param name="control"></param>
+        /// <param name="action"></param>
+        /// <typeparam name="TControl"></typeparam>
+        /// <returns></returns>
         public static TControl ControlRemoved<TControl>(
             this TControl control,
             Action<TControl, ControlEventArgs> action)
@@ -324,6 +554,14 @@ namespace WinFormMarkup.Extensions
             return control;
         }
 
+        /// <summary>
+        /// Adds all of the `children`to the control, and return the current control.
+        /// </summary>
+        /// <remarks>Any child control added with a DockStyle.Fill will be brought to front.</remarks>
+        /// <param name="control"></param>
+        /// <param name="children">`params` collection of controls to add.</param>
+        /// <typeparam name="TControl"></typeparam>
+        /// <returns></returns>
         public static TControl Controls<TControl>(
             this TControl control,
             params Control[] children)
@@ -337,6 +575,13 @@ namespace WinFormMarkup.Extensions
             return control;
         }
 
+        /// <summary>
+        /// Sets the `Control.Cursor` property, and returns a reference to the control.
+        /// </summary>
+        /// <param name="control"></param>
+        /// <param name="cursor"></param>
+        /// <typeparam name="TControl"></typeparam>
+        /// <returns></returns>
         public static TControl Cursor<TControl>(
             this TControl control,
             Cursor cursor)
@@ -346,6 +591,13 @@ namespace WinFormMarkup.Extensions
             return control;
         }
 
+        /// <summary>
+        /// Hooks the `Control.CursorChanged` event to call the provided `action`, and returns a reference to the control.
+        /// </summary>
+        /// <param name="control"></param>
+        /// <param name="action"></param>
+        /// <typeparam name="TControl"></typeparam>
+        /// <returns></returns>
         public static TControl CursorChanged<TControl>(
             this TControl control,
             Action<TControl> action)
@@ -355,6 +607,13 @@ namespace WinFormMarkup.Extensions
             return control;
         }
 
+        /// <summary>
+        /// Sets the `Control.Dock` property, and returns a reference to the control.
+        /// </summary>
+        /// <param name="control"></param>
+        /// <param name="dockPosition"></param>
+        /// <typeparam name="TControl"></typeparam>
+        /// <returns></returns>
         public static TControl Dock<TControl>(
             this TControl control,
             DockStyle dockPosition)
@@ -364,6 +623,13 @@ namespace WinFormMarkup.Extensions
             return control;
         }
 
+        /// <summary>
+        /// Hooks the `Control.DockChanged` event to call the provided `action`, and returns a reference to the control.
+        /// </summary>
+        /// <param name="control"></param>
+        /// <param name="action"></param>
+        /// <typeparam name="TControl"></typeparam>
+        /// <returns></returns>
         public static TControl DockChanged<TControl>(
             this TControl control,
             Action<TControl> action)
@@ -374,6 +640,13 @@ namespace WinFormMarkup.Extensions
         }
 
 
+        /// <summary>
+        /// Hooks the `Control.DoubleClick` event to call the provided `action`, and returns a reference to the control.
+        /// </summary>
+        /// <param name="control"></param>
+        /// <param name="action"></param>
+        /// <typeparam name="TControl"></typeparam>
+        /// <returns></returns>
         public static TControl DoubleClicked<TControl>(
             this TControl control,
             Action<TControl> action)
@@ -673,6 +946,7 @@ namespace WinFormMarkup.Extensions
         }
 
         /// <summary>
+        /// Sets the `Control.Margin` property, and returns a reference to the control.
         /// </summary>
         /// <param name="control"></param>
         /// <param name="margin">Variable number of parameters 1 (all), 2 (horizontal, vertical), or 4 (left, top, right, bottom)</param>
@@ -846,6 +1120,7 @@ namespace WinFormMarkup.Extensions
         }
 
         /// <summary>
+        /// Sets the `Control.Padding` property, and returns a reference to the control.
         /// </summary>
         /// <param name="control"></param>
         /// <param name="padding">Variable number of parameters 1 (all), 2 (horizontal, vertical), or 4 (left, top, right, bottom)</param>
@@ -1101,6 +1376,17 @@ namespace WinFormMarkup.Extensions
             return control;
         }
 
+        /// <summary>
+        /// Sends the current control to the back of the parent controls collection.
+        /// If the control has already been assigned to a parent, then this method calls `SendToBack()` immediately and returns a reference to the control.
+        /// Otherwise, if hooks the `Control.ParentChanged` event, and then invokes `SendToBack()` when the parent is assigned.
+        /// </summary>
+        /// <remarks>
+        /// **NOTE:** Thread-safe.  Automatically unhooks from event after `ParentChanged` has fired.
+        /// </remarks>
+        /// <param name="control"></param>
+        /// <typeparam name="TControl"></typeparam>
+        /// <returns></returns>
         public static TControl ToBack<TControl>(
             this TControl control)
             where TControl : Control
@@ -1119,6 +1405,17 @@ namespace WinFormMarkup.Extensions
             return control;
         }
 
+        /// <summary>
+        /// Brings the current control to the front of the parent controls collection.
+        /// If the control has already been assigned to a parent, then this method calls `BringToFront()` immediately and returns a reference to the control.
+        /// Otherwise, if hooks the `Control.ParentChanged` event, and then invokes `BringToFront()` when the parent is assigned.
+        /// </summary>
+        /// <remarks>
+        /// **NOTE:** Thread-safe.  Automatically unhooks from event after `ParentChanged` has fired.
+        /// </remarks>
+        /// <param name="control"></param>
+        /// <typeparam name="TControl"></typeparam>
+        /// <returns></returns>
         public static TControl ToFront<TControl>(
             this TControl control)
             where TControl : Control
