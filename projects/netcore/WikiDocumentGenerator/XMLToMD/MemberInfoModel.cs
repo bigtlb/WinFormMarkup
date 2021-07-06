@@ -42,7 +42,7 @@ namespace WikiDocumentGenerator.XMLToMD
         public bool HasRemarks => Remarks != null;
         public bool HasExample => Example != null;
 
-        public string? Remarks => CurrentNode.Value?.SelectSingleNode("remarks")?.InnerXml.CleanLines(blockIndent:true);
+        public string? Remarks => CurrentNode.Value?.SelectSingleNode("remarks")?.InnerXml.CleanLines();
         public string? Example => CurrentNode.Value?.SelectSingleNode("example")?.InnerXml.CleanLines();
 
         public IEnumerable<ParameterInfoModel>? Params => CurrentNode.Value?
