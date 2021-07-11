@@ -8,7 +8,7 @@ Inspired by [TornadoFX][1] and [Xamarin Community Toolkit C# Markup][2].  WinFor
 Don't be dependent on an IDE designer.  Make cleaner forms.  Not every UI control needs a member variable.
 
 ## Problem
-In designer initialization, every control is created and assigned a member variable, then styled and applied to the parent.  Although this makes it easier for tooling to parse the code, it is incredible redundant and harder to read through.  The generated block must be maintained by the designer otherwise you run the risk of breaking the parsing logic when a designer tries to load it.  This makes it harder to work on in an editor that doesn't support the designer (e.g., VS COde).
+In designer initialization, every control is created and assigned a member variable, then styled and applied to the parent.  Although this makes it easier for tooling to parse the code, it is incredible redundant and harder to read through.  The generated block must be maintained by the designer otherwise you run the risk of breaking the parsing logic when a designer tries to load it.  This makes projects harder to work on in editors that don't support a designer (e.g., VS Code).
 
 If you hand code Winforms Form and Control classes by hand you either end up relying on the same laborious manner of initialization that the designer uses, or you end up using C# constructor initialization.  But Contructor initialization doesn't give you the option of assigning arbitrary elements to variables (you would have to do that in advance).  There are other optimizations that are more convenient when implementaed as an extension method.  Also using a fluent syntax like this does not EXCLUDE the use of initializer wherever desired.
 
