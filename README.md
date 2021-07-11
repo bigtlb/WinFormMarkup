@@ -86,7 +86,7 @@ Designer is verbose, and should only be maintained in a designer.  <code>#DoesNo
 ```
 
 ### With C# Initialzers
-Need for internal variables means having to break apart the initialization flow, wherever assignment is needed, potentially at multiple levels
+Occasional need for variable references means having to break apart the initialization flow, wherever assignment is needed, potentially at multiple levels
 
 ```csharp
 // earlier in the initialization process
