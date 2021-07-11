@@ -77,6 +77,56 @@ namespace UnitTests
         }
 
         [Fact]
+        private void CanSet_AccessibleDefaultActionDescription()
+        {
+            var ctl = new Control();
+
+            Assert.Equal(ctl, ctl.AccessibleDefaultActionDescription("Testing"));
+
+            Assert.Equal("Testing", ctl.AccessibleDefaultActionDescription);
+        }
+
+        [Fact]
+        private void CanSet_AccessibleDescription()
+        {
+            var ctl = new Control();
+
+            Assert.Equal(ctl, ctl.AccessibleDescription("Testing"));
+
+            Assert.Equal("Testing", ctl.AccessibleDescription);
+        }
+
+        [Fact]
+        private void CanSet_AccessibleName()
+        {
+            var ctl = new Control();
+
+            Assert.Equal(ctl, ctl.AccessibleName("Testing"));
+
+            Assert.Equal("Testing", ctl.AccessibleName);
+        }
+
+        [Fact]
+        private void CanSet_AccessibleRole()
+        {
+            var ctl = new Control();
+
+            Assert.Equal(ctl, ctl.AccessibleRole(AccessibleRole.PushButton));
+
+            Assert.Equal(AccessibleRole.PushButton, ctl.AccessibleRole);
+        }
+
+        [Fact]
+        private void CanSet_AllowDrop()
+        {
+            var ctl = new Control();
+
+            Assert.Equal(ctl, ctl.AllowDrop(true));
+
+            Assert.True(ctl.AllowDrop);
+        }
+
+        [Fact]
         private void CanSet_Anchor()
         {
             var ctl = new Control();
@@ -85,6 +135,18 @@ namespace UnitTests
             Assert.Equal(ctl, ctl.Anchor(AnchorStyles.Top | AnchorStyles.Left));
 
             Assert.Equal(AnchorStyles.Top | AnchorStyles.Left, ctl.Anchor);
+        }
+
+        [Fact]
+        private void CanSet_AutoScrollOffset()
+        {
+            var ctl = new Control();
+
+            ctl.AutoScrollOffset = new Point(10, 10);
+
+            Assert.Equal(ctl, ctl.AutoScrollOffset(new Point(20, 20)));
+
+            Assert.StrictEqual(new Point(20, 20), ctl.AutoScrollOffset);
         }
 
         [Fact]
@@ -109,6 +171,19 @@ namespace UnitTests
             Assert.Equal(Color.White, ctl.BackColor);
         }
 
+        [Fact]
+        private void CanSet_BackgroundImage()
+        {
+            var ctl = new Control();
+            ctl.BackgroundImage = null;
+
+            var dummy = new Bitmap(10,10);
+
+            Assert.Equal(ctl, ctl.BackgroundImage(dummy));
+
+            Assert.Equal(dummy, ctl.BackgroundImage);
+        }
+        
         [Fact]
         private void CanSet_BoundsFull()
         {
@@ -145,7 +220,6 @@ namespace UnitTests
 
             Assert.Equal(1, callCount);
         }
-
 
         [Fact]
         private void CanSet_Controls()
@@ -206,6 +280,31 @@ namespace UnitTests
 
             // ReSharper disable once BitwiseOperatorOnEnumWithoutFlags
             Assert.Equal(DockStyle.Top | DockStyle.Left, ctl.Dock);
+        }
+
+        [Fact]
+        private void CanSet_DoubleClicked()
+        {
+            var ctl = new ClickControl();
+            var callCount = 0;
+            Assert.Equal(ctl, ctl.DoubleClicked(_ => callCount++));
+
+            using (new ControlTester(ctl))
+            {
+                ctl.PerformDoubleCLick(EventArgs.Empty);
+            }
+
+            Assert.Equal(1, callCount);
+        }
+
+        [Fact]
+        private void CanSet_Enabled()
+        {
+            var ctl = new Control();
+
+            Assert.Equal(ctl, ctl.Enabled(false));
+
+            Assert.False(ctl.Enabled);
         }
 
         [Fact]
@@ -314,11 +413,10 @@ namespace UnitTests
             var ctl = new Control();
             ctl.Margin = new Padding(10, 20, 30, 40);
 
-            ctl.Margin(1, 2, 3, 4);
+            Assert.Equal(ctl, ctl.Margin(1, 2, 3, 4));
 
             Assert.StrictEqual(new Padding(1, 2, 3, 4), ctl.Margin);
         }
-
 
         [Fact]
         private void CanSet_PaddingAll()
@@ -354,6 +452,81 @@ namespace UnitTests
         }
 
         [Fact]
+        private void CanSet_SetAutoSizeChanged()
+        {
+            var ctl = new ClickControl();
+            var callCount = 0;
+            Assert.Equal(ctl, ctl.SetAutoSizeChanged(_ => callCount++));
+
+            using (new ControlTester(ctl))
+            {
+                ctl.AutoSize = !ctl.AutoSize;
+            }
+
+            Assert.Equal(1, callCount);
+        }
+
+        [Fact]
+        private void CanSet_SetDragDrop()
+        {
+            var ctl = new ClickControl();
+            var callCount = 0;
+            Assert.Equal(ctl, ctl.SetDragDrop((sender, _) => callCount++));
+
+            using (new ControlTester(ctl))
+            {
+                ctl.PerformDragDrop(new DragEventArgs(null, 0, 0, 0, DragDropEffects.All, DragDropEffects.Copy));
+            }
+
+            Assert.Equal(1, callCount);
+        }
+
+        [Fact]
+        private void CanSet_SetDragEnter()
+        {
+            var ctl = new ClickControl();
+            var callCount = 0;
+            Assert.Equal(ctl, ctl.SetDragEnter((sender, _) => callCount++));
+
+            using (new ControlTester(ctl))
+            {
+                ctl.PerformDragEnter(new DragEventArgs(null, 0, 0, 0, DragDropEffects.All, DragDropEffects.Copy));
+            }
+
+            Assert.Equal(1, callCount);
+        }
+
+        [Fact]
+        private void CanSet_SetDragLeave()
+        {
+            var ctl = new ClickControl();
+            var callCount = 0;
+            Assert.Equal(ctl, ctl.SetDragLeave(_ => callCount++));
+
+            using (new ControlTester(ctl))
+            {
+                ctl.PerformDragLeave(EventArgs.Empty);
+            }
+
+            Assert.Equal(1, callCount);
+        }
+
+        [Fact]
+        private void CanSet_SetDragOver()
+        {
+            var ctl = new ClickControl();
+            var callCount = 0;
+            Assert.Equal(ctl, ctl.SetDragOver((sender, _) => callCount++));
+
+            using (new ControlTester(ctl))
+            {
+                ctl.PerformDragOver(new DragEventArgs(null, 0, 0, 0, DragDropEffects.All, DragDropEffects.Copy));
+            }
+
+            Assert.Equal(1, callCount);
+        }
+
+        [Fact]
         private void CanSet_Text()
         {
             var ctl = new Control();
@@ -363,11 +536,91 @@ namespace UnitTests
             Assert.Equal("Hello", ctl.Text);
         }
 
+        [Fact]
+        private void MustNotBe_WrongNumberOfParameters_Bounds()
+        {
+            var ctl = new Control();
+
+            Assert.Throws<ArgumentException>(() => ctl.Bounds());
+            Assert.Throws<ArgumentException>(() => ctl.Bounds(1));
+            Assert.Throws<ArgumentException>(() => ctl.Bounds(1, 2, 3));
+            Assert.Throws<ArgumentException>(() => ctl.Bounds(1, 2, 3, 4, 5));
+        }
+
+        [Fact]
+        private void MustNotBe_WrongNumberOfParameters_Margin()
+        {
+            var ctl = new Control();
+
+            Assert.Throws<ArgumentException>(() => ctl.Margin());
+            Assert.Throws<ArgumentException>(() => ctl.Margin(1, 2, 3));
+            Assert.Throws<ArgumentException>(() => ctl.Margin(1, 2, 3, 4, 5));
+        }
+
+        [Fact]
+        private void MustNotBe_WrongNumberOfParameters_Padding()
+        {
+            var ctl = new Control();
+
+            Assert.Throws<ArgumentException>(() => ctl.Padding());
+            Assert.Throws<ArgumentException>(() => ctl.Padding(1, 2, 3));
+            Assert.Throws<ArgumentException>(() => ctl.Padding(1, 2, 3, 4, 5));
+        }
+
+        [Fact]
+        private void MustNotBeNull_Bounds()
+        {
+            var ctl = new Control();
+
+            Assert.Throws<ArgumentNullException>(() => ctl.Bounds(null!));
+        }
+
+        [Fact]
+        private void MustNotBeNull_Margin()
+        {
+            var ctl = new Control();
+
+            Assert.Throws<ArgumentNullException>(() => ctl.Margin(null!));
+        }
+
+        [Fact]
+        private void MustNotBeNull_Padding()
+        {
+            var ctl = new Control();
+
+            Assert.Throws<ArgumentNullException>(() => ctl.Padding(null!));
+        }
+
         private class ClickControl : Control
         {
             public void PerformClick(EventArgs e)
             {
                 base.OnClick(e);
+            }
+
+            public void PerformDoubleCLick(EventArgs e)
+            {
+                base.OnDoubleClick(e);
+            }
+
+            public void PerformDragDrop(DragEventArgs e)
+            {
+                base.OnDragDrop(e);
+            }
+
+            public void PerformDragEnter(DragEventArgs e)
+            {
+                base.OnDragEnter(e);
+            }
+
+            public void PerformDragLeave(EventArgs e)
+            {
+                base.OnDragLeave(e);
+            }
+
+            public void PerformDragOver(DragEventArgs e)
+            {
+                base.OnDragOver(e);
             }
         }
 

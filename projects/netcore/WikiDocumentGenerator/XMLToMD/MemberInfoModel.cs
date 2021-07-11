@@ -31,13 +31,12 @@ namespace WikiDocumentGenerator.XMLToMD
                     return null;
                 }
             });
-
         }
 
         public string Name => _memberInfo.Name;
         public string? Summary => CurrentNode.Value?.SelectSingleNode("summary")?.InnerXml.CleanLines();
         public string FullSignature => _memberInfo.GetFullSignature(SeeAlso);
-        public bool HasSeeAlso => SeeAlso.Count>0;
+        public bool HasSeeAlso => SeeAlso.Count > 0;
         public bool HasParams => CurrentNode.Value?.SelectNodes("param")?.Count > 0;
         public bool HasRemarks => Remarks != null;
         public bool HasExample => Example != null;
@@ -46,8 +45,8 @@ namespace WikiDocumentGenerator.XMLToMD
         public string? Example => CurrentNode.Value?.SelectSingleNode("example")?.InnerXml.CleanLines();
 
         public IEnumerable<ParameterInfoModel>? Params => CurrentNode.Value?
-                .SelectNodes("param")?.Cast<XmlNode>()
-                .Select(p => new ParameterInfoModel(p));
+            .SelectNodes("param")?.Cast<XmlNode>()
+            .Select(p => new ParameterInfoModel(p));
 
         public IEnumerable<MemberInfoModel>? SeeAlsoMembers =>
             SeeAlso.OrderBy(m => m.Name).Distinct().Select(m => new MemberInfoModel(m, _node));

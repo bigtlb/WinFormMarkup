@@ -4,12 +4,12 @@ using System.Windows.Forms;
 namespace WinFormMarkup.Extensions
 {
     /// <summary>
-    /// Fluent extensions for CommonDialogs
+    ///     Fluent extensions for CommonDialogs
     /// </summary>
     public static class CommonDialogExtensions
     {
         /// <summary>
-        /// Assign property in a fluent manner
+        ///     Assign property in a fluent manner
         /// </summary>
         /// <param name="dialog"></param>
         /// <param name="action"></param>

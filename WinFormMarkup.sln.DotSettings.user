@@ -2,6 +2,7 @@
 	<s:String x:Key="/Default/Environment/AssemblyExplorer/XmlDocument/@EntryValue">&lt;AssemblyExplorer&gt;&#xD;
   &lt;Assembly Path="C:\Users\thoma\.nuget\packages\microsoft.extensions.logging\5.0.0\lib\netstandard2.1\Microsoft.Extensions.Logging.dll" /&gt;&#xD;
 &lt;/AssemblyExplorer&gt;</s:String>
+	<s:String x:Key="/Default/Environment/Highlighting/HighlightingSourceSnapshotLocation/@EntryValue">C:\Users\thoma\AppData\Local\JetBrains\Rider2021.1\resharper-host\temp\Rider\vAny\CoverageData\_WinFormMarkup.988042034\Snapshot\snapshot.utdcvr</s:String>
 	
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=0371551e_002Dfbe5_002D4b76_002D8521_002D7255dbb4a0b8/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="CanSet_Text" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;TestAncestor&gt;&#xD;

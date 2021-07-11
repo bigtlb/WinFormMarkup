@@ -3,12 +3,13 @@
 namespace WinFormMarkup.Extensions
 {
     /// <summary>
-    /// Fluent extensions for DateTimePicker controls
+    ///     Fluent extensions for DateTimePicker controls
     /// </summary>
     public static class DateTimePickerExtensions
     {
         /// <summary>
-        /// Sets the `DateTimePicker.CustomFormat` property, also sets the `DateTimePicker.Format` property to `DateTimePickerFormat.Custom`, and then returns a reference to the control.
+        ///     Sets the `DateTimePicker.CustomFormat` property, also sets the `DateTimePicker.Format` property to
+        ///     `DateTimePickerFormat.Custom`, and then returns a reference to the control.
         /// </summary>
         /// <param name="dateTimePicker"></param>
         /// <param name="format"></param>
@@ -25,7 +26,7 @@ namespace WinFormMarkup.Extensions
         }
 
         /// <summary>
-        /// Sets the `DateTimePicker.Format` property, and returns a reference to the control.
+        ///     Sets the `DateTimePicker.Format` property, and returns a reference to the control.
         /// </summary>
         /// <param name="dateTimePicker"></param>
         /// <param name="format"></param>

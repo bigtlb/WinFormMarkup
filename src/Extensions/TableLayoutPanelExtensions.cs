@@ -6,14 +6,15 @@ namespace WinFormMarkup.Extensions
     public static class TableLayoutPanelExtensions
     {
         /// <summary>
-        /// Sets the ColumnStyles collection, and returns a reference to the panel.
+        ///     Sets the ColumnStyles collection, and returns a reference to the panel.
         /// </summary>
         /// <remarks>
-        /// **NOTE:** columnStyles is a string delimited by '|' with values for each ColumnStyle. Values are '*' or autosize, 'nn.n%' for percent width, and 'nn.n' for absolute. width
+        ///     **NOTE:** columnStyles is a string delimited by '|' with values for each ColumnStyle. Values are '*' or autosize,
+        ///     'nn.n%' for percent width, and 'nn.n' for absolute. width
         /// </remarks>
         /// <example>
-        /// var panel = new TableLayoutPanel();
-        /// panel.ColumnStyles("25|40%|40%|*");
+        ///     var panel = new TableLayoutPanel();
+        ///     panel.ColumnStyles("25|40%|40%|*");
         /// </example>
         /// <param name="tableLayoutPanel"></param>
         /// <param name="columnStyles"></param>
