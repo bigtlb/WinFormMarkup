@@ -44,7 +44,7 @@ namespace BasicApp
                         .Items(
                             new ToolStripStatusLabel()
                                 .Text("Status Label"),
-                            new ToolStripStatusLabel().Bind(_dataModel, m=>m.ClickCount, c=>c.Text)),
+                            new ToolStripStatusLabel().ComponentBinding(_dataModel, m=>m.ClickCount, c=>c.Text)),
                     new FlowLayoutPanel()
                         .Dock(DockStyle.Fill)
                         .BackColor(Color.Aqua)

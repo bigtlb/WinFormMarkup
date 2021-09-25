@@ -7,7 +7,7 @@ namespace System.Windows.Forms
     public static class ComponentExtensions
     {
                 
-        public static TComponent Bind<TSource, TSourceProp, TComponent, TTargetProp>(
+        public static TComponent ComponentBinding<TSource, TSourceProp, TComponent, TTargetProp>(
             this TComponent component,
             TSource source,
             Expression<Func<TSource, TSourceProp>> sourceProp,
