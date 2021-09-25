@@ -24,8 +24,8 @@ namespace UnitTests
             form.Show();
             Assert.NotEqual(yellow, form.Controls[0]);
             Assert.Equal(yellow, yellow.ToFront());
-            EventHandler doAssert = (_, _) => Assert.Equal(yellow, form.Controls[0]);
-            yellow.BeginInvoke(doAssert);
+            void DoAssert(object? o, EventArgs eventArgs) => Assert.Equal(yellow, form.Controls[0]);
+            yellow.BeginInvoke((EventHandler) DoAssert);
         }
 
 
@@ -40,8 +40,8 @@ namespace UnitTests
                 yellow,
                 new Panel().BackColor(Color.Red));
             form.Show();
-            EventHandler doAssert = (_, _) => Assert.Equal(yellow, form.Controls[0]);
-            yellow.BeginInvoke(doAssert);
+            void DoAssert(object? o, EventArgs eventArgs) => Assert.Equal(yellow, form.Controls[0]);
+            yellow.BeginInvoke((EventHandler) DoAssert);
         }
 
         [Fact]
@@ -56,8 +56,8 @@ namespace UnitTests
             form.Show();
             Assert.NotEqual(yellow, form.Controls[0]);
             Assert.Equal(yellow, yellow.ToBack());
-            EventHandler doAssert = (_, _) => Assert.Equal(yellow, form.Controls[^1]);
-            yellow.BeginInvoke(doAssert);
+            void DoAssert(object? o, EventArgs eventArgs) => Assert.Equal(yellow, form.Controls[^1]);
+            yellow.BeginInvoke((EventHandler) DoAssert);
         }
 
 
@@ -72,8 +72,8 @@ namespace UnitTests
                 yellow,
                 new Panel().BackColor(Color.Red));
             form.Show();
-            EventHandler doAssert = (_, _) => Assert.Equal(yellow, form.Controls[^1]);
-            yellow.BeginInvoke(doAssert);
+            void DoAssert(object? o, EventArgs eventArgs) => Assert.Equal(yellow, form.Controls[^1]);
+            yellow.BeginInvoke((EventHandler) DoAssert);
         }
 
         [Fact]
@@ -174,8 +174,7 @@ namespace UnitTests
         [Fact]
         private void CanSet_BackgroundImage()
         {
-            var ctl = new Control();
-            ctl.BackgroundImage = null;
+            var ctl = new Control {BackgroundImage = null};
 
             var dummy = new Bitmap(10,10);
 
@@ -183,12 +182,21 @@ namespace UnitTests
 
             Assert.Equal(dummy, ctl.BackgroundImage);
         }
-        
+
+        [Fact]
+        private void CanSet_BackgroundImageLayout()
+        {
+            var ctl = new Control();
+
+            Assert.Equal(ctl, ctl.BackgroundImageLayout(ImageLayout.Stretch));
+
+            Assert.Equal(ImageLayout.Stretch, ctl.BackgroundImageLayout);
+        }
+
         [Fact]
         private void CanSet_BoundsFull()
         {
-            var ctl = new Control();
-            ctl.Bounds = new Rectangle(10, 20, 30, 40);
+            var ctl = new Control {Bounds = new Rectangle(10, 20, 30, 40)};
 
             Assert.Equal(ctl, ctl.Bounds(11, 22, 33, 44));
 
@@ -198,14 +206,23 @@ namespace UnitTests
         [Fact]
         private void CanSet_BoundsSize()
         {
-            var ctl = new Control();
-            ctl.Bounds = new Rectangle(10, 20, 0, 0);
+            var ctl = new Control {Bounds = new Rectangle(10, 20, 0, 0)};
 
             Assert.Equal(ctl, ctl.Bounds(30, 40));
 
             Assert.StrictEqual(new Rectangle(10, 20, 30, 40), ctl.Bounds);
         }
+        
+        [Fact]
+        private void CanSet_Capture()
+        {
+            var ctl = new Control {Capture = false};
 
+            Assert.Equal(ctl, ctl.Capture(true));
+
+            Assert.True(ctl.Capture);
+        }
+        
         [Fact]
         private void CanSet_Clicked()
         {
@@ -471,7 +488,7 @@ namespace UnitTests
         {
             var ctl = new ClickControl();
             var callCount = 0;
-            Assert.Equal(ctl, ctl.SetDragDrop((sender, _) => callCount++));
+            Assert.Equal(ctl, ctl.SetDragDrop((_, _) => callCount++));
 
             using (new ControlTester(ctl))
             {
@@ -486,7 +503,7 @@ namespace UnitTests
         {
             var ctl = new ClickControl();
             var callCount = 0;
-            Assert.Equal(ctl, ctl.SetDragEnter((sender, _) => callCount++));
+            Assert.Equal(ctl, ctl.SetDragEnter((_, _) => callCount++));
 
             using (new ControlTester(ctl))
             {
@@ -516,7 +533,7 @@ namespace UnitTests
         {
             var ctl = new ClickControl();
             var callCount = 0;
-            Assert.Equal(ctl, ctl.SetDragOver((sender, _) => callCount++));
+            Assert.Equal(ctl, ctl.SetDragOver((_, _) => callCount++));
 
             using (new ControlTester(ctl))
             {

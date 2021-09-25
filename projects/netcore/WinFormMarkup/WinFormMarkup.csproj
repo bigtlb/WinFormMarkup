@@ -18,6 +18,9 @@
         <Compile Include="..\..\..\src\Extensions\CommonDialogExtensions.cs">
           <Link>CommonDialogExtensions.cs</Link>
         </Compile>
+        <Compile Include="..\..\..\src\Extensions\ComponentExtensions.cs">
+            <Link>ComponentExtensions.cs</Link>
+        </Compile>
         <Compile Include="..\..\..\src\Extensions\ControlExtensions.cs">
             <Link>ControlExtensions.cs</Link>
         </Compile>

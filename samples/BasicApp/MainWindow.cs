@@ -12,7 +12,26 @@ namespace BasicApp
         {
             // Control instantiation
             this.Controls(
-                    new MenuStrip()
+                    new MenuStrip
+                        {
+                            Items = 
+                            {
+                                new ToolStripMenuItem
+                                {
+                                    Text = "&File",
+                                    DropDownItems =
+                                    {
+                                        new ToolStripMenuItem {ShortcutKeys = Keys.Control | Keys.N}
+                                            .Clicked(sender =>
+                                            {
+                                                /* Do something here*/
+                                            }),
+                                        new ToolStripMenuItem{ ShortcutKeys = Keys.Control | Keys.O}
+                                    }
+                                }
+                            }
+                            
+                        }
                         .Items(
                             new ToolStripMenuItem("&File")
                                 .DropDownItems(
@@ -24,7 +43,8 @@ namespace BasicApp
                     new StatusStrip()
                         .Items(
                             new ToolStripStatusLabel()
-                                .Text("Status Label")),
+                                .Text("Status Label"),
+                            new ToolStripStatusLabel().Bind(_dataModel, m=>m.ClickCount, c=>c.Text)),
                     new FlowLayoutPanel()
                         .Dock(DockStyle.Fill)
                         .BackColor(Color.Aqua)
