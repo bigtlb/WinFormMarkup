@@ -1,18 +1,11 @@
-﻿using System;
-using System.Windows.Forms;
+namespace BasicApp;
 
-namespace BasicApp
+static class Program
 {
-    internal class Program
+    [STAThread]
+    static void Main()
     {
-        [STAThread]
-        // ReSharper disable once UnusedParameter.Local
-        private static void Main(string[] args)
-        {
-            Application.SetHighDpiMode(HighDpiMode.SystemAware);
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainWindow());
-        }
+        ApplicationConfiguration.Initialize();
+        Application.Run(new MainWindow());
     }
 }

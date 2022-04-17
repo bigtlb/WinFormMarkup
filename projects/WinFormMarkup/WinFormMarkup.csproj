@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0-windows</TargetFramework>
+        <Nullable>enable</Nullable>
+        <UseWindowsForms>true</UseWindowsForms>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <RootNamespace>WinFormsMarkup</RootNamespace>
+        <OutputType>Library</OutputType>
+        <PackageId>WinFormMarkup</PackageId>
+        <Authors>bigtlb</Authors>
+        <!-- <Company>HeliconSoftware</Company> -->
+        <PackageDescription>Fluent markup syntax for Windows Forms creation. Inspired by TornadoFX and Xamarin Community Toolkit C# Markup</PackageDescription>
+        <RepositoryUrl>https://github.com/bigtlb/WinFormMarkup</RepositoryUrl>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    </PropertyGroup>
+
+</Project>

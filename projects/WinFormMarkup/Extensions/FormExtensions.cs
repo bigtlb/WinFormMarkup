@@ -34,6 +34,15 @@ namespace WinFormMarkup.Extensions
             form.CancelButton = cancelButton;
             return form;
         }
+        
+        public static TForm Icon<TForm>(
+            this TForm form,
+            Icon icon)
+            where TForm : Form
+        {
+            form.Icon = icon;
+            return form;
+        }
 
         public static TForm StartPosition<TForm>(
             this TForm form,
@@ -41,6 +50,26 @@ namespace WinFormMarkup.Extensions
             where TForm : Form
         {
             form.StartPosition = startPosition;
+            return form;
+        }
+        
+        public static TForm MainMenuStrip<TForm>(
+            this TForm form,
+            params ToolStripItem[] items)
+            where TForm : Form
+        {
+            var ms = new MenuStrip().Items(items);
+            form.Controls(ms);
+            form.MainMenuStrip = ms;
+            return form;
+        }
+        
+        public static TForm StatusStrip<TForm>(
+            this TForm form,
+            params ToolStripItem[] items)
+            where TForm : Form
+        {
+            form.Controls(new StatusStrip().Items(items));
             return form;
         }
     }

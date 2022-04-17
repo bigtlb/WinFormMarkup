@@ -2,22 +2,19 @@
 
     <PropertyGroup>
         <OutputType>WinExe</OutputType>
-        <TargetFramework>net5.0-windows</TargetFramework>
+        <TargetFramework>net6.0-windows</TargetFramework>
+        <Nullable>enable</Nullable>
         <UseWindowsForms>true</UseWindowsForms>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <RootNamespace>ReactiveUIApp</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="ReactiveUI.WinForms" Version="13.3.2" />
+      <PackageReference Include="ReactiveUI.WinForms" Version="18.0.7" />
     </ItemGroup>
 
     <ItemGroup>
-      <Compile Update="Views\MainView.markdown.cs">
-        <DependentUpon>MainView.cs</DependentUpon>
-      </Compile>
-    </ItemGroup>
-
-    <ItemGroup>
-      <ProjectReference Include="..\..\projects\netcore\WinFormMarkup\WinFormMarkup.csproj" />
+      <ProjectReference Include="..\..\Projects\WinFormMarkup\WinFormMarkup.csproj" />
     </ItemGroup>
 
 </Project>

@@ -55,18 +55,17 @@ namespace ReactiveUIApp.Views
         private void Build()
         {
             // Control instantiation
-            this.Controls(
-                    new MenuStrip()
-                        .Items(
-                            new ToolStripMenuItem("&File")
-                                .DropDownItems(
-                                    _exitMenu = new ToolStripMenuItem("E&xit")
-                                        .Keys(Keys.Alt | Keys.F4)
-                                )),
-                    new StatusStrip()
-                        .Items(
-                            _statusLabel = new ToolStripStatusLabel()
-                                .Text("Status Label")),
+            this
+                .MainMenuStrip(
+                    new ToolStripMenuItem("&File")
+                        .DropDownItems(
+                            _exitMenu = new ToolStripMenuItem("E&xit")
+                                .Keys(Keys.Alt | Keys.F4)
+                        ))
+                .StatusStrip(
+                    _statusLabel = new ToolStripStatusLabel()
+                        .Text("Status Label"))
+                .Controls(
                     new TableLayoutPanel()
                         .TableLayout(2, 8)
                         .ColumnStyles("30%|70%")

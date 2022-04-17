@@ -30,10 +30,10 @@ namespace WinFormMarkup.Extensions
             foreach (var style in columnStyles.Split('|'))
                 tableLayoutPanel.ColumnStyles.Add(
                     style[^1] == '*'
-                        ? new ColumnStyle {SizeType = SizeType.AutoSize, Width = 1}
+                        ? new ColumnStyle { SizeType = SizeType.AutoSize, Width = 1 }
                         : style[^1] == '%'
-                            ? new ColumnStyle {SizeType = SizeType.Percent, Width = float.Parse(style[..^1])}
-                            : new ColumnStyle {SizeType = SizeType.Absolute, Width = float.Parse(style)});
+                            ? new ColumnStyle { SizeType = SizeType.Percent, Width = float.Parse(style[..^1]) }
+                            : new ColumnStyle { SizeType = SizeType.Absolute, Width = float.Parse(style) });
 
             return tableLayoutPanel;
         }
@@ -47,10 +47,10 @@ namespace WinFormMarkup.Extensions
             foreach (var style in rowStyles.Split('|'))
                 tableLayoutPanel.RowStyles.Add(
                     style[^1] == '*'
-                        ? new RowStyle {SizeType = SizeType.AutoSize, Height = 1}
+                        ? new RowStyle { SizeType = SizeType.AutoSize, Height = 1 }
                         : style[^1] == '%'
-                            ? new RowStyle {SizeType = SizeType.Percent, Height = float.Parse(style[..^1])}
-                            : new RowStyle {SizeType = SizeType.Absolute, Height = float.Parse(style)});
+                            ? new RowStyle { SizeType = SizeType.Percent, Height = float.Parse(style[..^1]) }
+                            : new RowStyle { SizeType = SizeType.Absolute, Height = float.Parse(style) });
 
             return tableLayoutPanel;
         }

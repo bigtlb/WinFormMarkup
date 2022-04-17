@@ -5,8 +5,8 @@ using System.Windows.Forms;
 namespace WinFormMarkup.Extensions
 {
     /// <summary>
-    /// Fluent extensions for FileDialogs
-    /// <para>Inherits: <see cref="WinFormMarkup.Extensions.CommonDialogExtensions"/></para>
+    ///     Fluent extensions for FileDialogs
+    ///     <para>Inherits: <see cref="WinFormMarkup.Extensions.CommonDialogExtensions" /></para>
     /// </summary>
     public static class FileDialogExtensions
     {

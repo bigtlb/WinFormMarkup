@@ -28,7 +28,7 @@ namespace WinFormMarkup.Extensions
             this TCommonDialog dialog)
             where TCommonDialog : CommonDialog
         {
-            return new(dialog, dialog.ShowDialog());
+            return new DialogInfo<TCommonDialog>(dialog, dialog.ShowDialog());
         }
     }
 

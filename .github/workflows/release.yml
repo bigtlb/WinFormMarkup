@@ -23,7 +23,7 @@ jobs:
     - name: Test
       run: dotnet test --configuration Release /p:Version=${env:VERSION} --no-build
     - name: Pack
-      run: dotnet pack projects\netcore\WinFormMarkup\WinFormMarkup.csproj --configuration release /p:Version=${env:VERSION} --no-build --output .
+      run: dotnet pack projects\WinFormMarkup\WinFormMarkup.csproj --configuration release /p:Version=${env:VERSION} --no-build --output .
     - name: Push
       run: |
         dotnet nuget push .\WinFormMarkup.${env:VERSION}.nupkg --source https://nuget.pkg.github.com/bigtlb/index.json --api-key ${env:GITHUB_TOKEN}
