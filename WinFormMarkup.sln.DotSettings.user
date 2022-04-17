@@ -1,9 +1,0 @@
-﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
-	<s:String x:Key="/Default/Environment/Highlighting/HighlightingSourceSnapshotLocation/@EntryValue">C:\Users\thoma\AppData\Local\JetBrains\Rider2021.3\resharper-host\temp\Rider\vAny\CoverageData\_WinFormMarkup.988042034\Snapshot\snapshot.utdcvr</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=f3636156_002D5640_002D4a4c_002Db610_002Dff7d0b41e5c6/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="All tests from Solution" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;Solution /&gt;&#xD;
-&lt;/SessionState&gt;</s:String>
-	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=Samples_002FBasicApp_002FProperties_002FResources/@EntryIndexedValue">True</s:Boolean>
-	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=Samples_002FBasicApp_002FResources_002FMyResources/@EntryIndexedValue">True</s:Boolean>
-	
-	<s:Boolean x:Key="/Default/ResxEditorPersonal/Initialized/@EntryValue">True</s:Boolean></wpf:ResourceDictionary>
