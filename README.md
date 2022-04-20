@@ -91,7 +91,7 @@ Designer is verbose, and should only be maintained in a designer.  <code>#DoesNo
 
 ### With WinFormsMarkup
 
-Everything can be declared in a single flow.  
+Everything can be declared in a single simple flow.  
 
 ```csharp
         this.Text("Main Window")
