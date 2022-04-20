@@ -22,4 +22,4 @@ jobs:
     - name: Build
       run: dotnet build projects\WinFormMarkup\WinFormMarkup.csproj --no-restore
     - name: Test
-      run: dotnet test --verbosity normal
+      run: dotnet test --logger:"console;verbosity=normal"
