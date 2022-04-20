@@ -14,7 +14,7 @@ Don't be dependent on an IDE designer.  Make cleaner forms.  Not every UI contro
 ## Problem
 In traditional WinForm designer initialization, every control is created and assigned a member variable, then styled and applied to the parent.  Although this makes it easier for tooling to parse the code, it is incredible redundant and harder to read through.  The generated block must be maintained by the designer otherwise you run the risk of breaking the parsing logic when a designer tries to load it.  This makes projects harder to work on in editors that don't support a designer (e.g., VS Code).
 
-If you hand code Winforms Form and Control classes by hand you either end up relying on the same laborious manner of initialization that the designer uses. A modern more fluent style would be cleaner, easier to read, and not require special tooling.
+A modern more fluent style would be cleaner, easier to read, and not require special tooling.
 
 ### With WinForms Designer
 Designer is verbose, and should only be maintained in a designer.  <code>#DoesNotSparkJoy</code>
