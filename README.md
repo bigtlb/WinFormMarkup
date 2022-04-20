@@ -12,9 +12,9 @@ Inspired by [TornadoFX][1] and [Xamarin Community Toolkit C# Markup][2].  WinFor
 Don't be dependent on an IDE designer.  Make cleaner forms.  Not every UI control needs a member variable.
 
 ## Problem
-In designer initialization, every control is created and assigned a member variable, then styled and applied to the parent.  Although this makes it easier for tooling to parse the code, it is incredible redundant and harder to read through.  The generated block must be maintained by the designer otherwise you run the risk of breaking the parsing logic when a designer tries to load it.  This makes projects harder to work on in editors that don't support a designer (e.g., VS Code).
+In traditional WinForm designer initialization, every control is created and assigned a member variable, then styled and applied to the parent.  Although this makes it easier for tooling to parse the code, it is incredible redundant and harder to read through.  The generated block must be maintained by the designer otherwise you run the risk of breaking the parsing logic when a designer tries to load it.  This makes projects harder to work on in editors that don't support a designer (e.g., VS Code).
 
-If you hand code Winforms Form and Control classes by hand you either end up relying on the same laborious manner of initialization that the designer uses, or you end up using C# constructor initialization.  But Contructor initialization doesn't give you the option of assigning arbitrary elements to variables (you would have to do that in advance).  There are other optimizations that are more convenient when implementaed as an extension method.  Also using a fluent syntax like this does not EXCLUDE the use of initializer wherever desired.
+If you hand code Winforms Form and Control classes by hand you either end up relying on the same laborious manner of initialization that the designer uses. A modern more fluent style would be cleaner, easier to read, and not require special tooling.
 
 ### With WinForms Designer
 Designer is verbose, and should only be maintained in a designer.  <code>#DoesNotSparkJoy</code>
@@ -89,43 +89,26 @@ Designer is verbose, and should only be maintained in a designer.  <code>#DoesNo
         #endregion
 ```
 
-### With C# Initialzers
-Occasional need for variable references means having to break apart the initialization flow, wherever assignment is needed, potentially at multiple levels
-
-```csharp
-// earlier in the initialization process
- _newFileMenuItem = new ToolStripMenuItem("&New") {ShortcutKeys = Keys.Control | Keys.N};
- _openFileMenuItem = new ToolStripMenuItem("&Open") {ShortcutKeys = Keys.Control | Keys.O};
- 
- ...
-
-this.Controls.AddRange(new [] {
-    new MenuStrip
-    {
-        Items = {
-            new ToolStripMenuItem("&File")
-            {
-                  DropDownItems = { _newFileMenuItem, _openFileMenuItem }
-            }
-        }
-    }
-});
-```
-
 ### With WinFormsMarkup
 
-Everything can be declared in a single flow.  Binding helpers (see samples) simplify field and event binding as well.
+Everything can be declared in a single flow.  
 
 ```csharp
-this.Controls(
-    new MenuStrip().Items(
-        new ToolStripMenuItem("&File").DropDownItems(
-            _newFileMenuItem = new ToolStripMenuItem("&New").Keys(Keys.Control | Keys.N),
-            _openFileMenuItem = new ToolStripMenuItem("&Open").Keys(Keys.Control | Keys.O)
-        )));
+        this.Text("Main Window")
+            .Icon(Properties.Resources.AppIcon)
+            .MinimumSize(800,600)
+            .StartPosition(FormStartPosition.CenterScreen)
+            .MainMenuStrip(
+                new ToolStripMenuItem("&File")
+                    .DropDownItems(
+                        new ToolStripMenuItem("&New")
+                            .Keys(Keys.Control | Keys.N)
+                            .Clicked(_ => CreateFile()),
+                        new ToolStripMenuItem("&Open")
+                            .Keys(Keys.Control | Keys.O)
+                            .Clicked(_=> OpenFile())
+                    ))
 ```
-
-**NOTE:**  Or mix and match either of the two formats.
 
 [1]: https://github.com/edvin/tornadofx
 [2]: https://docs.microsoft.com/en-us/xamarin/community-toolkit/markup
