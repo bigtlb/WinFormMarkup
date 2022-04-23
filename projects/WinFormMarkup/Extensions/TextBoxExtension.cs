@@ -7,4 +7,11 @@ public static class TextBoxExtension
         textBox.Multiline = multiLine;
         return textBox;
     }
+    
+    public static TTextBox ReadOnly<TTextBox>(this TTextBox textBox, bool readOnly) where TTextBox : TextBox
+    {
+        textBox.ReadOnly = readOnly;
+        return textBox;
+    }
+    
 }

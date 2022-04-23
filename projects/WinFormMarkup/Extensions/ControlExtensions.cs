@@ -312,6 +312,15 @@ public static class ControlExtensions
         return control;
     }
 
+    public static TControl FontSize<TControl>(
+        this TControl control,
+        int size)
+        where TControl : Control
+    {
+        control.Font = new Font(control.Font.FontFamily, size);
+        return control;
+    }
+    
     /// <summary>
     ///     Sets the `Control.Cursor` property, and returns a reference to the control.
     /// </summary>
@@ -1316,7 +1325,7 @@ public static class ControlExtensions
         int height)
         where TControl : Control
     {
-        return control.Size(width, height);
+        return control.Size(new Size(width, height));
     }
 
     public static TControl TabIndex<TControl>(
