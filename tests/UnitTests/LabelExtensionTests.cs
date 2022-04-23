@@ -3,18 +3,17 @@ using System.Windows.Forms;
 using WinFormMarkup.Extensions;
 using Xunit;
 
-namespace UnitTests
+namespace UnitTests;
+
+public class LabelExtensionTests
 {
-    public class LabelExtensionTests
+    [Fact]
+    private void CanSet_TextAlign()
     {
-        [Fact]
-        private void CanSet_TextAlign()
-        {
-            var label = new Label();
+        var label = new Label();
 
-            Assert.Equal(label, label.TextAlign(ContentAlignment.MiddleRight));
+        Assert.Equal(label, label.TextAlign(ContentAlignment.MiddleRight));
 
-            Assert.Equal(ContentAlignment.MiddleRight, label.TextAlign);
-        }
+        Assert.Equal(ContentAlignment.MiddleRight, label.TextAlign);
     }
 }

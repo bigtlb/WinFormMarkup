@@ -1,24 +1,22 @@
-﻿using System.Windows.Forms;
-using ReactiveUI;
+﻿using ReactiveUI;
 using ReactiveUIApp.ViewModels;
 
-namespace ReactiveUIApp.Views
+namespace ReactiveUIApp.Views;
+
+public partial class MainView : Form, IViewFor<MainViewModel>
 {
-    public partial class MainView : Form, IViewFor<MainViewModel>
+    public MainView()
     {
-        public MainView()
-        {
-            Build();
-            Bind();
-            ViewModel = new MainViewModel();
-        }
-
-        object IViewFor.ViewModel
-        {
-            get => ViewModel;
-            set => ViewModel = (MainViewModel) value;
-        }
-
-        public MainViewModel ViewModel { get; set; }
+        Build();
+        Bind();
+        ViewModel = new MainViewModel();
     }
+
+    object IViewFor.ViewModel
+    {
+        get => ViewModel;
+        set => ViewModel = (MainViewModel)value;
+    }
+
+    public MainViewModel ViewModel { get; set; }
 }

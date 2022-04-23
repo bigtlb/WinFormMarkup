@@ -3,17 +3,17 @@ using WinFormMarkup.Extensions;
 
 namespace BasicApp;
 
-public class MainWindow: Form
+public class MainWindow : Form
 {
-    private readonly ToolStripStatusLabel _statusText;
     private readonly ToolStripStatusLabel _secondTextLabel;
-    private int _counter = 0;
+    private readonly ToolStripStatusLabel _statusText;
+    private int _counter;
 
     public MainWindow()
     {
         this.Text("Main Window")
-            .Icon(Properties.Resources.AppIcon)
-            .MinimumSize(800,600)
+            .Icon(new Icon( GetType(), "AppIcon.ico"))
+            .MinimumSize(800, 600)
             .StartPosition(FormStartPosition.CenterScreen)
             .MainMenuStrip(
                 new ToolStripMenuItem("&File")
@@ -23,10 +23,10 @@ public class MainWindow: Form
                             .Clicked(_ => CreateFile()),
                         new ToolStripMenuItem("&Open")
                             .Keys(Keys.Control | Keys.O)
-                            .Clicked(_=> OpenFile()),
+                            .Clicked(_ => OpenFile()),
                         new ToolStripMenuItem("&Save")
                             .Keys(Keys.Control | Keys.S)
-                            .Clicked(_=> SaveFile()),
+                            .Clicked(_ => SaveFile()),
                         new ToolStripSeparator(),
                         new ToolStripMenuItem("E&xit")
                             .Keys(Keys.Alt | Keys.F4)
@@ -35,7 +35,7 @@ public class MainWindow: Form
             .StatusStrip(
                 _statusText = new ToolStripStatusLabel("Ready")
                     .Alignment(ToolStripItemAlignment.Right)
-                    .Also(label=>
+                    .Also(label =>
                     {
                         label.TextChanged += (s, e) => _secondTextLabel.Text($"Total Changes {++_counter}");
                         label.Padding = new Padding(2, 0, 6, 0);
@@ -70,16 +70,11 @@ public class MainWindow: Form
                             .Multiline(true)
                             .Dock(DockStyle.Fill)
                             .Text("TextBox")
-                            .OnTextChanged( tb => _statusText.Text($"TextChanged: Length = {tb.Text.Length}"))
+                            .OnTextChanged(tb => _statusText.Text($"TextChanged: Length = {tb.Text.Length}"))
                     )
                     .SplitterDistance(50)
-                )
+            )
             .Show();
-    }
-
-    private void SaveFile()
-    {
-        _statusText.Text("Saving");
     }
 
     private void CreateFile()
@@ -90,5 +85,10 @@ public class MainWindow: Form
     private void OpenFile()
     {
         _statusText.Text("opening");
+    }
+
+    private void SaveFile()
+    {
+        _statusText.Text("Saving");
     }
 }

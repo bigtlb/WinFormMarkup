@@ -2,18 +2,17 @@
 using WinFormMarkup.Extensions;
 using Xunit;
 
-namespace UnitTests
+namespace UnitTests;
+
+public class ScrollableControlExtensionTests
 {
-    public class ScrollableControlExtensionTests
+    [Fact]
+    private void CanSet_AuoScroll()
     {
-        [Fact]
-        private void CanSet_AuoScroll()
-        {
-            var ctl = new ScrollableControl();
+        var ctl = new ScrollableControl();
 
-            Assert.Equal(ctl, ctl.AutoScroll(true));
+        Assert.Equal(ctl, ctl.AutoScroll(true));
 
-            Assert.True(ctl.AutoScroll);
-        }
+        Assert.True(ctl.AutoScroll);
     }
 }

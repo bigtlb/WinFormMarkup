@@ -1,11 +1,10 @@
-﻿namespace UnitTests.Extensions
+﻿namespace UnitTests.Extensions;
+
+public static class FloatExtensions
 {
-    public static class FloatExtensions
+    public static bool AreClose(this float first, float second)
     {
-        public static bool AreClose(this float first, float second)
-        {
-            var delta = first - second;
-            return delta is < float.Epsilon and > -float.Epsilon;
-        }
+        var delta = first - second;
+        return delta is < float.Epsilon and > -float.Epsilon;
     }
 }

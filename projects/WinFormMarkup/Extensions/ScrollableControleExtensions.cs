@@ -1,16 +1,13 @@
-﻿using System.Windows.Forms;
+﻿namespace WinFormMarkup.Extensions;
 
-namespace WinFormMarkup.Extensions
+public static class ScrollableControlExtensions
 {
-    public static class ScrollableControlExtensions
+    public static TControl AutoScroll<TControl>(
+        this TControl control,
+        bool autoScroll)
+        where TControl : ScrollableControl
     {
-        public static TControl AutoScroll<TControl>(
-            this TControl control,
-            bool autoScroll)
-            where TControl : ScrollableControl
-        {
-            control.AutoScroll = autoScroll;
-            return control;
-        }
+        control.AutoScroll = autoScroll;
+        return control;
     }
 }

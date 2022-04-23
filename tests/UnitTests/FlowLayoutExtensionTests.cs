@@ -2,28 +2,27 @@
 using WinFormMarkup.Extensions;
 using Xunit;
 
-namespace UnitTests
+namespace UnitTests;
+
+public class FlowLayoutExtensionTests
 {
-    public class FlowLayoutExtensionTests
+    [Fact]
+    private void CanSet_FlowDirection()
     {
-        [Fact]
-        private void CanSet_FlowDirection()
-        {
-            var panel = new FlowLayoutPanel();
+        var panel = new FlowLayoutPanel();
 
-            Assert.Equal(panel, panel.FlowDirection(FlowDirection.TopDown));
+        Assert.Equal(panel, panel.FlowDirection(FlowDirection.TopDown));
 
-            Assert.Equal(FlowDirection.TopDown, panel.FlowDirection);
-        }
+        Assert.Equal(FlowDirection.TopDown, panel.FlowDirection);
+    }
 
-        [Fact]
-        private void CanSet_WrapContents()
-        {
-            var panel = new FlowLayoutPanel();
+    [Fact]
+    private void CanSet_WrapContents()
+    {
+        var panel = new FlowLayoutPanel();
 
-            Assert.Equal(panel, panel.WrapContents(false));
+        Assert.Equal(panel, panel.WrapContents(false));
 
-            Assert.False(panel.WrapContents);
-        }
+        Assert.False(panel.WrapContents);
     }
 }

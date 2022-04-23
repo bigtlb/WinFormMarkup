@@ -105,7 +105,7 @@ public static class BindingExtensions
         this TControl control,
         TSource source,
         string sourceProp,
-        string  targetProp="Text",
+        string targetProp = "Text",
         Func<TSourceProp, TTargetProp>? convert = null,
         Func<TTargetProp, TSourceProp>? convertBack = null)
         where TControl : Control
@@ -128,7 +128,7 @@ public static class BindingExtensions
         control.DataBindings.Add(b);
         return control;
     }
-    
+
     //
     // /// <summary>Bind to a specified property</summary>
     // public static TBindable Bind<TBindable>(

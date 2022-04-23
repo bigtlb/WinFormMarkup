@@ -10,11 +10,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="ReactiveUI.WinForms" Version="18.0.7" />
+        <PackageReference Include="ReactiveUI.WinForms" Version="18.0.7"/>
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\Projects\WinFormMarkup\WinFormMarkup.csproj" />
+        <ProjectReference Include="..\..\Projects\WinFormMarkup\WinFormMarkup.csproj"/>
     </ItemGroup>
 
 </Project>

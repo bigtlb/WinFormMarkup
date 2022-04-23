@@ -1,22 +1,21 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace UnitTests.Helpers
+namespace UnitTests.Helpers;
+
+internal class ControlTester : IDisposable
 {
-    internal class ControlTester : IDisposable
+    private readonly Form _form;
+
+    public ControlTester(Control control)
     {
-        private readonly Form _form;
+        _form = new Form();
+        _form.Controls.Add(control);
+        _form.Show();
+    }
 
-        public ControlTester(Control control)
-        {
-            _form = new Form();
-            _form.Controls.Add(control);
-            _form.Show();
-        }
-
-        public void Dispose()
-        {
-            _form.Dispose();
-        }
+    public void Dispose()
+    {
+        _form.Dispose();
     }
 }

@@ -2,29 +2,28 @@
 using WinFormMarkup.Extensions;
 using Xunit;
 
-namespace UnitTests
+namespace UnitTests;
+
+public class DateTimePickerExtensionTests
 {
-    public class DateTimePickerExtensionTests
+    [Fact]
+    private void CanSet_CustomFormat()
     {
-        [Fact]
-        private void CanSet_CustomFormat()
-        {
-            var picker = new DateTimePicker();
+        var picker = new DateTimePicker();
 
-            Assert.Equal(picker, picker.CustomFormat("dd/MM/yyyy"));
+        Assert.Equal(picker, picker.CustomFormat("dd/MM/yyyy"));
 
-            Assert.Equal("dd/MM/yyyy", picker.CustomFormat);
-            Assert.Equal(DateTimePickerFormat.Custom, picker.Format);
-        }
+        Assert.Equal("dd/MM/yyyy", picker.CustomFormat);
+        Assert.Equal(DateTimePickerFormat.Custom, picker.Format);
+    }
 
-        [Fact]
-        private void CanSet_Format()
-        {
-            var picker = new DateTimePicker();
+    [Fact]
+    private void CanSet_Format()
+    {
+        var picker = new DateTimePicker();
 
-            Assert.Equal(picker, picker.Format(DateTimePickerFormat.Long));
+        Assert.Equal(picker, picker.Format(DateTimePickerFormat.Long));
 
-            Assert.Equal(DateTimePickerFormat.Long, picker.Format);
-        }
+        Assert.Equal(DateTimePickerFormat.Long, picker.Format);
     }
 }
