@@ -228,7 +228,7 @@ namespace UnitTests
         {
             var ctl = new ClickControl();
             var callCount = 0;
-            Assert.Equal(ctl, ctl.Clicked(_ => callCount++));
+            Assert.Equal(ctl, ctl.OnClick(_ => callCount++));
 
             using (new ControlTester(ctl))
             {
@@ -304,7 +304,7 @@ namespace UnitTests
         {
             var ctl = new ClickControl();
             var callCount = 0;
-            Assert.Equal(ctl, ctl.DoubleClicked(_ => callCount++));
+            Assert.Equal(ctl, ctl.OnDoubleClick(_ => callCount++));
 
             using (new ControlTester(ctl))
             {
@@ -473,7 +473,7 @@ namespace UnitTests
         {
             var ctl = new ClickControl();
             var callCount = 0;
-            Assert.Equal(ctl, ctl.SetAutoSizeChanged(_ => callCount++));
+            Assert.Equal(ctl, ctl.OnAutoSizeChanged(_ => callCount++));
 
             using (new ControlTester(ctl))
             {
@@ -488,7 +488,7 @@ namespace UnitTests
         {
             var ctl = new ClickControl();
             var callCount = 0;
-            Assert.Equal(ctl, ctl.SetDragDrop((_, _) => callCount++));
+            Assert.Equal(ctl, ctl.OnDragDrop((_, _) => callCount++));
 
             using (new ControlTester(ctl))
             {
@@ -503,7 +503,7 @@ namespace UnitTests
         {
             var ctl = new ClickControl();
             var callCount = 0;
-            Assert.Equal(ctl, ctl.SetDragEnter((_, _) => callCount++));
+            Assert.Equal(ctl, ctl.OnDragEnter((_, _) => callCount++));
 
             using (new ControlTester(ctl))
             {
@@ -518,7 +518,7 @@ namespace UnitTests
         {
             var ctl = new ClickControl();
             var callCount = 0;
-            Assert.Equal(ctl, ctl.SetDragLeave(_ => callCount++));
+            Assert.Equal(ctl, ctl.OnDragLeave(_ => callCount++));
 
             using (new ControlTester(ctl))
             {
@@ -533,7 +533,7 @@ namespace UnitTests
         {
             var ctl = new ClickControl();
             var callCount = 0;
-            Assert.Equal(ctl, ctl.SetDragOver((_, _) => callCount++));
+            Assert.Equal(ctl, ctl.OnDragOver((_, _) => callCount++));
 
             using (new ControlTester(ctl))
             {

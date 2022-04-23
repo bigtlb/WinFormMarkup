@@ -7,7 +7,7 @@ public static class TreeViewExtension
         treeView.Nodes.AddRange(nodes);
         return treeView;
     }
-    public static TTreeView SetAfterSelect<TTreeView>(this TTreeView treeView, Action<TreeNode> action) where TTreeView : TreeView
+    public static TTreeView OnAfterSelect<TTreeView>(this TTreeView treeView, Action<TreeNode> action) where TTreeView : TreeView
     {
         treeView.AfterSelect += (sender, e) => action(e.Node);
         return treeView;

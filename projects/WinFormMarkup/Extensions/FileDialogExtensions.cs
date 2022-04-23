@@ -78,7 +78,7 @@ namespace WinFormMarkup.Extensions
             return dialog;
         }
 
-        public static TFileDialog FileOk<TFileDialog>(
+        public static TFileDialog OnFileOk<TFileDialog>(
             this TFileDialog dialog,
             Action<TFileDialog, CancelEventArgs> action)
             where TFileDialog : FileDialog

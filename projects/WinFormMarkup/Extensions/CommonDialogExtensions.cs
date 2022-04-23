@@ -15,7 +15,7 @@ namespace WinFormMarkup.Extensions
         /// <param name="action"></param>
         /// <typeparam name="TCommonDialog"></typeparam>
         /// <returns></returns>
-        public static TCommonDialog HelpRequested<TCommonDialog>(
+        public static TCommonDialog OnHelpRequest<TCommonDialog>(
             this TCommonDialog dialog,
             Action<TCommonDialog> action)
             where TCommonDialog : CommonDialog

@@ -1,9 +1,4 @@
-﻿using System;
-using System.ComponentModel;
-using System.Drawing;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Windows.Forms;
+﻿using System.ComponentModel;
 
 namespace WinFormMarkup.Extensions
 {
@@ -91,7 +86,7 @@ namespace WinFormMarkup.Extensions
             control.AllowDrop = allowDrop;
             return control;
         }
-        
+
         public static TControl Also<TControl>(
             this TControl control,
             Action<TControl> action)
@@ -263,40 +258,6 @@ namespace WinFormMarkup.Extensions
 
 
         /// <summary>
-        ///     Hooks the `Control.ChangeUICues` event to call the provided `action`, and returns a reference to the control.
-        /// </summary>
-        /// <param name="control"></param>
-        /// <param name="action"></param>
-        /// <typeparam name="TControl"></typeparam>
-        /// <returns></returns>
-        // ReSharper disable once InconsistentNaming
-        public static TControl ChangeUICues<TControl>(
-            this TControl control,
-            Action<TControl, UICuesEventArgs> action)
-            where TControl : Control
-        {
-            control.ChangeUICues += (sender, args) => action.Invoke((sender as TControl)!, args);
-            return control;
-        }
-
-        /// <summary>
-        ///     Hooks the `Control.Click` event to call the provided `action`, and returns a reference to the control.
-        /// </summary>
-        /// <param name="control"></param>
-        /// <param name="action"></param>
-        /// <typeparam name="TControl"></typeparam>
-        /// <returns></returns>
-        public static TControl Clicked<TControl>(
-            this TControl control,
-            Action<TControl> action)
-            where TControl : Control
-        {
-            control.Click += (sender, _) => action.Invoke((sender as TControl)!);
-            return control;
-        }
-
-
-        /// <summary>
         ///     Sets the `Control.ClientSize` property, and returns a reference to the control.
         /// </summary>
         /// <param name="control"></param>
@@ -341,11 +302,13 @@ namespace WinFormMarkup.Extensions
             params Control[] children)
             where TControl : Control
         {
+            control.SuspendLayout();
             control.Controls.AddRange(children);
             foreach (var c in children
-                .Where(c => c.Dock == DockStyle.Fill))
+                         .Where(c => c.Dock == DockStyle.Fill))
                 c.BringToFront();
 
+            control.ResumeLayout();
             return control;
         }
 
@@ -381,38 +344,12 @@ namespace WinFormMarkup.Extensions
             return control;
         }
 
-        /// <summary>
-        ///     Hooks the `Control.DoubleClick` event to call the provided `action`, and returns a reference to the control.
-        /// </summary>
-        /// <param name="control"></param>
-        /// <param name="action"></param>
-        /// <typeparam name="TControl"></typeparam>
-        /// <returns></returns>
-        public static TControl DoubleClicked<TControl>(
-            this TControl control,
-            Action<TControl> action)
-            where TControl : Control
-        {
-            control.DoubleClick += (sender, _) => action.Invoke((sender as TControl)!);
-            return control;
-        }
-
         public static TControl Enabled<TControl>(
             this TControl control,
             bool enabled)
             where TControl : Control
         {
             control.Enabled = enabled;
-            return control;
-        }
-
-
-        public static TControl Entered<TControl>(
-            this TControl control,
-            Action<TControl> action)
-            where TControl : Control
-        {
-            control.Enter += (sender, _) => action.Invoke((sender as TControl)!);
             return control;
         }
 
@@ -434,24 +371,6 @@ namespace WinFormMarkup.Extensions
             return control;
         }
 
-        public static TControl GiveFeedback<TControl>(
-            this TControl control,
-            Action<TControl, GiveFeedbackEventArgs> action)
-            where TControl : Control
-        {
-            control.GiveFeedback += (sender, args) => action.Invoke((sender as TControl)!, args);
-            return control;
-        }
-
-        public static TControl GotFocus<TControl>(
-            this TControl control,
-            Action<TControl> action)
-            where TControl : Control
-        {
-            control.GotFocus += (sender, _) => action.Invoke((sender as TControl)!);
-            return control;
-        }
-
         public static TControl Height<TControl>(
             this TControl control,
             int height)
@@ -470,15 +389,6 @@ namespace WinFormMarkup.Extensions
             return control;
         }
 
-        public static TControl ImeModeChanged<TControl>(
-            this TControl control,
-            Action<TControl> action)
-            where TControl : Control
-        {
-            control.ImeModeChanged += (sender, _) => action.Invoke((sender as TControl)!);
-            return control;
-        }
-
 
         public static TControl IsAccessible<TControl>(
             this TControl control,
@@ -486,44 +396,6 @@ namespace WinFormMarkup.Extensions
             where TControl : Control
         {
             control.IsAccessible = isAccessible;
-            return control;
-        }
-
-
-        public static TControl KeyDown<TControl>(
-            this TControl control,
-            Action<TControl, KeyEventArgs> action)
-            where TControl : Control
-        {
-            control.KeyDown += (sender, args) => action.Invoke((sender as TControl)!, args);
-            return control;
-        }
-
-        public static TControl KeyPress<TControl>(
-            this TControl control,
-            Action<TControl, KeyPressEventArgs> action)
-            where TControl : Control
-        {
-            control.KeyPress += (sender, args) => action.Invoke((sender as TControl)!, args);
-            return control;
-        }
-
-        public static TControl KeyUp<TControl>(
-            this TControl control,
-            Action<TControl, KeyEventArgs> action)
-            where TControl : Control
-        {
-            control.KeyUp += (sender, args) => action.Invoke((sender as TControl)!, args);
-            return control;
-        }
-
-
-        public static TControl Layout<TControl>(
-            this TControl control,
-            Action<TControl, LayoutEventArgs> action)
-            where TControl : Control
-        {
-            control.Layout += (sender, args) => action.Invoke((sender as TControl)!, args);
             return control;
         }
 
@@ -609,7 +481,7 @@ namespace WinFormMarkup.Extensions
             control.MaximumSize = size;
             return control;
         }
-        
+
         public static TControl MaximumSize<TControl>(
             this TControl control,
             int width,
@@ -627,7 +499,7 @@ namespace WinFormMarkup.Extensions
             control.MinimumSize = size;
             return control;
         }
-        
+
         public static TControl MinimumSize<TControl>(
             this TControl control,
             int width,
@@ -637,7 +509,478 @@ namespace WinFormMarkup.Extensions
             return control.MinimumSize(new Size(width, height));
         }
 
-        public static TControl MouseClicked<TControl>(
+        public static TControl Name<TControl>(
+            this TControl control,
+            string name)
+            where TControl : Control
+        {
+            control.Name = name;
+            return control;
+        }
+
+        /// <summary>
+        ///     Hooks the `Control.AutoSizeChanged` event to call the provided `action`, and returns a reference to the control.
+        /// </summary>
+        /// <param name="control"></param>
+        /// <param name="action"></param>
+        /// <typeparam name="TControl"></typeparam>
+        /// <returns></returns>
+        public static TControl OnAutoSizeChanged<TControl>(
+            this TControl control,
+            Action<TControl> action)
+            where TControl : Control
+        {
+            control.AutoSizeChanged += (sender, _) => action.Invoke((sender as TControl)!);
+            return control;
+        }
+
+
+        /// <summary>
+        ///     Hooks the `Control.BackColorChanged` event to call the provided `action`, and returns a reference to the control.
+        /// </summary>
+        /// <param name="control"></param>
+        /// <param name="action"></param>
+        /// <typeparam name="TControl"></typeparam>
+        /// <returns></returns>
+        public static TControl OnBackColorChanged<TControl>(
+            this TControl control,
+            Action<TControl> action)
+            where TControl : Control
+        {
+            control.BackColorChanged += (sender, _) => action.Invoke((sender as TControl)!);
+            return control;
+        }
+
+        /// <summary>
+        ///     Hooks the `Control.BackgroundImageChanged` event to call the provided `action`, and returns a reference to the
+        ///     control.
+        /// </summary>
+        /// <param name="control"></param>
+        /// <param name="action"></param>
+        /// <typeparam name="TControl"></typeparam>
+        /// <returns></returns>
+        public static TControl OnBackgroundImageChanged<TControl>(
+            this TControl control,
+            Action<TControl> action)
+            where TControl : Control
+        {
+            control.BackgroundImageChanged += (sender, _) => action.Invoke((sender as TControl)!);
+            return control;
+        }
+
+        /// <summary>
+        ///     Hooks the `Control.BackgroundImageLayoutChanged` event to call the provided `action`, and returns a reference to
+        ///     the control.
+        /// </summary>
+        /// <param name="control"></param>
+        /// <param name="action"></param>
+        /// <typeparam name="TControl"></typeparam>
+        /// <returns></returns>
+        public static TControl OnBackgroundImageLayoutChanged<TControl>(
+            this TControl control,
+            Action<TControl> action)
+            where TControl : Control
+        {
+            control.BackgroundImageLayoutChanged += (sender, _) => action.Invoke((sender as TControl)!);
+            return control;
+        }
+
+        /// <summary>
+        ///     Hooks the `Control.BindingContextChanged` event to call the provided `action`, and returns a reference to the
+        ///     control.
+        /// </summary>
+        /// <param name="control"></param>
+        /// <param name="action"></param>
+        /// <typeparam name="TControl"></typeparam>
+        /// <returns></returns>
+        public static TControl OnBindingContextChanged<TControl>(
+            this TControl control,
+            Action<TControl> action)
+            where TControl : Control
+        {
+            control.BindingContextChanged += (sender, _) => action.Invoke((sender as TControl)!);
+            return control;
+        }
+
+        /// <summary>
+        ///     Hooks the `Control.CausesValidationChanged` event to call the provided `action`, and returns a reference to the
+        ///     control.
+        /// </summary>
+        /// <param name="control"></param>
+        /// <param name="action"></param>
+        /// <typeparam name="TControl"></typeparam>
+        /// <returns></returns>
+        public static TControl OnCausesValidationChanged<TControl>(
+            this TControl control,
+            Action<TControl> action)
+            where TControl : Control
+        {
+            control.CausesValidationChanged += (sender, _) => action.Invoke((sender as TControl)!);
+            return control;
+        }
+
+
+        /// <summary>
+        ///     Hooks the `Control.ChangeUICues` event to call the provided `action`, and returns a reference to the control.
+        /// </summary>
+        /// <param name="control"></param>
+        /// <param name="action"></param>
+        /// <typeparam name="TControl"></typeparam>
+        /// <returns></returns>
+        // ReSharper disable once InconsistentNaming
+        public static TControl OnChangeUICues<TControl>(
+            this TControl control,
+            Action<TControl, UICuesEventArgs> action)
+            where TControl : Control
+        {
+            control.ChangeUICues += (sender, args) => action.Invoke((sender as TControl)!, args);
+            return control;
+        }
+
+        /// <summary>
+        ///     Hooks the `Control.Click` event to call the provided `action`, and returns a reference to the control.
+        /// </summary>
+        /// <param name="control"></param>
+        /// <param name="action"></param>
+        /// <typeparam name="TControl"></typeparam>
+        /// <returns></returns>
+        public static TControl OnClick<TControl>(
+            this TControl control,
+            Action<TControl> action)
+            where TControl : Control
+        {
+            control.Click += (sender, _) => action.Invoke((sender as TControl)!);
+            return control;
+        }
+
+        /// <summary>
+        ///     Hooks the `Control.ClientSizeChanged` event to call the provided `action`, and returns a reference to the control.
+        /// </summary>
+        /// <param name="control"></param>
+        /// <param name="action"></param>
+        /// <typeparam name="TControl"></typeparam>
+        /// <returns></returns>
+        public static TControl OnClientSizeChanged<TControl>(
+            this TControl control,
+            Action<TControl> action)
+            where TControl : Control
+        {
+            control.ClientSizeChanged += (sender, _) => action.Invoke((sender as TControl)!);
+            return control;
+        }
+
+        /// <summary>
+        ///     Hooks the `Control.ContextMenuStripChanged` event to call the provided `action`, and returns a reference to the
+        ///     control.
+        /// </summary>
+        /// <param name="control"></param>
+        /// <param name="action"></param>
+        /// <typeparam name="TControl"></typeparam>
+        /// <returns></returns>
+        public static TControl OnContextMenuStripChanged<TControl>(
+            this TControl control,
+            Action<TControl> action)
+            where TControl : Control
+        {
+            control.ContextMenuStripChanged += (sender, _) => action.Invoke((sender as TControl)!);
+            return control;
+        }
+
+        /// <summary>
+        ///     Hooks the `Control.ControlAdded` event to call the provided `action`, and returns a reference to the control.
+        /// </summary>
+        /// <param name="control"></param>
+        /// <param name="action"></param>
+        /// <typeparam name="TControl"></typeparam>
+        /// <returns></returns>
+        public static TControl OnControlAdded<TControl>(
+            this TControl control,
+            Action<TControl, ControlEventArgs> action)
+            where TControl : Control
+        {
+            control.ControlAdded += (sender, args) => action.Invoke((sender as TControl)!, args);
+            return control;
+        }
+
+        /// <summary>
+        ///     Hooks the `Control.ControlRemoved` event to call the provided `action`, and returns a reference to the control.
+        /// </summary>
+        /// <param name="control"></param>
+        /// <param name="action"></param>
+        /// <typeparam name="TControl"></typeparam>
+        /// <returns></returns>
+        public static TControl OnControlRemoved<TControl>(
+            this TControl control,
+            Action<TControl, ControlEventArgs> action)
+            where TControl : Control
+        {
+            control.ControlRemoved += (sender, args) => action.Invoke((sender as TControl)!, args);
+            return control;
+        }
+
+        /// <summary>
+        ///     Hooks the `Control.CursorChanged` event to call the provided `action`, and returns a reference to the control.
+        /// </summary>
+        /// <param name="control"></param>
+        /// <param name="action"></param>
+        /// <typeparam name="TControl"></typeparam>
+        /// <returns></returns>
+        public static TControl OnCursorChanged<TControl>(
+            this TControl control,
+            Action<TControl> action)
+            where TControl : Control
+        {
+            control.CursorChanged += (sender, _) => action.Invoke((sender as TControl)!);
+            return control;
+        }
+
+        /// <summary>
+        ///     Hooks the `Control.DockChanged` event to call the provided `action`, and returns a reference to the control.
+        /// </summary>
+        /// <param name="control"></param>
+        /// <param name="action"></param>
+        /// <typeparam name="TControl"></typeparam>
+        /// <returns></returns>
+        public static TControl OnDockChanged<TControl>(
+            this TControl control,
+            Action<TControl> action)
+            where TControl : Control
+        {
+            control.DockChanged += (sender, _) => action.Invoke((sender as TControl)!);
+            return control;
+        }
+
+        /// <summary>
+        ///     Hooks the `Control.DoubleClick` event to call the provided `action`, and returns a reference to the control.
+        /// </summary>
+        /// <param name="control"></param>
+        /// <param name="action"></param>
+        /// <typeparam name="TControl"></typeparam>
+        /// <returns></returns>
+        public static TControl OnDoubleClick<TControl>(
+            this TControl control,
+            Action<TControl> action)
+            where TControl : Control
+        {
+            control.DoubleClick += (sender, _) => action.Invoke((sender as TControl)!);
+            return control;
+        }
+
+
+        public static TControl OnDragDrop<TControl>(
+            this TControl control,
+            Action<TControl, DragEventArgs> action)
+            where TControl : Control
+        {
+            control.DragDrop += (sender, args) => action.Invoke((sender as TControl)!, args);
+            return control;
+        }
+
+
+        public static TControl OnDragEnter<TControl>(
+            this TControl control,
+            Action<TControl, DragEventArgs> action)
+            where TControl : Control
+        {
+            control.DragEnter += (sender, args) => action.Invoke((sender as TControl)!, args);
+            return control;
+        }
+
+        public static TControl OnDragLeave<TControl>(
+            this TControl control,
+            Action<TControl> action)
+            where TControl : Control
+        {
+            control.DragLeave += (sender, _) => action.Invoke((sender as TControl)!);
+            return control;
+        }
+
+        public static TControl OnDragOver<TControl>(
+            this TControl control,
+            Action<TControl, DragEventArgs> action)
+            where TControl : Control
+        {
+            control.DragOver += (sender, args) => action.Invoke((sender as TControl)!, args);
+            return control;
+        }
+
+
+        public static TControl OnEnabledChanged<TControl>(
+            this TControl control,
+            Action<TControl> action)
+            where TControl : Control
+        {
+            control.EnabledChanged += (sender, _) => action.Invoke((sender as TControl)!);
+            return control;
+        }
+
+
+        public static TControl OnEnter<TControl>(
+            this TControl control,
+            Action<TControl> action)
+            where TControl : Control
+        {
+            control.Enter += (sender, _) => action.Invoke((sender as TControl)!);
+            return control;
+        }
+
+        public static TControl OnFontChanged<TControl>(
+            this TControl control,
+            Action<TControl> action)
+            where TControl : Control
+        {
+            control.FontChanged += (sender, _) => action.Invoke((sender as TControl)!);
+            return control;
+        }
+
+        public static TControl OnForeColorChanged<TControl>(
+            this TControl control,
+            Action<TControl> action)
+            where TControl : Control
+        {
+            control.ForeColorChanged += (sender, _) => action.Invoke((sender as TControl)!);
+            return control;
+        }
+
+        public static TControl OnGiveFeedback<TControl>(
+            this TControl control,
+            Action<TControl, GiveFeedbackEventArgs> action)
+            where TControl : Control
+        {
+            control.GiveFeedback += (sender, args) => action.Invoke((sender as TControl)!, args);
+            return control;
+        }
+
+        public static TControl OnGotFocus<TControl>(
+            this TControl control,
+            Action<TControl> action)
+            where TControl : Control
+        {
+            control.GotFocus += (sender, _) => action.Invoke((sender as TControl)!);
+            return control;
+        }
+
+
+        public static TControl OnHandleCreated<TControl>(
+            this TControl control,
+            Action<TControl> action)
+            where TControl : Control
+        {
+            control.HandleCreated += (sender, _) => action.Invoke((sender as TControl)!);
+            return control;
+        }
+
+        public static TControl OnHandleDestroyed<TControl>(
+            this TControl control,
+            Action<TControl> action)
+            where TControl : Control
+        {
+            control.HandleDestroyed += (sender, _) => action.Invoke((sender as TControl)!);
+            return control;
+        }
+
+        public static TControl OnHelpRequested<TControl>(
+            this TControl control,
+            Action<TControl, HelpEventArgs> action)
+            where TControl : Control
+        {
+            control.HelpRequested += (sender, args) => action.Invoke((sender as TControl)!, args);
+            return control;
+        }
+
+        public static TControl OnImeModeChanged<TControl>(
+            this TControl control,
+            Action<TControl> action)
+            where TControl : Control
+        {
+            control.ImeModeChanged += (sender, _) => action.Invoke((sender as TControl)!);
+            return control;
+        }
+
+        public static TControl OnInvalidated<TControl>(
+            this TControl control,
+            Action<TControl, InvalidateEventArgs> action)
+            where TControl : Control
+        {
+            control.Invalidated += (sender, args) => action.Invoke((sender as TControl)!, args);
+            return control;
+        }
+
+
+        public static TControl OnKeyDown<TControl>(
+            this TControl control,
+            Action<TControl, KeyEventArgs> action)
+            where TControl : Control
+        {
+            control.KeyDown += (sender, args) => action.Invoke((sender as TControl)!, args);
+            return control;
+        }
+
+        public static TControl OnKeyPress<TControl>(
+            this TControl control,
+            Action<TControl, KeyPressEventArgs> action)
+            where TControl : Control
+        {
+            control.KeyPress += (sender, args) => action.Invoke((sender as TControl)!, args);
+            return control;
+        }
+
+        public static TControl OnKeyUp<TControl>(
+            this TControl control,
+            Action<TControl, KeyEventArgs> action)
+            where TControl : Control
+        {
+            control.KeyUp += (sender, args) => action.Invoke((sender as TControl)!, args);
+            return control;
+        }
+
+
+        public static TControl OnLayout<TControl>(
+            this TControl control,
+            Action<TControl, LayoutEventArgs> action)
+            where TControl : Control
+        {
+            control.Layout += (sender, args) => action.Invoke((sender as TControl)!, args);
+            return control;
+        }
+
+        public static TControl OnLocationChanged<TControl>(
+            this TControl control,
+            Action<TControl> action)
+            where TControl : Control
+        {
+            control.LocationChanged += (sender, _) => action.Invoke((sender as TControl)!);
+            return control;
+        }
+
+        public static TControl OnLostFocus<TControl>(
+            this TControl control,
+            Action<TControl> action)
+            where TControl : Control
+        {
+            control.LostFocus += (sender, _) => action.Invoke((sender as TControl)!);
+            return control;
+        }
+
+        public static TControl OnMarginChanged<TControl>(
+            this TControl control,
+            Action<TControl> action)
+            where TControl : Control
+        {
+            control.MarginChanged += (sender, _) => action.Invoke((sender as TControl)!);
+            return control;
+        }
+
+        public static TControl OnMouseCaptureChanged<TControl>(
+            this TControl control,
+            Action<TControl> action)
+            where TControl : Control
+        {
+            control.MouseCaptureChanged += (sender, _) => action.Invoke((sender as TControl)!);
+            return control;
+        }
+
+        public static TControl OnMouseClick<TControl>(
             this TControl control,
             Action<TControl, MouseEventArgs> action)
             where TControl : Control
@@ -647,7 +990,7 @@ namespace WinFormMarkup.Extensions
         }
 
 
-        public static TControl MouseDoubleClicked<TControl>(
+        public static TControl OnMouseDoubleClick<TControl>(
             this TControl control,
             Action<TControl, MouseEventArgs> action)
             where TControl : Control
@@ -656,7 +999,7 @@ namespace WinFormMarkup.Extensions
             return control;
         }
 
-        public static TControl MouseDown<TControl>(
+        public static TControl OnMouseDown<TControl>(
             this TControl control,
             Action<TControl, MouseEventArgs> action)
             where TControl : Control
@@ -666,7 +1009,7 @@ namespace WinFormMarkup.Extensions
         }
 
 
-        public static TControl MouseEnter<TControl>(
+        public static TControl OnMouseEnter<TControl>(
             this TControl control,
             Action<TControl> action)
             where TControl : Control
@@ -675,7 +1018,7 @@ namespace WinFormMarkup.Extensions
             return control;
         }
 
-        public static TControl MouseHover<TControl>(
+        public static TControl OnMouseHover<TControl>(
             this TControl control,
             Action<TControl> action)
             where TControl : Control
@@ -684,7 +1027,7 @@ namespace WinFormMarkup.Extensions
             return control;
         }
 
-        public static TControl MouseLeave<TControl>(
+        public static TControl OnMouseLeave<TControl>(
             this TControl control,
             Action<TControl> action)
             where TControl : Control
@@ -693,7 +1036,7 @@ namespace WinFormMarkup.Extensions
             return control;
         }
 
-        public static TControl MouseMove<TControl>(
+        public static TControl OnMouseMove<TControl>(
             this TControl control,
             Action<TControl, MouseEventArgs> action)
             where TControl : Control
@@ -702,7 +1045,7 @@ namespace WinFormMarkup.Extensions
             return control;
         }
 
-        public static TControl MouseUp<TControl>(
+        public static TControl OnMouseUp<TControl>(
             this TControl control,
             Action<TControl, MouseEventArgs> action)
             where TControl : Control
@@ -711,7 +1054,7 @@ namespace WinFormMarkup.Extensions
             return control;
         }
 
-        public static TControl MouseWheel<TControl>(
+        public static TControl OnMouseWheel<TControl>(
             this TControl control,
             Action<TControl, MouseEventArgs> action)
             where TControl : Control
@@ -720,7 +1063,7 @@ namespace WinFormMarkup.Extensions
             return control;
         }
 
-        public static TControl Move<TControl>(
+        public static TControl OnMove<TControl>(
             this TControl control,
             Action<TControl> action)
             where TControl : Control
@@ -729,12 +1072,158 @@ namespace WinFormMarkup.Extensions
             return control;
         }
 
-        public static TControl Name<TControl>(
+        public static TControl OnPaddingChanged<TControl>(
             this TControl control,
-            string name)
+            Action<TControl> action)
             where TControl : Control
         {
-            control.Name = name;
+            control.PaddingChanged += (sender, _) => action.Invoke((sender as TControl)!);
+            return control;
+        }
+
+        public static TControl OnPaint<TControl>(
+            this TControl control,
+            Action<TControl, PaintEventArgs> action)
+            where TControl : Control
+        {
+            control.Paint += (sender, args) => action.Invoke((sender as TControl)!, args);
+            return control;
+        }
+
+        public static TControl OnParentChanged<TControl>(
+            this TControl control,
+            Action<TControl> action)
+            where TControl : Control
+        {
+            control.ParentChanged += (sender, _) => action.Invoke((sender as TControl)!);
+            return control;
+        }
+
+        public static TControl OnPreviewKeyDown<TControl>(
+            this TControl control,
+            Action<TControl, PreviewKeyDownEventArgs> action)
+            where TControl : Control
+        {
+            control.PreviewKeyDown += (sender, args) => action.Invoke((sender as TControl)!, args);
+            return control;
+        }
+
+
+        public static TControl OnQueryAccessibilityHelp<TControl>(
+            this TControl control,
+            Action<TControl, QueryAccessibilityHelpEventArgs> action)
+            where TControl : Control
+        {
+            control.QueryAccessibilityHelp += (sender, args) => action.Invoke((sender as TControl)!, args);
+            return control;
+        }
+
+        public static TControl OnQueryContinueDrag<TControl>(
+            this TControl control,
+            Action<TControl, QueryContinueDragEventArgs> action)
+            where TControl : Control
+        {
+            control.QueryContinueDrag += (sender, args) => action.Invoke((sender as TControl)!, args);
+            return control;
+        }
+
+
+        public static TControl OnRegionChanged<TControl>(
+            this TControl control,
+            Action<TControl> action)
+            where TControl : Control
+        {
+            control.RegionChanged += (sender, _) => action.Invoke((sender as TControl)!);
+            return control;
+        }
+
+        public static TControl OnResize<TControl>(
+            this TControl control,
+            Action<TControl> action)
+            where TControl : Control
+        {
+            control.Resize += (sender, _) => action.Invoke((sender as TControl)!);
+            return control;
+        }
+
+        public static TControl ONRightToLeftChanged<TControl>(
+            this TControl control,
+            Action<TControl> action)
+            where TControl : Control
+        {
+            control.RightToLeftChanged += (sender, _) => action.Invoke((sender as TControl)!);
+            return control;
+        }
+
+        public static TControl OnSizeChanged<TControl>(
+            this TControl control,
+            Action<TControl> action)
+            where TControl : Control
+        {
+            control.SizeChanged += (sender, _) => action.Invoke((sender as TControl)!);
+            return control;
+        }
+
+        public static TControl OnStyleChanged<TControl>(
+            this TControl control,
+            Action<TControl> action)
+            where TControl : Control
+        {
+            control.StyleChanged += (sender, _) => action.Invoke((sender as TControl)!);
+            return control;
+        }
+
+        public static TControl OnSystemColorsChanged<TControl>(
+            this TControl control,
+            Action<TControl> action)
+            where TControl : Control
+        {
+            control.SystemColorsChanged += (sender, _) => action.Invoke((sender as TControl)!);
+            return control;
+        }
+
+        public static TControl OnTabIndexChanged<TControl>(
+            this TControl control,
+            Action<TControl> action)
+            where TControl : Control
+        {
+            control.TabIndexChanged += (sender, _) => action.Invoke((sender as TControl)!);
+            return control;
+        }
+
+        public static TControl OnTabStopChanged<TControl>(
+            this TControl control,
+            Action<TControl> action)
+            where TControl : Control
+        {
+            control.TabStopChanged += (sender, _) => action.Invoke((sender as TControl)!);
+            return control;
+        }
+
+        public static TControl OnTextChanged<TControl>(
+            this TControl control,
+            Action<TControl> action)
+            where TControl : Control
+        {
+            control.TextChanged += (sender, _) => action.Invoke((sender as TControl)!);
+            return control;
+        }
+
+        public static TControl OnValidated<TControl>(
+            this TControl control,
+            Action<TControl> action)
+            where TControl : Control
+        {
+            control.Validated += (sender, _) => action.Invoke((sender as TControl)!);
+            return control;
+        }
+
+        public static TControl OnVisibleChanged<TControl>(
+            this TControl control,
+            Action<TControl> action)
+            where TControl : Control
+        {
+            control.VisibleChanged += (sender, _) => action.Invoke((sender as TControl)!);
             return control;
         }
 
@@ -773,15 +1262,6 @@ namespace WinFormMarkup.Extensions
             return control;
         }
 
-        public static TControl Paint<TControl>(
-            this TControl control,
-            Action<TControl, PaintEventArgs> action)
-            where TControl : Control
-        {
-            control.Paint += (sender, args) => action.Invoke((sender as TControl)!, args);
-            return control;
-        }
-
 
         public static TControl Parent<TControl>(
             this TControl control,
@@ -789,34 +1269,6 @@ namespace WinFormMarkup.Extensions
             where TControl : Control
         {
             control.Parent = parent;
-            return control;
-        }
-
-        public static TControl PreviewKeyDown<TControl>(
-            this TControl control,
-            Action<TControl, PreviewKeyDownEventArgs> action)
-            where TControl : Control
-        {
-            control.PreviewKeyDown += (sender, args) => action.Invoke((sender as TControl)!, args);
-            return control;
-        }
-
-
-        public static TControl QueryAccessibilityHelp<TControl>(
-            this TControl control,
-            Action<TControl, QueryAccessibilityHelpEventArgs> action)
-            where TControl : Control
-        {
-            control.QueryAccessibilityHelp += (sender, args) => action.Invoke((sender as TControl)!, args);
-            return control;
-        }
-
-        public static TControl QueryContinueDrag<TControl>(
-            this TControl control,
-            Action<TControl, QueryContinueDragEventArgs> action)
-            where TControl : Control
-        {
-            control.QueryContinueDrag += (sender, args) => action.Invoke((sender as TControl)!, args);
             return control;
         }
 
@@ -829,467 +1281,12 @@ namespace WinFormMarkup.Extensions
             return control;
         }
 
-        public static TControl Resize<TControl>(
-            this TControl control,
-            Action<TControl> action)
-            where TControl : Control
-        {
-            control.Resize += (sender, _) => action.Invoke((sender as TControl)!);
-            return control;
-        }
-
         public static TControl RightToLeft<TControl>(
             this TControl control,
             RightToLeft rtl)
             where TControl : Control
         {
             control.RightToLeft = rtl;
-            return control;
-        }
-
-        /// <summary>
-        ///     Hooks the `Control.AutoSizeChanged` event to call the provided `action`, and returns a reference to the control.
-        /// </summary>
-        /// <param name="control"></param>
-        /// <param name="action"></param>
-        /// <typeparam name="TControl"></typeparam>
-        /// <returns></returns>
-        public static TControl SetAutoSizeChanged<TControl>(
-            this TControl control,
-            Action<TControl> action)
-            where TControl : Control
-        {
-            control.AutoSizeChanged += (sender, _) => action.Invoke((sender as TControl)!);
-            return control;
-        }
-
-
-        /// <summary>
-        ///     Hooks the `Control.BackColorChanged` event to call the provided `action`, and returns a reference to the control.
-        /// </summary>
-        /// <param name="control"></param>
-        /// <param name="action"></param>
-        /// <typeparam name="TControl"></typeparam>
-        /// <returns></returns>
-        public static TControl SetBackColorChanged<TControl>(
-            this TControl control,
-            Action<TControl> action)
-            where TControl : Control
-        {
-            control.BackColorChanged += (sender, _) => action.Invoke((sender as TControl)!);
-            return control;
-        }
-
-        /// <summary>
-        ///     Hooks the `Control.BackgroundImageChanged` event to call the provided `action`, and returns a reference to the
-        ///     control.
-        /// </summary>
-        /// <param name="control"></param>
-        /// <param name="action"></param>
-        /// <typeparam name="TControl"></typeparam>
-        /// <returns></returns>
-        public static TControl SetBackgroundImageChanged<TControl>(
-            this TControl control,
-            Action<TControl> action)
-            where TControl : Control
-        {
-            control.BackgroundImageChanged += (sender, _) => action.Invoke((sender as TControl)!);
-            return control;
-        }
-
-        /// <summary>
-        ///     Hooks the `Control.BackgroundImageLayoutChanged` event to call the provided `action`, and returns a reference to
-        ///     the control.
-        /// </summary>
-        /// <param name="control"></param>
-        /// <param name="action"></param>
-        /// <typeparam name="TControl"></typeparam>
-        /// <returns></returns>
-        public static TControl SetBackgroundImageLayoutChanged<TControl>(
-            this TControl control,
-            Action<TControl> action)
-            where TControl : Control
-        {
-            control.BackgroundImageLayoutChanged += (sender, _) => action.Invoke((sender as TControl)!);
-            return control;
-        }
-
-        /// <summary>
-        ///     Hooks the `Control.BindingContextChanged` event to call the provided `action`, and returns a reference to the
-        ///     control.
-        /// </summary>
-        /// <param name="control"></param>
-        /// <param name="action"></param>
-        /// <typeparam name="TControl"></typeparam>
-        /// <returns></returns>
-        public static TControl SetBindingContextChanged<TControl>(
-            this TControl control,
-            Action<TControl> action)
-            where TControl : Control
-        {
-            control.BindingContextChanged += (sender, _) => action.Invoke((sender as TControl)!);
-            return control;
-        }
-
-        /// <summary>
-        ///     Hooks the `Control.CausesValidationChanged` event to call the provided `action`, and returns a reference to the
-        ///     control.
-        /// </summary>
-        /// <param name="control"></param>
-        /// <param name="action"></param>
-        /// <typeparam name="TControl"></typeparam>
-        /// <returns></returns>
-        public static TControl SetCausesValidationChanged<TControl>(
-            this TControl control,
-            Action<TControl> action)
-            where TControl : Control
-        {
-            control.CausesValidationChanged += (sender, _) => action.Invoke((sender as TControl)!);
-            return control;
-        }
-
-        /// <summary>
-        ///     Hooks the `Control.ClientSizeChanged` event to call the provided `action`, and returns a reference to the control.
-        /// </summary>
-        /// <param name="control"></param>
-        /// <param name="action"></param>
-        /// <typeparam name="TControl"></typeparam>
-        /// <returns></returns>
-        public static TControl SetClientSizeChanged<TControl>(
-            this TControl control,
-            Action<TControl> action)
-            where TControl : Control
-        {
-            control.ClientSizeChanged += (sender, _) => action.Invoke((sender as TControl)!);
-            return control;
-        }
-
-        /// <summary>
-        ///     Hooks the `Control.ContextMenuStripChanged` event to call the provided `action`, and returns a reference to the
-        ///     control.
-        /// </summary>
-        /// <param name="control"></param>
-        /// <param name="action"></param>
-        /// <typeparam name="TControl"></typeparam>
-        /// <returns></returns>
-        public static TControl SetContextMenuStripChanged<TControl>(
-            this TControl control,
-            Action<TControl> action)
-            where TControl : Control
-        {
-            control.ContextMenuStripChanged += (sender, _) => action.Invoke((sender as TControl)!);
-            return control;
-        }
-
-        /// <summary>
-        ///     Hooks the `Control.ControlAdded` event to call the provided `action`, and returns a reference to the control.
-        /// </summary>
-        /// <param name="control"></param>
-        /// <param name="action"></param>
-        /// <typeparam name="TControl"></typeparam>
-        /// <returns></returns>
-        public static TControl SetControlAdded<TControl>(
-            this TControl control,
-            Action<TControl, ControlEventArgs> action)
-            where TControl : Control
-        {
-            control.ControlAdded += (sender, args) => action.Invoke((sender as TControl)!, args);
-            return control;
-        }
-
-        /// <summary>
-        ///     Hooks the `Control.ControlRemoved` event to call the provided `action`, and returns a reference to the control.
-        /// </summary>
-        /// <param name="control"></param>
-        /// <param name="action"></param>
-        /// <typeparam name="TControl"></typeparam>
-        /// <returns></returns>
-        public static TControl SetControlRemoved<TControl>(
-            this TControl control,
-            Action<TControl, ControlEventArgs> action)
-            where TControl : Control
-        {
-            control.ControlRemoved += (sender, args) => action.Invoke((sender as TControl)!, args);
-            return control;
-        }
-
-        /// <summary>
-        ///     Hooks the `Control.CursorChanged` event to call the provided `action`, and returns a reference to the control.
-        /// </summary>
-        /// <param name="control"></param>
-        /// <param name="action"></param>
-        /// <typeparam name="TControl"></typeparam>
-        /// <returns></returns>
-        public static TControl SetCursorChanged<TControl>(
-            this TControl control,
-            Action<TControl> action)
-            where TControl : Control
-        {
-            control.CursorChanged += (sender, _) => action.Invoke((sender as TControl)!);
-            return control;
-        }
-
-        /// <summary>
-        ///     Hooks the `Control.DockChanged` event to call the provided `action`, and returns a reference to the control.
-        /// </summary>
-        /// <param name="control"></param>
-        /// <param name="action"></param>
-        /// <typeparam name="TControl"></typeparam>
-        /// <returns></returns>
-        public static TControl SetDockChanged<TControl>(
-            this TControl control,
-            Action<TControl> action)
-            where TControl : Control
-        {
-            control.DockChanged += (sender, _) => action.Invoke((sender as TControl)!);
-            return control;
-        }
-
-
-        public static TControl SetDragDrop<TControl>(
-            this TControl control,
-            Action<TControl, DragEventArgs> action)
-            where TControl : Control
-        {
-            control.DragDrop += (sender, args) => action.Invoke((sender as TControl)!, args);
-            return control;
-        }
-
-
-        public static TControl SetDragEnter<TControl>(
-            this TControl control,
-            Action<TControl, DragEventArgs> action)
-            where TControl : Control
-        {
-            control.DragEnter += (sender, args) => action.Invoke((sender as TControl)!, args);
-            return control;
-        }
-
-        public static TControl SetDragLeave<TControl>(
-            this TControl control,
-            Action<TControl> action)
-            where TControl : Control
-        {
-            control.DragLeave += (sender, _) => action.Invoke((sender as TControl)!);
-            return control;
-        }
-
-        public static TControl SetDragOver<TControl>(
-            this TControl control,
-            Action<TControl, DragEventArgs> action)
-            where TControl : Control
-        {
-            control.DragOver += (sender, args) => action.Invoke((sender as TControl)!, args);
-            return control;
-        }
-
-
-        public static TControl SetEnabledChanged<TControl>(
-            this TControl control,
-            Action<TControl> action)
-            where TControl : Control
-        {
-            control.EnabledChanged += (sender, _) => action.Invoke((sender as TControl)!);
-            return control;
-        }
-
-        public static TControl SetFontChanged<TControl>(
-            this TControl control,
-            Action<TControl> action)
-            where TControl : Control
-        {
-            control.FontChanged += (sender, _) => action.Invoke((sender as TControl)!);
-            return control;
-        }
-
-        public static TControl SetForeColorChanged<TControl>(
-            this TControl control,
-            Action<TControl> action)
-            where TControl : Control
-        {
-            control.ForeColorChanged += (sender, _) => action.Invoke((sender as TControl)!);
-            return control;
-        }
-
-
-        public static TControl SetHandleCreated<TControl>(
-            this TControl control,
-            Action<TControl> action)
-            where TControl : Control
-        {
-            control.HandleCreated += (sender, _) => action.Invoke((sender as TControl)!);
-            return control;
-        }
-
-        public static TControl SetHandleDestroyed<TControl>(
-            this TControl control,
-            Action<TControl> action)
-            where TControl : Control
-        {
-            control.HandleDestroyed += (sender, _) => action.Invoke((sender as TControl)!);
-            return control;
-        }
-
-        public static TControl SetHelpRequested<TControl>(
-            this TControl control,
-            Action<TControl, HelpEventArgs> action)
-            where TControl : Control
-        {
-            control.HelpRequested += (sender, args) => action.Invoke((sender as TControl)!, args);
-            return control;
-        }
-
-        public static TControl SetInvalidated<TControl>(
-            this TControl control,
-            Action<TControl, InvalidateEventArgs> action)
-            where TControl : Control
-        {
-            control.Invalidated += (sender, args) => action.Invoke((sender as TControl)!, args);
-            return control;
-        }
-
-        public static TControl SetLocationChanged<TControl>(
-            this TControl control,
-            Action<TControl> action)
-            where TControl : Control
-        {
-            control.LocationChanged += (sender, _) => action.Invoke((sender as TControl)!);
-            return control;
-        }
-
-        public static TControl SetLostFocus<TControl>(
-            this TControl control,
-            Action<TControl> action)
-            where TControl : Control
-        {
-            control.LostFocus += (sender, _) => action.Invoke((sender as TControl)!);
-            return control;
-        }
-
-        public static TControl SetMarginChanged<TControl>(
-            this TControl control,
-            Action<TControl> action)
-            where TControl : Control
-        {
-            control.MarginChanged += (sender, _) => action.Invoke((sender as TControl)!);
-            return control;
-        }
-
-        public static TControl SetMouseCaptureChanged<TControl>(
-            this TControl control,
-            Action<TControl> action)
-            where TControl : Control
-        {
-            control.MouseCaptureChanged += (sender, _) => action.Invoke((sender as TControl)!);
-            return control;
-        }
-
-        public static TControl SetPaddingChanged<TControl>(
-            this TControl control,
-            Action<TControl> action)
-            where TControl : Control
-        {
-            control.PaddingChanged += (sender, _) => action.Invoke((sender as TControl)!);
-            return control;
-        }
-
-        public static TControl SetParentChanged<TControl>(
-            this TControl control,
-            Action<TControl> action)
-            where TControl : Control
-        {
-            control.ParentChanged += (sender, _) => action.Invoke((sender as TControl)!);
-            return control;
-        }
-
-
-        public static TControl SetRegionChanged<TControl>(
-            this TControl control,
-            Action<TControl> action)
-            where TControl : Control
-        {
-            control.RegionChanged += (sender, _) => action.Invoke((sender as TControl)!);
-            return control;
-        }
-
-        public static TControl SetRightToLeftChanged<TControl>(
-            this TControl control,
-            Action<TControl> action)
-            where TControl : Control
-        {
-            control.RightToLeftChanged += (sender, _) => action.Invoke((sender as TControl)!);
-            return control;
-        }
-
-        public static TControl SetSizeChanged<TControl>(
-            this TControl control,
-            Action<TControl> action)
-            where TControl : Control
-        {
-            control.SizeChanged += (sender, _) => action.Invoke((sender as TControl)!);
-            return control;
-        }
-
-        public static TControl SetStyleChanged<TControl>(
-            this TControl control,
-            Action<TControl> action)
-            where TControl : Control
-        {
-            control.StyleChanged += (sender, _) => action.Invoke((sender as TControl)!);
-            return control;
-        }
-
-        public static TControl SetSystemColorsChanged<TControl>(
-            this TControl control,
-            Action<TControl> action)
-            where TControl : Control
-        {
-            control.SystemColorsChanged += (sender, _) => action.Invoke((sender as TControl)!);
-            return control;
-        }
-
-        public static TControl SetTabIndexChanged<TControl>(
-            this TControl control,
-            Action<TControl> action)
-            where TControl : Control
-        {
-            control.TabIndexChanged += (sender, _) => action.Invoke((sender as TControl)!);
-            return control;
-        }
-
-        public static TControl SetTabStopChanged<TControl>(
-            this TControl control,
-            Action<TControl> action)
-            where TControl : Control
-        {
-            control.TabStopChanged += (sender, _) => action.Invoke((sender as TControl)!);
-            return control;
-        }
-
-        public static TControl SetTextChanged<TControl>(
-            this TControl control,
-            Action<TControl> action)
-            where TControl : Control
-        {
-            control.TextChanged += (sender, _) => action.Invoke((sender as TControl)!);
-            return control;
-        }
-
-        public static TControl SetValidated<TControl>(
-            this TControl control,
-            Action<TControl> action)
-            where TControl : Control
-        {
-            control.Validated += (sender, _) => action.Invoke((sender as TControl)!);
-            return control;
-        }
-
-        public static TControl SetVisibleChanged<TControl>(
-            this TControl control,
-            Action<TControl> action)
-            where TControl : Control
-        {
-            control.VisibleChanged += (sender, _) => action.Invoke((sender as TControl)!);
             return control;
         }
 
@@ -1311,8 +1308,8 @@ namespace WinFormMarkup.Extensions
             control.Size = size;
             return control;
         }
-        
-        
+
+
         public static TControl Size<TControl>(
             this TControl control,
             int width,
